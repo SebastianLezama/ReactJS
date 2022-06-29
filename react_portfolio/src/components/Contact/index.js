@@ -11,29 +11,29 @@ const Contact = () => {
 
     useEffect(() => {
         setTimeout(() => {
-        setLetterClass('text-animate-hover')
-    }, 3000)
+            setLetterClass('text-animate-hover')
+        }, 3000)
     }, [])
 
     const sendEmail = (e) => {
-    e.preventDefault()
+        e.preventDefault()
 
-    emailjs
-        .sendForm(
-            'gmail',
-            'template_YeJhZkgb',
-            form.current,
-            'your-token'
-        )
-        .then(
-            () => {
-            alert('Message successfully sent!')
-            window.location.reload(false)
-            },
-            () => {
-            alert('Failed to send the message, please try again')
-            }
-        )
+        emailjs
+            .sendForm(
+                'gmail',
+                'template_YeJhZkgb',
+                form.current,
+                'your-token'
+            )
+            .then(
+                () => {
+                alert('Message successfully sent!')
+                window.location.reload(false)
+                },
+                () => {
+                alert('Failed to send the message, please try again')
+                }
+            )
     }
 
     return (
@@ -89,22 +89,22 @@ const Contact = () => {
             </div>
             </div>
             <div className="info-map">
-            Slobodan Gajić,
+            Sebastian Lezama,
             <br />
-            Serbia,
+            Argentina,
             <br />
-            Branka RadiČevića 19, 22000 <br />
-            Sremska Mitrovica <br />
+            Malabia 2167 <br />
+            CABA <br />
             <br />
-            <span>freelancerslobodan@gmail.com</span>
+            <span>slezama.dev@gmail.com</span>
             </div>
             <div className="map-wrap">
-            <MapContainer center={[44.96366, 19.61045]} zoom={13}>
-                <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-                <Marker position={[44.96366, 19.61045]}>
-                <Popup>Sloba lives here, come over for a cup of coffee :)</Popup>
-                </Marker>
-            </MapContainer>
+                <MapContainer center={[-34.587361, -58.421799]} zoom={13}>
+                    <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+                    <Marker position={[-34.587361, -58.421799]}>
+                    <Popup>Sloba lives here, come over for a cup of coffee :)</Popup>
+                    </Marker>
+                </MapContainer>
             </div>
         </div>
         <Loader type="pacman" />

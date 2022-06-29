@@ -57,20 +57,27 @@
         }
     
         .flat-button {
-        color: #ffd700;
-        font-size: 11px;
-        letter-spacing: 3px;
-        text-decoration: none;
-        padding: 8px 10px;
-        border: 1px solid #ffd700;
-        float: left;
-        border-radius: 4px;
-        background: 0 0;
-        text-transform: uppercase;
-        float: right;
-        text-align: center;
-        margin-right: 10px;
-        }
+            color: #8b4cd2;
+            font-size: 13px;
+            font-weight: 400;
+            font-family: sans-serif;
+            letter-spacing: 3px;
+            text-decoration: none;
+            padding: 8px 10px;
+            border: 1px solid #8b4cd2;
+            float: left;
+            border-radius: 3px;
+            background: 0 0;
+            text-transform: uppercase;
+            float: right;
+            text-align: center;
+            margin-right: 10px;
+
+            &:hover {
+                background: #8b4cd2;
+                color: #888;
+            }
+            }
     }
     
     .map-wrap {
@@ -110,7 +117,7 @@
         font-size: 16px;
     
         span {
-            color: #ffd700;
+            color: #8b4cd2;
         }
         }
     }
