@@ -34,34 +34,34 @@
     
         input[type='text'],
         input[type='email'] {
-        width: 100%;
-        border: 0;
-        background: #115173;
-        height: 50px;
-        font-size: 16px;
-        color: #fff;
-        padding: 0 20px;
-        box-sizing: border-box;
+            width: 100%;
+            border: 0;
+            background: #115173;
+            height: 50px;
+            font-size: 16px;
+            color: #fff;
+            padding: 0 20px;
+            box-sizing: border-box;
         }
     
         textarea {
-        width: 100%;
-        border: 0;
-        background: #115173;
-        height: 50px;
-        font-size: 16px;
-        color: #fff;
-        padding: 20px;
-        box-sizing: border-box;
-        min-height: 150px;
+            width: 100%;
+            border: 0;
+            background: #115173;
+            height: 50px;
+            font-size: 16px;
+            color: #fff;
+            padding: 20px;
+            box-sizing: border-box;
+            min-height: 150px;
         }
     
         .flat-button {
             color: #8b4cd2;
-            font-size: 13px;
-            font-weight: 400;
+            font-size: 14px;
             font-family: sans-serif;
             letter-spacing: 3px;
+            font-weight: 400;
             text-decoration: none;
             padding: 8px 10px;
             border: 1px solid #8b4cd2;
