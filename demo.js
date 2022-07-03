@@ -374,10 +374,3 @@ console.log(temp)
 const value2 = Math.random() < 0.5 ? "a" : "b";
 
 console.log(value2)
-
-
-// React hooks
-
-import React, { useState } from 'react'
-
-
