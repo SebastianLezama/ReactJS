@@ -1,5 +1,6 @@
 import { useState } from "react"
 
+// custom hook to capture logic
 
 export const useFrom = (initialValues) => {
   const [values, setValues] = useState(initialValues);

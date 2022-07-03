@@ -1,5 +1,6 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
+import { useFrom } from './useFrom';
 
 function expensiveInitialState() {
   return 10;
@@ -9,22 +10,40 @@ function expensiveInitialState() {
 // const [count, setCount] = useState(() => expensiveInitialState());
 
 function App() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [values, handleChange] = useFrom({email: '', password: ''});
+
+  useEffect(() => {
+    console.log('originalFunction');
+    
+    return () => {
+      console.log('cleanUpFunction');
+    }
+  }, [values.email])
+  
+  // useEffect(() => {
+  //   const onMouseMove = e => {
+  //     console.log(e);
+  //   };
+  //   window.addEventListener('mousemove', onMouseMove);
+    
+  //   return () => {
+  //     window.removeEventListener('mousemove', onMouseMove)
+  //   }
+  // }, [])
 
 
   return (
     <div className="App">
       <input 
         name='email'
-        value={email}
-        onChange={e => setEmail(e.target.value)}
+        value={values.email}
+        onChange={handleChange}
       />
       <input
         type='password'
         name='password'
-        value={password}
-        onChange={e => setPassword(e.target.value)}
+        value={values.password}
+        onChange={handleChange}
       />
     </div>
   );
