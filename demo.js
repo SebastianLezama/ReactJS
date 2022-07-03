@@ -300,7 +300,7 @@ console.log(sum(3,5,4,8))
 
 // destructuring assignment: const { a : b } = of object
 // destructuring nested: const { a : {a2 : b}} = of object
-// destrcuturing to remove items: const [ , , ...arr] = list;
+// destructuring to remove items: const [ , , ...arr] = list;
 // destructuring to get prop from object:
 //  function half({ max, min }) { return (max + min) / 2;}
 
@@ -370,3 +370,14 @@ console.log(temp)
 // also: import * as newObjectName from "./filename(.js)"
 // export default
 // import function from "./filename(.js)"
+
+const value2 = Math.random() < 0.5 ? "a" : "b";
+
+console.log(value2)
+
+
+// React hooks
+
+import React, { useState } from 'react'
+
+
