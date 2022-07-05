@@ -431,5 +431,10 @@ const testMap = templateArray
 // declared a, b and compare b, a to retain logic
 
 const sortedPeople = templateArray.sort((a, b) => b.number > a.number ? 1 : -1)
-const sortedAges = ages.sort((a, b) => b > a ? 1 : -1)
-console.log(sortedAges)
+// const sortedAges = ages.sort((a, b) => b > a ? 1 : -1)
+const sortedAges = ages.sort((a, b) => b - a)
+
+// reduce
+
+const ageSum = ages.reduce((total, age) => total + age, 0)
+console.log(ageSum)
