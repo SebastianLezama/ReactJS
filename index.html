@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Demo</title>
 </head>
 <body>
     <h1>Hello world!</h1>
-    <script src="demo.js">
+    <script>
         const users = [
             {
                 id: 1,
@@ -20,14 +20,13 @@
             }
         ]
         const app = document.getElementById('app');
-
+        console.log('hi')
         const avatar = ({ id, name }) => {
-            const src = ''
-            return 
+            const src = 'https://upload.wikimedia.org/wikipedia/en/a/a9/Example.jpg'
+            return `<h2>${name}</h2>`
         }
-        users.forEach((user) => {
-            app.innerHTML += avatar(user);
-        })
+
+        users.forEach(user => app.innerHTML += avatar(user))
     </script>
 </body>
 </html>
