@@ -234,7 +234,14 @@ let templateArray = [
         "lastName": "Holmes",
         "number": "31200389",
         "likes": ["Python", "CSGO"]
+    },
+    {
+        "firstName": "Sebastian",
+        "lastName": "Lezama",
+        "number": "12123388",
+        "likes": ["Python", "CSGO"]
     }
+    
 ];
 
 function lookUp(name, prop) {
@@ -278,6 +285,7 @@ function checkSign(number) {
     }
     return number < 0 ? "negative" : "zero";
 }
+
 
 console.log(checkSign(6))
 
@@ -374,3 +382,54 @@ console.log(temp)
 const value2 = Math.random() < 0.5 ? "a" : "b";
 
 console.log(value2)
+
+// repasar metodos de array
+
+// for(let i = 0; i < templateArray.length; i++) {
+//     console.log(templateArray[i]);
+// }
+
+// for(person of templateArray) {
+//     console.log(person);
+// }
+
+// forEach
+
+// templateArray.forEach(function(person) {
+//     console.log(person);
+// });
+
+// filter
+
+let ages = [33, 12, 20, 19, 44, 21, 8, 37, 31]
+// let drinkingAges = []
+
+// for(age of ages) {
+//     if(age >= 21) {
+//         drinkingAges.push(age)
+//     }
+// }
+
+// const drinkingAges = ages.filter(function(age) {
+//     if(age >= 21) {
+//         return true
+//     }
+// });
+
+const drinkingAges = ages.filter(c => c >= 21);
+const detectives = templateArray.filter(people => people.lastName === 'Holmes')
+
+
+// map
+
+const testMap = templateArray
+    .map(p => `${p.firstName} ${p.lastName}`)
+    .map(p => p.toLowerCase())
+
+
+// sort
+// declared a, b and compare b, a to retain logic
+
+const sortedPeople = templateArray.sort((a, b) => b.number > a.number ? 1 : -1)
+const sortedAges = ages.sort((a, b) => b > a ? 1 : -1)
+console.log(sortedAges)
