@@ -438,3 +438,5 @@ const sortedAges = ages.sort((a, b) => b - a)
 
 const ageSum = ages.reduce((total, age) => total + age, 0)
 console.log(ageSum)
+
+// use vite for react install projects!!
