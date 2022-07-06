@@ -1,5 +1,3 @@
-# ReactJS
-
 <p align="center">
   <a href="https://example.com/">
     <img src="https://via.placeholder.com/72" alt="Logo" width=72 height=72>
@@ -10,12 +8,11 @@
   <p align="center">
     Short description
     <br>
-    <a href="https://reponame/issues/new?template=bug.md">Report bug</a>
+    <a href="https://github.com/SebastianLezama/ReactJS/issues/new?template=bug.md">Report bug</a>
     ·
-    <a href="https://reponame/issues/new?template=feature.md&labels=feature">Request feature</a>
+    <a href="https://github.com/SebastianLezama/ReactJS/issues/new?template=feature.md&labels=feature">Request feature</a>
   </p>
 </p>
-
 
 ## Table of contents
 
@@ -27,7 +24,6 @@
 - [Creators](#creators)
 - [Thanks](#thanks)
 - [Copyright and license](#copyright-and-license)
-
 
 ## Quick start
 
