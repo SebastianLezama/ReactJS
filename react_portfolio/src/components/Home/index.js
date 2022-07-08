@@ -18,7 +18,6 @@ const Home = () => {
         }, 4000)
     }, []);
 
-
     return (
         <>
             <div className="container home-page">

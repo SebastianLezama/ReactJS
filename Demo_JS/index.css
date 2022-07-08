@@ -1,3 +1,22 @@
-a {
-  font-size: 13;
+.id {
+  color: rgb(159, 23, 23);
+  font-size: 33px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 400;
+}
+
+.name {
+  color: blue;
+  font-size: 44px;
+}
+
+img {
+  width: 100px;
+  border-radius: 50%;
+  float: left;
+  margin-right: 15px;
+}
+
+div {
+  padding-bottom: 10px;
 }

@@ -5,32 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Demo</title>
-    <style src="index.css"></style>
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
     <div className="home-page">
         <h1>Hello world!</h1>
-        <a id='app'></a>
-        <script>
-            const users = [
-                {
-                    id: 1,
-                    name: 'Eric'
-                },
-                {
-                    id: 2,
-                    name: 'Sebastian'
-                }
-            ]
-            const app = document.getElementById('app');
-            console.log(app)
-            const avatar = ({ id, name }) => {
-                const src = 'https://upload.wikimedia.org/wikipedia/en/a/a9/Example.jpg'
-                return `<div class="id">${id}</div><div class="name">${name}</div><img src='${src}' alt='example image'/><br/><br/>`
-            }
-
-            users.forEach(user => app.innerHTML += avatar(user))
-        </script>
+        <div id='app'>
+        </div>
     </div>
+    <script>
+        const users = [
+            {
+            id: 1,
+            name: 'Eric'
+            },
+            {
+            id: 2,
+            name: 'Sebastian'
+            }
+        ];
+        const app = document.getElementById('app');
+        const avatar = ({ id, name }) => {
+            const src = 'https://upload.wikimedia.org/wikipedia/en/a/a9/Example.jpg'
+            return `<div><img src='${src}' alt='example image'/><div class="id">${id} </div><div class="name">${name}</div></div>`
+        };
+        
+        users.forEach(user => app.innerHTML += avatar(user))
+    </script>
 </body>
 </html>
