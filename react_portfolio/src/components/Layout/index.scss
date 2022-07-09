@@ -50,8 +50,8 @@
         margin-top: 0;
         position: relative;
         margin-bottom: 40px;
-        left: -10px;
-
+        margin-left: 20%;
+        
         &:before {
         content: '<h1>';
         font-family: 'La Belle Aurore', cursive;
@@ -62,9 +62,9 @@
         left: -10px;
         opacity: 0.6;
         line-height: 18px;
-        }
+    }
 
-        &:after {
+    &:after {
         content: '<h1/>';
         font-family: 'La Belle Aurore', cursive;
         color: #8b4cd2;
@@ -75,14 +75,15 @@
         bottom: -20px;
         margin-left: 20px;
         opacity: 0.6;
-        }
     }
+}
 
-    p {
+p {
         font-size: 13px;
         color: #fff;
         font-family: sans-serif;
         font-weight: 300;
+        margin-left: 20%;
         max-width: fit-content;
         animation: pulse 1s;
         &:nth-of-type(1) {

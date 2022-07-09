@@ -16,14 +16,14 @@ const Contact = () => {
     }, [])
 
     const sendEmail = (e) => {
-        e.preventDefault()
+        e.preventDefault();
 
         emailjs
             .sendForm(
-                'gmail',
-                'template_YeJhZkgb',
+                'service_5ytx4rr',
+                'template_n3flizh',
                 form.current,
-                'your-token'
+                'J6asWlRaFJJQpcfNt'
             )
             .then(
                 () => {
@@ -48,21 +48,21 @@ const Contact = () => {
                 />
             </h1>
             <p>
-                I am interested in freelance opportunities - especially ambitious or
-                large projects. However, if you have other request or question,
-                don't hesitate to contact me using below form either.
+                I am interested in learning opportunities - especially with a hands-on approach. 
+                However, if you have other request or question,
+                don't hesitate to contact me using the from below.
             </p>
             <div className="contact-form">
                 <form ref={form} onSubmit={sendEmail}>
                 <ul>
                     <li className="half">
-                    <input placeholder="Name" type="text" name="name" required />
+                    <input placeholder="Name" type="text" name="from_name" required />
                     </li>
                     <li className="half">
                     <input
                         placeholder="Email"
                         type="email"
-                        name="email"
+                        name="reply_to"
                         required
                     />
                     </li>
