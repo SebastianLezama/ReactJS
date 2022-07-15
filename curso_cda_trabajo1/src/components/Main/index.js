@@ -1,11 +1,13 @@
 import React from 'react'
-import Counter from '../Counter'
-import './index.css'
+import image from '../../assets/trabajo_1.png'
+
 
 function Main() {
   return (
-    <Counter />
-  )
+    <div>
+      <img src={image}></img>
+    </div>
+  );
 }
 
 export default Main
