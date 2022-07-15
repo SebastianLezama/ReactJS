@@ -1,9 +1,10 @@
 import React from 'react'
+import Counter from '../Counter'
 import './index.css'
 
 function Main() {
   return (
-    <div>Main</div>
+    <Counter />
   )
 }
 
