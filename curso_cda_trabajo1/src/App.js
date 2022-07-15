@@ -1,15 +1,23 @@
 import './App.css';
-import NavBar from './components/NavBar';
 import Main from './components/Main';
+import { Routes, Route } from 'react-router-dom'
+import Layout from './components/Layout/Layout';
+import Productos from './components/Productos/Productos';
+import Cart from './components/Cart/Cart';
+
 
 
 function App() {
   return (
-    <div className="App">
-      <NavBar />
-      <Main />
-      <NavBar />
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<Layout />} >
+          <Route index element={<Main />}/>
+          <Route path="/productos" element={<Productos />}/>
+          <Route path="/cart" element={<Cart />}/>
+        </Route>
+      </Routes>
+    </>
   );
 }
 
