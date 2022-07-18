@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Counter.scss';
 import { BsCartDash, BsCartPlus } from 'react-icons/bs';
+import logButton from '../Classes/logButton'
 
 
 
@@ -35,7 +36,6 @@ const Counter = ({stock}) => {
               <BsCartPlus size="40" className={iconClassPlus} onClick={() => {
                 if (count < stock) {
                 setCount(currentState => ({...currentState, count: currentState.count + 1}));
-                setIconClass(currentState => ({...currentState, iconClassPlus: 'icon-hover'}))
               }
             }
                 }
@@ -47,8 +47,8 @@ const Counter = ({stock}) => {
             <div>
               Cantidad: {count}
             </div>
-            <button>
-              Agragar al Carrito
+            <button onClick={() => {console.log(count, " productos añadidos al carrito.")}}>
+              Añadir al Carrito
             </button>
           </ul>
   )
