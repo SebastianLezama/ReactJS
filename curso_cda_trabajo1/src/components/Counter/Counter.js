@@ -6,11 +6,11 @@ import logButton from '../Classes/logButton'
 
 
 const Counter = ({stock}) => {
-  const [{count}, setCount] = useState({count : 0});
+  const [{count}, setCount] = useState({count : 1});
   const [{iconClassDash, iconClassPlus}, setIconClass] = useState({iconClassDash:'icon', iconClassPlus: 'icon'});
   
   useEffect(() => {
-    if (count === 0) {
+    if (count === 1) {
       setIconClass(currentState => ({...currentState, iconClassPlus: 'icon'}));
       setIconClass(currentState => ({...currentState, iconClassDash: 'icon'}))
     } else if (count < stock) {
@@ -18,7 +18,7 @@ const Counter = ({stock}) => {
     } else {setIconClass(currentState => ({...currentState, iconClassPlus: 'icon-max'}))}
     
   }, [count]);
-  
+
 
   return (
           <ul className="Counter">
