@@ -5,7 +5,7 @@ import { BsCartDash, BsCartPlus } from 'react-icons/bs';
 
 
 const Counter = ({stock}) => {
-  const [{count}, setCount] = useState({count : 0});
+  const [{count}, setCount] = useState({count : 1});
   const [{iconClassDash, iconClassPlus}, setIconClass] = useState({iconClassDash:'icon', iconClassPlus: 'icon'});
   
   useEffect(() => {
