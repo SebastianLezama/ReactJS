@@ -24,7 +24,7 @@ const Counter = ({stock}) => {
           <div className="Counter">
             <button className="button">
               <BsCartDash size="40" className={iconClassDash} onClick={() => {
-                if (count > 0) {
+                if (count > 1) {
                   setCount(currentState => ({...currentState, count: currentState.count - 1}));
                   setIconClass(currentState => ({...currentState, iconClassDash: 'icon-hover'}))
                   }

@@ -9,5 +9,5 @@
   position: absolute;
   top: 0%;
   left: calc((100vw / 2) - (30%));
-  transform: translate(-50%, 50%);
+  transform: translate(-50%, 30%);
 }

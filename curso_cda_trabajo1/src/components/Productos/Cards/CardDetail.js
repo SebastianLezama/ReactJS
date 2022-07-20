@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import s from './Card.module.css';
-import { MdClose } from 'react-icons/md'
+import { MdClose } from 'react-icons/md';
+import Counter from '../../Counter/Counter';
 
 
-const CardDetail = ({ id, handleClose, show, setShow }) => {
+const CardDetail = ({ id, handleClose, show }) => {
 
-  const [item, setItems] = useState([]);
-  const apiUrl = 'https://fake-products-eric.herokuapp.com/api/products/detail/' + id;
-  // const apiUrl = 'https://fake-products-eric.herokuapp.com/api/products/detail/61d9a43e5e2626b0af873199'
-  
+  const [item, setItems] = useState({});
+  const apiUrl = `https://fake-products-eric.herokuapp.com/api/products/detail/${id}`;
 
   useEffect(() => {
     fetch(apiUrl)
@@ -16,6 +15,7 @@ const CardDetail = ({ id, handleClose, show, setShow }) => {
       .then((res) => setItems(res));
   }, []);
 
+  // me falta separar el render a otro componente como habias pedido, desp lo hago
   return (
   <>
     {show &&
@@ -28,6 +28,7 @@ const CardDetail = ({ id, handleClose, show, setShow }) => {
           </div>
           <img src={item.img} alt="image" />
           <MdClose className={s.MdClose} onClick={handleClose}></MdClose>
+          <Counter stock="6"/>
         </div>
       </div>
   }</>

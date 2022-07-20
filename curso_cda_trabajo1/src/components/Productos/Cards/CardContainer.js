@@ -18,7 +18,6 @@ const CardContainer = () => {
     <div className={s.CardContainer}>
       <h2>Productos</h2>
       <CardList items={items} />
-      {/* <CardDetail items={items}/> */}
     </div>
   )
 }
