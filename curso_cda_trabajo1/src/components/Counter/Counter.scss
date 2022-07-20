@@ -18,3 +18,16 @@
 .icon-max {
   color: #e61f1f;
 }
+
+.Counter {
+  max-width: 200px;
+  position: relative;
+  left: 0%;
+  padding: 5px;
+  margin-left: 0%;
+  display: block;
+  align-content: center;
+  display: inline-block;
+  overflow: auto/scroll/hidden;
+  clear: left/right/both;
+}

@@ -21,7 +21,7 @@ const Counter = ({stock}) => {
 
 
   return (
-          <ul className="Counter">
+          <div className="Counter">
             <button className="button">
               <BsCartDash size="40" className={iconClassDash} onClick={() => {
                 if (count > 0) {
@@ -50,7 +50,7 @@ const Counter = ({stock}) => {
             <button onClick={() => {console.log(count, " productos añadidos al carrito.")}}>
               Añadir al Carrito
             </button>
-          </ul>
+          </div>
   )
 }
 
