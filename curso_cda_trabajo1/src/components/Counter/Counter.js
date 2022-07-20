@@ -10,7 +10,7 @@ const Counter = ({stock}) => {
   const [{iconClassDash, iconClassPlus}, setIconClass] = useState({iconClassDash:'icon', iconClassPlus: 'icon'});
   
   useEffect(() => {
-    if (count === 0) {
+    if (count === 1) {
       setIconClass(currentState => ({...currentState, iconClassPlus: 'icon'}));
       setIconClass(currentState => ({...currentState, iconClassDash: 'icon'}))
     } else if (count < stock) {
@@ -18,10 +18,10 @@ const Counter = ({stock}) => {
     } else {setIconClass(currentState => ({...currentState, iconClassPlus: 'icon-max'}))}
     
   }, [count]);
-  
+
 
   return (
-          <ul className="Counter">
+          <div className="Counter">
             <button className="button">
               <BsCartDash size="40" className={iconClassDash} onClick={() => {
                 if (count > 0) {
@@ -50,7 +50,7 @@ const Counter = ({stock}) => {
             <button onClick={() => {console.log(count, " productos añadidos al carrito.")}}>
               Añadir al Carrito
             </button>
-          </ul>
+          </div>
   )
 }
 

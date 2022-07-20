@@ -5,8 +5,10 @@ import './index.css'
 
 function Main() {
   return (
-    <div className='image-main'>
-      <img src={image}></img>
+    <div className='main'>
+      <div className='image-main'>
+        <img src={image}></img>
+      </div>
     </div>
   );
 }
