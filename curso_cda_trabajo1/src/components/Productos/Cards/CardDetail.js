@@ -22,7 +22,7 @@ const CardDetail = ({ id, handleClose, show, setShow }) => {
       <div className={s.CardDetail}>
         <div className={s.divModal}>
           <div>
-            <h3>Detalle del producto</h3>
+            <h2>Detalle del producto</h2>
             <h3>{item.name}</h3>
             <h3>${item.price}</h3>
           </div>
