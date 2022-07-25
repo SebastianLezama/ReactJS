@@ -11,17 +11,12 @@ const CardContainer = () => {
   const { categoryId } = useParams();
   
   useEffect(() => {
-    if(categoryId){
-      fetch(
-        `https://fake-products-eric.herokuapp.com/api/products/category/${categoryId}`
-      )
-        .then((res) => res.json())
-        .then((res) => setItems(res));
-    } else {
-      fetch('https://fake-products-eric.herokuapp.com/api/products')
-        .then((res) => res.json())
-        .then((res) => setItems(res));
-    }
+    const URL = "https://fake-products-eric.herokuapp.com/api/products";
+    const fetchCategory = categoryId ? `${URL}/category/${categoryId}` : `${URL}`;
+
+    fetch(fetchCategory)
+      .then((res) => res.json())
+      .then((res) => setItems(res));
   }, [categoryId]);
   
   return (

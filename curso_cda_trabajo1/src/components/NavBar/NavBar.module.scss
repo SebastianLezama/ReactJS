@@ -1,6 +1,6 @@
 .nav {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   // width: 100vw;
   padding: 10px;
@@ -69,6 +69,7 @@ a, a:hover, a:visited, a:active {
   display: flex;
   list-style: none;
   margin-right: 20px;
+  align-items: center;
 
   
   a {
@@ -88,4 +89,40 @@ a, a:hover, a:visited, a:active {
   &:hover {
     color: #222222;
   }
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  height: 80px;
+}
+
+
+.navMenu {
+
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  grid-gap: 10px;
+  list-style: none;
+  text-align: center;
+  width: 70vw;
+  justify-content: end;
+  // margin-right: 2rem;
+
+  left: 0;
+  opacity: 1;
+  transition: all 0.5s ease;
+  z-index: 1;
+
+}
+
+.navLinks {
+  text-align: center;
+  // padding: 2rem;
+  width: 100%;
+  display: table;
+}
+
+.navLinks:hover {
+  border-radius: 0;
 }
