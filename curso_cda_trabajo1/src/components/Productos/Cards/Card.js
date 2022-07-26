@@ -8,7 +8,6 @@ const Card = ({ prod }) => {
 
   const [show, setShow] = useState(false);
   const hanldeClick = () => {
-    console.log(prod.id)
     setShow(true);
   }
 

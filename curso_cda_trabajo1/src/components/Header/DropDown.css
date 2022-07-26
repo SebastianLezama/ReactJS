@@ -6,16 +6,12 @@
   text-align: start;
   padding-right: 20px;
   margin-right: 20px;
-  right: 0.2cm;
+  right: 0.18cm;
 }
 
 .dropdown-menu li {
   background: #188fff;
   cursor: pointer;
-}
-
-.dropdown-menu li:hover {
-  color: #ffff;
 }
 
 .dropdown-menu.clicked {
@@ -33,4 +29,5 @@
 
 .dropdown-link:hover {
   background: #166dbe;
+  color: #ffff;
 }

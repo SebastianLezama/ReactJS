@@ -46,19 +46,19 @@ a, a:hover, a:visited, a:active {
 }
 
 
-.nav ul i {
+.productos {
   padding-left: 10px;
   padding-right: 10px;
 }
 
 .nav ul a {
-  font-family:Arial, Helvetica, sans-serif;
-  font-weight: bold;
+  // font-family:Arial, Helvetica, sans-serif;
+  // font-weight: bold;
   font-size: 17px;
 }
 
 .navFooter {
-  background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%);
+  // background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%);
 
   display: flex;
   justify-content: space-between;
@@ -74,7 +74,7 @@ a, a:hover, a:visited, a:active {
 }
 
 .navFooter li {
-  color: #ffff;
+  color: #222;
   // margin: 5px;
 }
 
@@ -115,7 +115,7 @@ a, a:hover, a:visited, a:active {
 
 .navFooter h2 {
   line-height: 13px;
-  color: #ffff;
+  color: #222;
 
   &:hover {
     color: #222222;

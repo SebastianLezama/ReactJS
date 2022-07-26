@@ -39,11 +39,11 @@ function NavBar({ isInHeader }) {
             onMouseLeave={onMouseLeave}
           >
           { isInHeader ? 
-            <i onClick={handleClick}>
+            <h2 onClick={handleClick} className={style.productos}>
               <Link exact="true" 
                 to="/productos"><h2>Productos</h2></Link>
                 {drop && <DropDown />}
-            </i> : <a target="_blank"
+            </h2> : <a target="_blank"
             rel="noreferrer" href='https://github.com/SebastianLezama/'>
             <BsGithub size={35} /> </a>}
         </li>
