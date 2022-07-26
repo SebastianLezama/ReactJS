@@ -28,12 +28,12 @@ const CardDetail = ({ id, handleClose, show, setShow }) => {
         <div className={s.divModal}>
           <div>
             <h2>Detalle del producto</h2>
-            <h3>{item.name}</h3>
-            <h3>${item.price}</h3>
+            <h2>{item.name}</h2>
+            <p>${item.price}</p>
+            <Counter stock={item.stock}/>
           </div>
           <img src={item.img} alt="image" />
-          <MdClose className={s.MdClose} onClick={handleClose}></MdClose>
-          <Counter stock={item.stock}/>
+          <MdClose className={s.MdClose} onClick={handleClose} />
         </div>
       </div>
   }</>

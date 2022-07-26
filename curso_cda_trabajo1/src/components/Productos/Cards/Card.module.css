@@ -71,8 +71,8 @@
 }
 
 .divModal {
-  width: 600px;
-  height: 400px;
+  width: 75%;
+  max-width: 900px;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
   background: #ffff;
   color: #000;
@@ -81,11 +81,15 @@
   position: relative;
   z-index: 10;
   border-radius: 10px;
+  padding-right: 10px;
+}
 
+.divModal p {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 40px;
 }
 
 .MdClose {
-  padding: 10px 24px;
   background: #141414;
   color: #fff;
   border: none;
@@ -100,6 +104,8 @@
 }
 
 .divModal img {
-  width: 60%;
-  padding-top: 30px;
+  width: 85%;
+  padding-left: 5px;
+  padding-right: 5px;
+  position: relative;
 }

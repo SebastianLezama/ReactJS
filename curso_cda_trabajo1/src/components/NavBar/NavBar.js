@@ -22,31 +22,32 @@ function NavBar({ isInHeader }) {
 
   const onMouseLeave = () => {setDrop(false)}
   
-  const navMenu = click ? style.navMenuActive : style.navMenu;
+  // const navMenu = click ? style.navMenuActive : style.navMenu;
 
   return (
     <nav className={isInHeader ? style.nav : style.navFooter}>
-      <Link className='home' to='/'><h2>e-Commerce CDA</h2></Link>
-      <ul>
+      <Link className={style.navLinks} to='/'><h2>e-Commerce CDA</h2></Link>
+      <ul className={style.navMenu}>
+        <li>
+          { isInHeader ? <Link exact="true" className={style.cart}
+            to="/cart"> <BsCart  color='white' size={35} /> </Link> :  <a target="_blank"
+            rel="noreferrer" href='https://www.linkedin.com/in/sebastian-lezama-89a7851b2/' >
+            <AiFillLinkedin size={33} /> </a>}
+        </li>
         <li className={style.navItem}
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
           >
-          { isInHeader ? <i 
-              className={style.navMenu} 
-              onClick={handleClick}><Link exact="true" 
-            to="/productos">Productos</Link>
-            {drop && <DropDown className={style.navLinks}/>}
+          { isInHeader ? 
+            <i onClick={handleClick}>
+              <Link exact="true" 
+                to="/productos"><h2>Productos</h2></Link>
+                {drop && <DropDown />}
             </i> : <a target="_blank"
             rel="noreferrer" href='https://github.com/SebastianLezama/'>
             <BsGithub size={30} /> </a>}
         </li>
-        <li>
-          { isInHeader ? <Link exact="true" className="cart" 
-            to="/cart"> <BsCart size={30} /> </Link> :  <a target="_blank"
-            rel="noreferrer" href='https://www.linkedin.com/in/sebastian-lezama-89a7851b2/' >
-            <AiFillLinkedin size={33} /> </a>}
-        </li>
+        
       </ul>
     </nav>
   )
