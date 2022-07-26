@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
-import style from './NavBar.module.scss';
+import React, { useEffect, useState } from 'react';
+import style from './NavBar.module.css';
 import { BsGithub, BsCart } from 'react-icons/bs'
 import { AiFillLinkedin } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import DropDown from '../Header/DropDown';
-
-
+import { FaBars, FaTimes } from 'react-icons/fa'
 
 
 function NavBar({ isInHeader }) {
@@ -13,15 +12,31 @@ function NavBar({ isInHeader }) {
   const [ drop, setDrop ] = useState(false);
   const [click, setClick] = useState(false);
   const handleClick = () => setClick(!click);
+  const closeMobileMenu = () => setClick(false);
+  const [ icon, setIcon ] = useState(false);
 
 
   const onMouseEnter = () => {
     if(window.innerWidth < 960){setDrop(false)}
       else {setDrop(true)}
   }
-
   const onMouseLeave = () => {setDrop(false)}
+
+
+  useEffect(() => {
+    if(window.innerWidth < 960){
+      setIcon(true)
+    } else setIcon(false)
+
+  }, [window.innerWidth])
   
+  const ShowIcon = () => {
+      return (
+        click ? <FaTimes onClick={closeMobileMenu}/> : <FaBars />
+        )
+  }
+  
+  const bars = icon ? <ShowIcon /> : 'Productos';
   // const navMenu = click ? style.navMenuActive : style.navMenu;
 
   return (
@@ -41,11 +56,12 @@ function NavBar({ isInHeader }) {
           { isInHeader ? 
             <h2 onClick={handleClick} className={style.productos}>
               <Link exact="true" 
-                to="/productos"><h2>Productos</h2></Link>
+                to="/productos"><h2>{bars}</h2></Link>
                 {drop && <DropDown />}
+                
             </h2> : <a target="_blank"
-            rel="noreferrer" href='https://github.com/SebastianLezama/'>
-            <BsGithub size={35} /> </a>}
+              rel="noreferrer" href='https://github.com/SebastianLezama/'>
+              <BsGithub size={35} /> </a>}
         </li>
         
       </ul>

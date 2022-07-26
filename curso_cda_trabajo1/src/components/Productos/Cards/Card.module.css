@@ -31,8 +31,9 @@
 }
 
 .card .info h3 {
+  position: relative;
   font-size: 20px;
-  min-width: 300px;
+  min-width: 280px;
   margin-bottom: 7px;
   color: #222;
   background-color: #166dbe;

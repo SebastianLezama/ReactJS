@@ -1,8 +1,11 @@
 import React from 'react'
+import { FaBars, FaTimes } from 'react-icons/fa'
+
+
 
 const Cart = () => {
   return (
-    <div>Cart</div>
+  <FaBars />
   )
 }
 
