@@ -10,7 +10,6 @@ const CardList = ({ items }) => {
   return (
     <div className={s.CardList}>
       {data.map((prod) => (
-        
           <Card prod={prod} key={prod.id} />
       ))}
     </div>

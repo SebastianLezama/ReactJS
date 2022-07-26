@@ -6,8 +6,9 @@
 
 .image-main {
   display: flex;
-  position: absolute;
-  top: 0%;
-  left: calc((100vw / 2) - (30%));
-  transform: translate(-50%, 30%);
+  position: relative;
+  top: 100px;
+  width: 30vh;
+  /* left: calc((100vw / 2) - (30%)); */
+  /* transform: translate(-50%, 30%); */
 }

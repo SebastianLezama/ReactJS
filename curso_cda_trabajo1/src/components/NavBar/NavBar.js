@@ -28,11 +28,11 @@ function NavBar({ isInHeader }) {
     <nav className={isInHeader ? style.nav : style.navFooter}>
       <Link className={style.navLinks} to='/'><h2>e-Commerce CDA</h2></Link>
       <ul className={style.navMenu}>
-        <li>
-          { isInHeader ? <Link exact="true" className={style.cart}
-            to="/cart"> <BsCart  color='white' size={35} /> </Link> :  <a target="_blank"
+        <li className={style.navCart}>
+          { isInHeader ? <Link exact="true" to="/cart" className={style.cart}> 
+            <BsCart  color='white' size={35} /> </Link> :  <a target="_blank"
             rel="noreferrer" href='https://www.linkedin.com/in/sebastian-lezama-89a7851b2/' >
-            <AiFillLinkedin size={33} /> </a>}
+            <AiFillLinkedin className={style.linkedIn} size={40} /> </a>}
         </li>
         <li className={style.navItem}
             onMouseEnter={onMouseEnter}
@@ -45,7 +45,7 @@ function NavBar({ isInHeader }) {
                 {drop && <DropDown />}
             </i> : <a target="_blank"
             rel="noreferrer" href='https://github.com/SebastianLezama/'>
-            <BsGithub size={30} /> </a>}
+            <BsGithub size={35} /> </a>}
         </li>
         
       </ul>

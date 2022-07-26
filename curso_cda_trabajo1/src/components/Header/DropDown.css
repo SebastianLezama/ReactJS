@@ -1,16 +1,17 @@
 .dropdown-menu {
-  width: 150px;
+  width: 130px;
   position: absolute;
-  top: 90px;
+  top: 80px;
   list-style: none;
   text-align: start;
-
+  padding-right: 20px;
+  margin-right: 20px;
+  right: 0.2cm;
 }
 
 .dropdown-menu li {
   background: #188fff;
   cursor: pointer;
-  /* left: -10px; */
 }
 
 .dropdown-menu li:hover {
@@ -23,7 +24,7 @@
 
 .dropdown-link {
   display: block;
-  width: 100%;
+  /* width: 100%; */
   height: 100%;
   text-decoration: none;
   color: #fff;

@@ -5,7 +5,7 @@
   width: 100vmax;
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 4px);
+  min-height: 100vh;
   position: relative;
   flex-grow: 1;
   overflow: hidden;

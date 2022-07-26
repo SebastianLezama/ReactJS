@@ -1,17 +1,11 @@
 .nav {
   display: flex;
-  // justify-content: center;
   align-items: center;
-  // width: 100vw;
-  // padding: 10px;
   clear: both;
   left: 0;
-  // width: calc(100% - 16px);
   right: 0;
   position: relative;
   top: 0;
-  // max-width: 100%;
-  // max-width: calc(100% - 16px);
   margin: 0;
   background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%);
   height: 80px;
@@ -20,37 +14,38 @@
 a, a:hover, a:visited, a:active {
   color: inherit;
   text-decoration: none;
+  
 }
 
-.navFooter {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 50px;
-  padding: 10px;
-  box-shadow: 0px 0px 6px 0.5px #902fc9ac;
-  bottom: 0;
-  position: absolute;
-  clear: both;
-  left: 0;
-  right: 0;
-  margin: 0;
-}
 
 .nav h2 {
   line-height: 25px;
   color: #ffff;
+  &:hover {
+    color: #222222;
+  }
 }
+
 
 .cart {
   position: relative;
-  margin-right: 10px;
+}
+
+.navCart {
+  height: 100;
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+}
+
+.navCart:hover {
+  background-color: #1888ff;
+  border-radius: 4px;
+  transition: all 0.2s ease-out;
+  color: #222222;
 }
 
 
-.nav ul {
-  align-items: center;
-}
 .nav ul i {
   padding-left: 10px;
   padding-right: 10px;
@@ -59,13 +54,28 @@ a, a:hover, a:visited, a:active {
 .nav ul a {
   font-family:Arial, Helvetica, sans-serif;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 17px;
+}
 
+.navFooter {
+  background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  // padding: 10px;
+  bottom: 0;
+  position: absolute;
+  clear: both;
+  left: 0;
+  right: 0;
+  margin: 0;
 }
 
 .navFooter li {
-  color: #8b4cd2;
-  margin: 5px;
+  color: #ffff;
+  // margin: 5px;
 }
 
 .navFooter ul {
@@ -73,23 +83,39 @@ a, a:hover, a:visited, a:active {
   list-style: none;
   margin-right: 20px;
   align-items: center;
+  height: 70px;
 
-  
+  li{
+    padding: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 70px;
+    align-items: center;
+  }
+
   a {
+    top: 10px;
     transition: all 0.5s ease;
 
     &:hover {
       color: #222222;
     }
+
+    
   }
 }
 
-.nav ul li {
-  margin: 0px 0px;
+.linkedIn {
+      padding-top: 12px;
+    }
+
+.nav ul li a svg {
+  padding-top: 13px;
 }
 
 .navFooter h2 {
-  color: #8b4cd2;
+  line-height: 13px;
+  color: #ffff;
 
   &:hover {
     color: #222222;
@@ -123,14 +149,15 @@ a, a:hover, a:visited, a:active {
   opacity: 1;
   transition: all 0.5s ease;
   z-index: 1;
-  padding: 10px;
+  // padding: 10px;
   right: 0;
   padding-right: 10px;
+  margin: 0;
 }
 
 .navLinks {
   // position: absolute;
-  text-align: center;
+  // text-align: center;
 
   color: white;
   text-decoration: none;
