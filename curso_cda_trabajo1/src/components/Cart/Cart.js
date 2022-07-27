@@ -1,11 +1,12 @@
 import React from 'react'
-import { FaBars, FaTimes } from 'react-icons/fa'
+import Form from './Form'
+import './Cart.scss'
 
 
 
 const Cart = () => {
   return (
-  <FaBars />
+  <Form />
   )
 }
 

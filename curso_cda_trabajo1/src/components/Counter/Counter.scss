@@ -1,28 +1,69 @@
-.button {
-  margin-right: 10px;
-  margin-left: 10px;
+.Counter button {
+  width: 150px;
+  margin-right: 5px;
+  margin-left: 5px;
+  padding: 2px;
+  cursor: pointer;
+  // position: absolute;
+  left: 17%;
+  color: #188fff;
+  height: 60px;
+  width: 250px;
+  font-size: 16px;
+  font-family: 'PT Sans Caption', sans-serif;
+  letter-spacing: 3px;
+  font-weight: 800;
+  text-decoration: none;
+  padding: 8px 10px;
+  border: 1px solid #188fff;
+  border-radius: 3px;
+  background: 0 0;
+  text-transform: uppercase;
+  text-align: center;
+  // margin-right: 5px;
+  
+  &:hover {
+    background: #166dbe;
+    color: #222;
+  }
 }
 
 .icon {
-  font-size: 110;
+  font-size: 60;
+  cursor: pointer;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 30px;
   
   &:hover {
-    color: #8b4cd2;
+    color: #188fff;
   }
 }
 
 .icon-hover {
-  color: #8b4cd2;
+  font-size: 60;
+  cursor: pointer;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 30px;
+  color: #188fff;
 }
 
 .icon-max {
+  font-size: 60;
+  cursor: pointer;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 30px;
   color: #e61f1f;
 }
 
 .Counter {
-  max-width: 300px;
-  position: relative;
-  left: 0%;
+  // width: 100%;
+  // height: 120px;
+  // position: absolute;
+  left: 15%;
+  bottom: 3%;
   padding: 5px;
   margin-left: 0%;
   display: block;

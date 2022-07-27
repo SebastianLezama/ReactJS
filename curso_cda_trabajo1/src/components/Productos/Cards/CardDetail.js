@@ -20,6 +20,10 @@ const CardDetail = ({ id, handleClose, show, setShow }) => {
     if(modalRef.current === e.target)setShow(false);
   }
 
+  const onAdd = (quantity) => {
+    console.log(quantity);
+  } 
+
   // me falta separar el render a otro componente como habias pedido, desp lo hago
   return (
   <>
@@ -30,7 +34,7 @@ const CardDetail = ({ id, handleClose, show, setShow }) => {
             <h2>Detalle del producto</h2>
             <h2>{item.name}</h2>
             <p>${item.price}</p>
-            <Counter stock={item.stock}/>
+            <Counter stock={item.stock} onAdd={onAdd} />
           </div>
           <img src={item.img} alt="image" />
           <MdClose className={s.MdClose} onClick={handleClose} />

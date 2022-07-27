@@ -236,7 +236,7 @@ a, a:hover, a:visited, a:active {
     transition: 250ms;
   }
 
-  button {
+  .nav-menu button {
     display: none;
   }
 }

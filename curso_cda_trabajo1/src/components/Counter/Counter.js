@@ -3,7 +3,7 @@ import './Counter.scss';
 import { BsCartDash, BsCartPlus } from 'react-icons/bs';
 
 
-const Counter = ({stock}) => {
+const Counter = ({ stock, onAdd }) => {
   const [count, setCount] = useState(1);
   const [{iconClassDash, iconClassPlus}, setIconClass] = useState({iconClassDash:'icon', iconClassPlus: 'icon'});
   
@@ -31,19 +31,15 @@ const Counter = ({stock}) => {
 
   return (
   <div className="Counter">
-    <button className="button">
-      <BsCartDash size="40" className={iconClassDash} onClick={dashOnClick}/>
-    </button>
-    <button className="button">
-      <BsCartPlus size="40" className={iconClassPlus} onClick={plusOnClick}/>
-    </button>
+      <BsCartDash size="30" className={iconClassDash} onClick={dashOnClick}/>
+      <BsCartPlus size="30" className={iconClassPlus} onClick={plusOnClick}/>
     <div>
       Stock Disponible: {stock}
     </div>
     <div>
       Cantidad: {count}
     </div>
-    <button onClick={() => {console.log(count, " productos añadidos al carrito.")}}>
+    <button onClick={() => onAdd(count)}>
       Añadir al Carrito
     </button>
   </div>
