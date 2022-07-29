@@ -6,7 +6,7 @@
   text-align: start;
   padding-right: 20px;
   margin-right: 20px;
-  right: 0.18cm;
+  right: 0.4cm;
 }
 
 .dropdown-menu li {
@@ -25,6 +25,7 @@
   text-decoration: none;
   color: #fff;
   padding: 10px;
+  margin: 0;
 }
 
 .dropdown-link:hover {

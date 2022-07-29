@@ -43,11 +43,11 @@ function NavBar({ isInHeader }) {
     <nav className={isInHeader ? style.nav : style.navFooter}>
       <Link className={style.navLinks} to='/'><h2>e-Commerce CDA</h2></Link>
       <ul className={style.navMenu}>
-        <li className={style.navCart}>
+        <li className={style.navItem}>
           { isInHeader ? <Link exact="true" to="/cart" className={style.cart}> 
-            <BsCart  color='white' size={35} /> </Link> :  <a target="_blank"
+            <BsCart  color='white' size={35} /> </Link> :  <a className={style.linkedIn} target="_blank"
             rel="noreferrer" href='https://www.linkedin.com/in/sebastian-lezama-89a7851b2/' >
-            <AiFillLinkedin className={style.linkedIn} size={40} /> </a>}
+            <AiFillLinkedin  size={40} /> </a>}
         </li>
         <li className={style.navItem}
             onMouseEnter={onMouseEnter}
@@ -56,10 +56,10 @@ function NavBar({ isInHeader }) {
           { isInHeader ? 
             <h2 onClick={handleClick} className={style.productos}>
               <Link exact="true" 
-                to="/productos"><h2>{bars}</h2></Link>
+                to="/productos" className={style.navProd}><h2>{bars}</h2></Link>
                 {drop && <DropDown />}
                 
-            </h2> : <a target="_blank"
+            </h2> : <a className={style.github} target="_blank"
               rel="noreferrer" href='https://github.com/SebastianLezama/'>
               <BsGithub size={35} /> </a>}
         </li>
