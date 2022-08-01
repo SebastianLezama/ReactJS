@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Counter.scss';
 import { BsCartDash, BsCartPlus } from 'react-icons/bs';
+import { CartContext } from '../../context/CartContext';
 
 
-const Counter = ({ stock, onAdd }) => {
+const Counter = ( {item} ) => {
+  const { addToCart } = useContext(CartContext);
   const [count, setCount] = useState(1);
   const [{iconClassDash, iconClassPlus}, setIconClass] = useState({iconClassDash:'icon', iconClassPlus: 'icon'});
   
@@ -11,7 +13,7 @@ const Counter = ({ stock, onAdd }) => {
     if (count === 1) {
       setIconClass(currentState => ({...currentState, iconClassPlus: 'icon'}));
       setIconClass(currentState => ({...currentState, iconClassDash: 'icon'}))
-    } else if (count < stock) {
+    } else if (count < item.stock) {
       setIconClass(currentState => ({...currentState, iconClassPlus: 'icon-hover'}))
     } else {setIconClass(currentState => ({...currentState, iconClassPlus: 'icon-max'}))}
     
@@ -26,7 +28,7 @@ const Counter = ({ stock, onAdd }) => {
   }
 
   const plusOnClick = () => {
-    count < stock && setCount(count + 1)
+    count < item.stock && setCount(count + 1)
   }
 
   return (
@@ -34,12 +36,12 @@ const Counter = ({ stock, onAdd }) => {
       <BsCartDash size="30" className={iconClassDash} onClick={dashOnClick}/>
       <BsCartPlus size="30" className={iconClassPlus} onClick={plusOnClick}/>
     <div>
-      Stock Disponible: {stock}
+      Stock Disponible: {item.stock}
     </div>
     <div>
       Cantidad: {count}
     </div>
-    <button onClick={() => onAdd(count)}>
+    <button onClick={() => addToCart(item, count)}>
       Añadir al Carrito
     </button>
   </div>

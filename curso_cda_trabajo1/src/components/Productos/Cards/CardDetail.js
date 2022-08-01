@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import s from './Card.module.css';
 import { MdClose } from 'react-icons/md';
 import Counter from '../../Counter/Counter';
@@ -7,22 +7,18 @@ import Counter from '../../Counter/Counter';
 const CardDetail = ({ id, handleClose, show, setShow }) => {
 
   const modalRef = useRef();
-  const [item, setItems] = useState({});
+  const [item, setItem] = useState({});
   const apiUrl = `https://fake-products-eric.herokuapp.com/api/products/detail/${id}`;
 
   useEffect(() => {
     fetch(apiUrl)
       .then((res) => res.json())
-      .then((res) => setItems(res));
+      .then((res) => setItem(res));
   }, []);
 
   const closeModal = e => {
     if(modalRef.current === e.target)setShow(false);
   }
-
-  const onAdd = (quantity) => {
-    console.log(quantity);
-  } 
 
   // me falta separar el render a otro componente como habias pedido, desp lo hago
   return (
@@ -34,9 +30,9 @@ const CardDetail = ({ id, handleClose, show, setShow }) => {
             <h2>Detalle del producto</h2>
             <h2>{item.name}</h2>
             <p>${item.price}</p>
-            <Counter stock={item.stock} onAdd={onAdd} />
+            <Counter item={item}  />
           </div>
-          <img src={item.img} alt="image" />
+          <img src={item.img} alt={item.name} />
           <MdClose className={s.MdClose} onClick={handleClose} />
         </div>
       </div>
