@@ -32,7 +32,7 @@ const CardDetail = ({ id, handleClose, show, setShow, isNotInCart }) => {
             <h2>Detalle del producto</h2>
             <h2>{item.name}</h2>
             <p>${item.price}</p>
-            <Counter item={item}  />
+            <Counter item={item} isNotInCart={isNotInCart} />
             { isNotInCart && <Link to='/cart'><h4>Ir al carrito</h4></Link>}
           </div>
           <img src={item.img} alt={item.name} />

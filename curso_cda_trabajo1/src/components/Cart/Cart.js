@@ -14,7 +14,7 @@ const Cart = () => {
   <div className='cartDisplay'>
     <div className='cartContainer'>
       {cart.map((p) => (
-        <CartDetail key={p.id} prod={p}/>
+        <CartDetail key={p.id} prod={p} />
       ))}
     </div>
     <div className='cartTotalContainer'>

@@ -4,7 +4,7 @@ import { BsCartDash, BsCartPlus } from 'react-icons/bs';
 import { CartContext } from '../../context/CartContext';
 
 
-const Counter = ( {item} ) => {
+const Counter = ( {item, isNotInCart} ) => {
   const { addToCart } = useContext(CartContext);
   const [count, setCount] = useState(1);
   const [{iconClassDash, iconClassPlus}, setIconClass] = useState({iconClassDash:'icon', iconClassPlus: 'icon'});
@@ -42,7 +42,7 @@ const Counter = ( {item} ) => {
       Cantidad: {count}
     </div>
     <button onClick={() => addToCart(item, count)}>
-      Añadir al Carrito
+      {isNotInCart ? 'Añadir al Carrito' : 'Sumar al Carrito'}
     </button>
   </div>
   )

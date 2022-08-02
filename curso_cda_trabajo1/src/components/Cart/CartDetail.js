@@ -17,6 +17,7 @@ const CartDetail = ({prod}) => {
     setShow(false);
   }
 
+    // check
   const add = (item) => {
     if (item.quantity < item.stock) {
       item.quantity += 1;

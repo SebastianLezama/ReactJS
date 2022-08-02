@@ -103,8 +103,7 @@
 
 .infoCartDetail article {
   display: inline-block;
-  // justify-content: center;
-  // align-items: center;
+  margin-left: 130px;
 }
 
 .infoCartDetail article h3 {
@@ -123,7 +122,6 @@
 .stock {
   margin: 0px 5px;
   display: flex;
-  // position: absolute;
   left: 35%;
 }
 
@@ -150,29 +148,24 @@
 
 .subcontainer {
   display:table;
-
 }
 
 .titulo {
   display: flex;
   justify-content: center;
-  // position: absolute;
-  // left: 50%;
-  // align-items: flex-start;
+
 }
 
 .subtotal {
   display: flex;
   align-items: center;
   justify-content:space-between;
-  // min-width: 33%;
-  // max-width: 265px;
+
   width: 250px;
   background-color: rgba(195, 195, 195, 0.895);
   padding: 5px;
   border-radius: 5px;
-  // position: absolute;
-  // left: 52%;
+
   height: 45px;
 
   h5 {
@@ -183,7 +176,6 @@
 .botonera {
   display: flex;
   align-items: center;
-  // position: absolute;
   left: 10px;
 }
 
