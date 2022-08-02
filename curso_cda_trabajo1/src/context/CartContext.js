@@ -62,6 +62,21 @@ const CartProvider = (props) => {
     setCartItems(count)
   }
 
+  // check
+  const add = (item) => {
+    if (item.quantity < item.stock) {
+      item.quantity += 1;
+      setCart([...cart])
+    }
+  }
+
+  const sub = (item) => {
+    if (item.quantity > 1) {
+    item.quantity -= 1;
+    setCart([...cart])
+    }
+  }
+
   useEffect(() => {
     calcTotal()
     cartItemsCounter()
@@ -71,7 +86,7 @@ const CartProvider = (props) => {
 
   return (
 
-    <CartContext.Provider value={{ cart, total, cartItems, setCart, addToCart, clearCart, deleteItem, calcTotal}}>
+    <CartContext.Provider value={{ cart, total, cartItems, add, sub, isInCart, addToCart, clearCart, deleteItem, calcTotal}}>
       {props.children}
     </CartContext.Provider>
   )

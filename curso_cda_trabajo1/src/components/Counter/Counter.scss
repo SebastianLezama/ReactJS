@@ -20,7 +20,7 @@
   background: 0 0;
   text-transform: uppercase;
   text-align: center;
-  margin-top: 15%;  
+  margin-top: 5%;
   &:hover {
     background: #166dbe;
     color: #222;
@@ -33,7 +33,7 @@
   margin-left: 10px;
   margin-right: 10px;
   margin-top: 25px;
-
+  
   &:hover {
     color: #188fff;
   }
@@ -74,4 +74,12 @@
 
 .Counter div {
   padding: 5px;
+}
+
+.addFavs {
+  cursor: pointer;
+  margin-top: 10%;
+  &:hover {
+    color: #188fff;
+  }
 }

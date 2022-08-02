@@ -6,7 +6,7 @@ import './Cart.scss'
 
 
 const CartDetail = ({prod}) => {
-  const { cart, setCart, deleteItem } = useContext(CartContext);
+  const { deleteItem, add, sub } = useContext(CartContext);
 
   const [show, setShow] = useState(false);
   const handleClick = () => {
@@ -15,21 +15,6 @@ const CartDetail = ({prod}) => {
 
   const hideModal = () => {
     setShow(false);
-  }
-
-    // check
-  const add = (item) => {
-    if (item.quantity < item.stock) {
-      item.quantity += 1;
-      setCart([...cart])
-    }
-  }
-
-  const sub = (item) => {
-    if (item.quantity > 1) {
-    item.quantity -= 1;
-    setCart([...cart])
-    }
   }
 
   return (<>
