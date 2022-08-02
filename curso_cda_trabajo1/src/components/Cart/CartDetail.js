@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react'
 import { CartContext } from '../../context/CartContext';
-import Counter from '../Counter/Counter';
 import CardDetail from '../Productos/Cards/CardDetail';
 import './Cart.scss'
 
 
+
 const CartDetail = ({prod}) => {
-  const { cart, setCart, deleteItem, addToCart } = useContext(CartContext);
+  const { cart, setCart, deleteItem } = useContext(CartContext);
 
   const [show, setShow] = useState(false);
   const handleClick = () => {
@@ -44,14 +44,17 @@ const CartDetail = ({prod}) => {
           </div>
         </div>
         <article>
+          <div className='subContainer'>
+          <div className='titulo'><h4>Precio: $ {prod.price}</h4></div>
           <div className='subtotal'>
             <div className='botonera'>
               <button className='boton' onClick={() => sub(prod)}>-</button>
               <h4>{prod.quantity} </h4>
               <button className='boton' onClick={() => add(prod)}>+</button>
             </div>
-            <h5> * $ {prod.price}</h5>
-            <h5>= ${prod.price * prod.quantity}.-</h5>
+            <h5> Subtotal: </h5>
+            <h5> ${prod.price * prod.quantity}.-</h5>
+          </div>
           </div>
         </article>
         <button
@@ -62,7 +65,7 @@ const CartDetail = ({prod}) => {
         </button>
       </ul>
     </div>
-    <CardDetail key={prod.id} handleClose={hideModal} 
+    <CardDetail key={prod.id} handleClose={hideModal} isNotInCart={ false }
       id={prod.id} show={show} setShow={setShow}/>
     </>
   )

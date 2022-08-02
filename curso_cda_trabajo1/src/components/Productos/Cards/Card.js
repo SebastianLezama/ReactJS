@@ -24,7 +24,7 @@ const Card = ({ prod }) => {
         <h4>$ {prod.price}</h4>
         </div>
     </div>
-    <CardDetail key={prod.id} handleClose={hideModal} 
+    <CardDetail key={prod.id} handleClose={hideModal} isNotInCart={true} 
       id={prod.id} show={show} setShow={setShow}/>
   </>  )
 }

@@ -102,9 +102,9 @@
 }
 
 .infoCartDetail article {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: inline-block;
+  // justify-content: center;
+  // align-items: center;
 }
 
 .infoCartDetail article h3 {
@@ -148,25 +148,42 @@
   margin: 5px;
 }
 
+.subcontainer {
+  display:table;
+
+}
+
+.titulo {
+  display: flex;
+  justify-content: center;
+  // position: absolute;
+  // left: 50%;
+  // align-items: flex-start;
+}
+
 .subtotal {
   display: flex;
   align-items: center;
-  justify-content: end;
-  min-width: 23%;
-  max-width: 265px;
+  justify-content:space-between;
+  // min-width: 33%;
+  // max-width: 265px;
+  width: 250px;
   background-color: rgba(195, 195, 195, 0.895);
   padding: 5px;
   border-radius: 5px;
-  position: absolute;
-  left: 42%;
-  height: 40px;
-  font-size: 8;
+  // position: absolute;
+  // left: 52%;
+  height: 45px;
+
+  h5 {
+    justify-content: end;
+  }
 }
 
 .botonera {
   display: flex;
   align-items: center;
-  position: absolute;
+  // position: absolute;
   left: 10px;
 }
 
@@ -179,6 +196,7 @@
   font-size: 1.2em;
   cursor: pointer;
   border: none;
+  z-index: 0;
 
   &:hover {
     transform: scale(1.05);

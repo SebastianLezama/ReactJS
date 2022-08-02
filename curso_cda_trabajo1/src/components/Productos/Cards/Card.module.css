@@ -95,6 +95,10 @@
   margin-top: 15px;
 }
 
+.divModal h4:hover {
+  color: #166dbe;
+}
+
 .divModal p {
   font-size: 30px;
   margin: 0;
