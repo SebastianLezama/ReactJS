@@ -7,7 +7,7 @@ import CardDetail from './CardDetail';
 const Card = ({ prod }) => {
 
   const [show, setShow] = useState(false);
-  const hanldeClick = () => {
+  const handleClick = () => {
     setShow(true);
   }
 
@@ -17,7 +17,7 @@ const Card = ({ prod }) => {
   
   return (
     <>
-    <div className={s.card} onClick = {() => hanldeClick()}>
+    <div className={s.card} onClick = {() => handleClick()}>
       <img src={prod.img} alt={prod.name} />
         <div className={s.info}>
         <h3>{prod.name}</h3>

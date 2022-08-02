@@ -20,8 +20,7 @@
   background: 0 0;
   text-transform: uppercase;
   text-align: center;
-  // margin-right: 5px;
-  
+  margin-top: 15%;  
   &:hover {
     background: #166dbe;
     color: #222;
@@ -29,12 +28,12 @@
 }
 
 .icon {
-  font-size: 60;
   cursor: pointer;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-top: 30px;
-  
+  padding: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 25px;
+
   &:hover {
     color: #188fff;
   }
@@ -71,4 +70,8 @@
   display: inline-block;
   overflow: auto/scroll/hidden;
   clear: left/right/both;
+}
+
+.Counter div {
+  padding: 5px;
 }

@@ -33,8 +33,8 @@ const Counter = ( {item} ) => {
 
   return (
   <div className="Counter">
-      <BsCartDash size="30" className={iconClassDash} onClick={dashOnClick}/>
-      <BsCartPlus size="30" className={iconClassPlus} onClick={plusOnClick}/>
+      <BsCartDash size="33" className={iconClassDash} onClick={dashOnClick}/>
+      <BsCartPlus size="33" className={iconClassPlus} onClick={plusOnClick}/>
     <div>
       Stock Disponible: {item.stock}
     </div>

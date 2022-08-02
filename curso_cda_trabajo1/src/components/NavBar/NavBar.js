@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import style from './NavBar.module.css';
 import { BsGithub, BsCart } from 'react-icons/bs'
 import { AiFillLinkedin } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import DropDown from '../Header/DropDown';
 import { FaBars, FaTimes } from 'react-icons/fa'
+import { CartContext } from '../../context/CartContext';
 
 
 function NavBar({ isInHeader }) {
+  const { cartItems } = useContext(CartContext);
 
   const [ drop, setDrop ] = useState(false);
   const [click, setClick] = useState(false);
@@ -45,7 +47,7 @@ function NavBar({ isInHeader }) {
       <ul className={style.navMenu}>
         <li className={style.navItem}>
           { isInHeader ? <Link exact="true" to="/cart" className={style.cart}> 
-            <BsCart  color='white' size={35} /> </Link> :  <a className={style.linkedIn} target="_blank"
+            <BsCart  color='white' size={35} /> <span>{cartItems}</span></Link> :  <a className={style.linkedIn} target="_blank"
             rel="noreferrer" href='https://www.linkedin.com/in/sebastian-lezama-89a7851b2/' >
             <AiFillLinkedin  size={40} /> </a>}
         </li>
