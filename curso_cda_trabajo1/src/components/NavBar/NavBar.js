@@ -2,11 +2,11 @@ import React, { useContext, useEffect, useState } from 'react';
 import style from './NavBar.module.css';
 import { BsGithub, BsCart } from 'react-icons/bs'
 import { AiFillLinkedin } from 'react-icons/ai'
-import { Link, Navigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import DropDown from '../Header/DropDown';
 import { FaBars, FaTimes } from 'react-icons/fa'
 import { CartContext } from '../../context/CartContext';
-import FavDrop from '../Header/FavDrop';
+// import FavDrop from '../Header/FavDrop';
 
 
 function NavBar({ isInHeader }) {

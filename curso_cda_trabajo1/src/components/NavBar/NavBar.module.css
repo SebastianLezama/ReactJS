@@ -270,6 +270,10 @@ a, a:hover, a:visited, a:active {
     color: #ffff;
   }
 
+  .productos h2 {
+    font-size: 2.45em;
+  }
+
   .navLinks:hover {
     background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%);
     border-radius: 4px;
@@ -377,7 +381,7 @@ a, a:hover, a:visited, a:active {
     background: #166dbe;
     text-decoration: none;
     color: #fff;
-    font-size: 1.7rem;
+    /* font-size: 2rem; */
   }
 
 
