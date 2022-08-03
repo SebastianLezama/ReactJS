@@ -100,10 +100,7 @@ function NavBar({ isInHeader }) {
             onMouseLeave={onMouseLeave}
           >
           { isInHeader ? 
-            <Link
-              as='li'
-              exact="true" 
-              to="/productos" 
+            <div
               className={style.navProd}
               onClick={closeMobileMenu}
             >
@@ -111,7 +108,7 @@ function NavBar({ isInHeader }) {
                 <h2>Productos</h2>
                 {drop && <DropDown />}
               </div> 
-            </Link>
+            </div>
             : <a className={style.github} target="_blank"
                 rel="noreferrer" href='https://github.com/SebastianLezama/'
               >

@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import { CartContext } from '../../../context/CartContext';
 
 
-
 const CardDetail = ({ id, handleClose, show, setShow, isNotInCart }) => {
 
   const { isInCart } = useContext(CartContext);

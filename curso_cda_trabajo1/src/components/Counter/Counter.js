@@ -33,11 +33,12 @@ const Counter = ( {item, isNotInCart} ) => {
   }
 
   const Favoritos = (item) => {
-    return ( isInFavs(item.id) ? 
-      <div className='addFavs' onClick={()=>removeFromFavs(item.id)}>Quitar de favoritos</div> 
-      : <div className='addFavs' onClick={()=>addToFavs(item)}>Agregar a favoritos</div>
+    return ( isInFavs(item.item.id) ? 
+      <div className='addFavs' onClick={()=>removeFromFavs(item.item.id)}>Quitar de favoritos</div> 
+      : <div className='addFavs' onClick={()=>addToFavs(item.item)}>Agregar a favoritos</div>
     )
   }
+
 
   return (
   <div className="Counter">

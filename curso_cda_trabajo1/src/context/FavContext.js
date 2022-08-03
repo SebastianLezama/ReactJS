@@ -10,7 +10,6 @@ const FavProvider = (props) => {
   });
   const [ favsItems, setFavsItems ] = useState(0)
 
-
   const clearFavs = () => {
     setFavs([])
   }
@@ -20,7 +19,7 @@ const FavProvider = (props) => {
   };
 
   const addToFavs = (item) => {
-    if (!(isInFavs(item.id))) {setFavs([...favs, {...item }])} 
+    if (!isInFavs(item.id)) {setFavs([...favs, {...item} ])} 
   }
 
   const removeFromFavs = (id) => {
