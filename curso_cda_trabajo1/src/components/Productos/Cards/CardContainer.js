@@ -9,14 +9,14 @@ const CardContainer = () => {
 
   const [ items, setItems ] = useState([]);
   const { categoryId } = useParams();
-  const [ cat, setCat ] = useState('');
+  const [ category, setCategory ] = useState('');
   const [ loading, setLoading ] = useState(false)
   
   useEffect(() => {
     setLoading(true)
+
     const URL = "https://fake-products-eric.herokuapp.com/api/products";
     const fetchCategory = categoryId ? `${URL}/category/${categoryId}` : `${URL}`;
-
 
     fetch(fetchCategory)
       .then((res) => res.json())
@@ -25,9 +25,8 @@ const CardContainer = () => {
         setLoading(false);
       });
 
-    setCat(categoryId);
+    setCategory(categoryId);
   }, [categoryId]);
-  
 
   const categories = {
     remeras: 'Remeras',
@@ -37,7 +36,7 @@ const CardContainer = () => {
     rinoneras: 'Riñoneras'
   }
   
-  const item = categoryId ? categories[cat] : 'Productos'
+  const item = categoryId ? categories[category] : 'Productos'
 
   return (
     <div className={s.CardContainer}>

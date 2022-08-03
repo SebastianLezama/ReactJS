@@ -32,10 +32,10 @@ const Counter = ( {item, isNotInCart} ) => {
     count < item.stock && setCount(count + 1)
   }
 
-  const Favoritos = (item) => {
-    return ( isInFavs(item.item.id) ? 
-      <div className='addFavs' onClick={()=>removeFromFavs(item.item.id)}>Quitar de favoritos</div> 
-      : <div className='addFavs' onClick={()=>addToFavs(item.item)}>Agregar a favoritos</div>
+  const Favoritos = ({item}) => {
+    return ( isInFavs(item.id) ? 
+      <div className='addFavs' onClick={()=>removeFromFavs(item.id)}>Quitar de favoritos</div> 
+      : <div className='addFavs' onClick={()=>addToFavs(item)}>Agregar a favoritos</div>
     )
   }
 

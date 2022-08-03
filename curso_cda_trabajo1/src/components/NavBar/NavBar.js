@@ -33,12 +33,7 @@ function NavBar({ isInHeader }) {
   }
   const onLeave = () => {setDropFav(false)}
 
-  // useEffect(() => {
-  //   if(window.innerWidth < 960){
-  //     setIcon(true)
-  //   } else setIcon(false)
-  // }, [window.innerWidth])
-  
+
   const ShowIcon = () => {
       return (
           <div className={style.bars}>
