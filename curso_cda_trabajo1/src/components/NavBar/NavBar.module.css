@@ -263,7 +263,7 @@ a, a:hover, a:visited, a:active {
     color: #1888ff;
     align-items: center;
     padding: 1.5rem;
-    width: 300px;
+    width: 100%;
   }
 
   .productos:hover {

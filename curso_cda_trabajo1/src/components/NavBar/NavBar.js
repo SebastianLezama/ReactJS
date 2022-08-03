@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import style from './NavBar.module.css';
 import { BsGithub, BsCart } from 'react-icons/bs'
 import { AiFillLinkedin } from 'react-icons/ai'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import DropDown from '../Header/DropDown';
 import { FaBars, FaTimes } from 'react-icons/fa'
 import { CartContext } from '../../context/CartContext';
@@ -60,13 +60,12 @@ function NavBar({ isInHeader }) {
         <Link to='/favs'>
           <div className={style.navFav}>
             <h2>Favoritos</h2>
-            {dropFav && <FavDrop />}
+            {/* {dropFav && <FavDrop />} */}
           </div>
         </Link>
       </li>
     )
   }
-
 
   return (
     <nav className={isInHeader ? style.nav : style.navFooter}>
@@ -104,10 +103,10 @@ function NavBar({ isInHeader }) {
               className={style.navProd}
               onClick={closeMobileMenu}
             >
-              <div className={style.productos} >
+              <Link to='productos' className={style.productos} >
                 <h2>Productos</h2>
+              </Link> 
                 {drop && <DropDown />}
-              </div> 
             </div>
             : <a className={style.github} target="_blank"
                 rel="noreferrer" href='https://github.com/SebastianLezama/'
