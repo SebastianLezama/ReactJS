@@ -28,9 +28,8 @@ const CartProvider = (props) => {
 
   // check
   const checkStock = (item, quantity) => {
-    const itemQuantity = cart.filter((p)=> p.id === item.id);
-    const newItem = {...itemQuantity[0]};
-    return item.stock >= (newItem.quantity + quantity);
+    const filteredItems = cart.find((p) => p.id === item.id)
+    return item.stock >= (filteredItems.quantity + quantity);
   }
 
   const addToCart = (item, quantity) => {
