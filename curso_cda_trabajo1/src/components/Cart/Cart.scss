@@ -226,3 +226,13 @@
     background-color: #166dbe;
     }
 }
+
+@media screen and (max-width: 960px) {
+  .cartDisplay {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    margin-top: 80px;
+  }
+
+}
