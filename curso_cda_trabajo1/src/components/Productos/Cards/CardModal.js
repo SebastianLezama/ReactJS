@@ -22,7 +22,7 @@ const CardModal = ({
               <h2>{item.name}</h2>
               <p>${item.price}</p>
               <Counter item={item} />
-              {notInCart && showItemInCart()}
+              {showItemInCart()}
             </div>
             <img src={item.img} alt={item.name} />
             <MdClose className={s.MdClose} onClick={handleClose} />

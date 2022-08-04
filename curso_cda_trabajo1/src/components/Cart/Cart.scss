@@ -1,7 +1,7 @@
 .contact-form {
   margin-top: 10px;
   margin-right: 10px;
-  width: 16%;
+  width: 18%;
   max-width: 35%;
 
   position: fixed;
@@ -18,17 +18,18 @@
 
   ul {
     padding: 0;
+    display: inline-block;
   }
 
   input {
     height: 22px;
-    width: 80%;
+    width: 90%;
   }
 
   .flat-button {
     color: #188fff;
     height: 60px;
-    width: 80%;
+    width: 90%;
     font-size: 16px;
     font-family: 'PT Sans Caption', sans-serif;
     letter-spacing: 3px;
@@ -53,6 +54,7 @@
   display: flex;
   flex-direction: row;
   position: relative;
+  width: 90%;
 }
 
 .cartContainer {
@@ -64,7 +66,7 @@
   flex-direction: column;
   justify-content: space-between;
   margin-bottom: 90px;
-  width: 75%;
+  width: 85%;
 }
 
 .containerCartDetail {
@@ -76,17 +78,60 @@
 }
 
 .cartTotalContainer {
-  width: 16%;
+  width: 18%;
   max-width: 35%;
   padding-top: 50px;
   position: fixed;
   right: 0;
+  margin: 0;
   margin-right: 10px;
-  list-style: none;
-}
+  text-align: center;
+  align-items: center;
 
-.cartTotalContainer h2 {
-  font-size: 1.3em;
+  ul {
+    list-style: none;
+    padding: 0;
+    width: 80%;
+    margin: auto;
+    h6 {
+      margin: 3px;
+      text-align: left;
+    }
+  }
+
+  .subTotalContainer {
+    margin: 0;
+    margin-top: 20px;
+    // width: 90%;
+    justify-content: center;
+    align-items: center;
+    justify-items: end;
+    right: 0;
+  }
+
+  .subTotal {
+    display: flex;
+    align-items: center;
+    // width: 90%;
+    justify-content: space-between;
+    margin: 0;
+    border: 0;
+    position: relative;
+
+    margin-left: 12px;
+    margin-right: 10px;
+  }
+
+  h2 {
+    font-size: 1.3em;
+  }
+
+  .total {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 12px;
+    margin-right: 10px;
+  }
 }
 
 .infoCartDetail {
@@ -95,6 +140,8 @@
   align-items: center;
   width: 100%;
   padding: 0;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .infoCartDetail img {
@@ -225,8 +272,7 @@
   font-size: 1.3em;
   cursor: pointer;
   border: none;
-  margin: 10px 0px;
-
+  margin-top: 160px;
   &:hover {
     background-color: #166dbe;
   }

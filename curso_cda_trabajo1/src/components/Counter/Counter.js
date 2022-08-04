@@ -16,19 +16,34 @@ const Counter = ({ item }) => {
 
   useEffect(() => {
     if (count === 1) {
-      setIconClass({ iconClassPlus: 'icon' })
-      setIconClass({ iconClassDash: 'icon' })
+      setIconClass((currentState) => ({
+        ...currentState,
+        iconClassPlus: 'icon',
+      }))
+      setIconClass((currentState) => ({
+        ...currentState,
+        iconClassDash: 'icon',
+      }))
     } else if (count < item.stock) {
-      setIconClass({ iconClassPlus: 'icon-hover' })
+      setIconClass((currentState) => ({
+        ...currentState,
+        iconClassPlus: 'icon-hover',
+      }))
     } else {
-      setIconClass({ iconClassPlus: 'icon-max' })
+      setIconClass((currentState) => ({
+        ...currentState,
+        iconClassPlus: 'icon-max',
+      }))
     }
   }, [count, item.stock])
 
   const dashOnClick = () => {
     if (count > 1) {
       setCount(count - 1)
-      setIconClass({ iconClassDash: 'icon-hover' })
+      setIconClass((currentState) => ({
+        ...currentState,
+        iconClassDash: 'icon-hover',
+      }))
     }
   }
 

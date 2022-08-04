@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import s from './Card.module.css'
 import CardDetail from './CardDetail'
 
-const Card = ({ prod }) => {
+const Card = ({ prod, notInCart }) => {
   const [show, setShow] = useState(false)
   const handleClick = () => {
     setShow(true)
@@ -24,7 +24,7 @@ const Card = ({ prod }) => {
       <CardDetail
         key={prod.id}
         handleClose={hideModal}
-        notInCart={true}
+        notInCart={notInCart}
         id={prod.id}
         show={show}
         setShow={setShow}

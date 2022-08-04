@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react'
+import { Link } from 'react-router-dom'
+import DropDown from '../Header/DropDown'
+import { CartContext } from '../../context/CartContext'
 import style from './NavBar.module.css'
 import { BsGithub, BsCart } from 'react-icons/bs'
 import { AiFillLinkedin } from 'react-icons/ai'
-import { Link } from 'react-router-dom'
-import DropDown from '../Header/DropDown'
 import { FaBars, FaTimes } from 'react-icons/fa'
-import { CartContext } from '../../context/CartContext'
 
 function NavBar({ isInHeader }) {
   const { cartItems } = useContext(CartContext)
@@ -48,7 +48,6 @@ function NavBar({ isInHeader }) {
         <Link to="/favs">
           <div className={style.navFav}>
             <h2>Favoritos</h2>
-            {/* {dropFav && <FavDrop />} */}
           </div>
         </Link>
       </li>
@@ -58,7 +57,7 @@ function NavBar({ isInHeader }) {
   return (
     <nav className={isInHeader ? style.nav : style.navFooter}>
       <Link className={style.navLinks} to="/">
-        <h2>e-Commerce CDA</h2>
+        <h2>e-Commerce</h2>
       </Link>
       <ShowIcon className={style.menuIcon} />
       <ul className={click ? style.navMenuActive : style.navMenu}>

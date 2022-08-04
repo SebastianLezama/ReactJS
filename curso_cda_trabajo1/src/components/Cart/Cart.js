@@ -17,10 +17,9 @@ const Cart = () => {
 
   const Subtotal = () => {
     return cart.map((item) => (
-      <div>
-        <h5>
-          {item.name} ${item.price * item.quantity}
-        </h5>
+      <div key={item.id} className="subTotal">
+        <h6>{item.name}</h6>
+        <h6>${item.price * item.quantity}</h6>
       </div>
     ))
   }
@@ -35,16 +34,17 @@ const Cart = () => {
       <div className="cartTotalContainer">
         <Form totalPrice={total} cart={cart} clearCart={clearCart} />
         <ul>
-          <li>
+          <li key="button">
             <button className="vaciar" onClick={clearCart}>
               Vaciar carrito
             </button>
           </li>
-          <li>
+          <li key="subtotal" className="subTotalContainer">
             <Subtotal />
           </li>
-          <li>
-            <h2>Total: ${total}</h2>
+          <li key="total" className="total">
+            <h2>Total: </h2>
+            <h2>${total}</h2>
           </li>
         </ul>
       </div>
