@@ -1,32 +1,36 @@
-import React, { useState } from 'react';
-import s from './Card.module.css';
-import CardDetail from './CardDetail';
-
-
+import React, { useState } from 'react'
+import s from './Card.module.css'
+import CardDetail from './CardDetail'
 
 const Card = ({ prod }) => {
-
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false)
   const handleClick = () => {
-    setShow(true);
+    setShow(true)
   }
 
   const hideModal = () => {
-    setShow(false);
+    setShow(false)
   }
-  
+
   return (
     <>
-    <div className={s.card} onClick = {() => handleClick()}>
-      <img src={prod.img} alt={prod.name} />
+      <div className={s.card} onClick={() => handleClick()}>
+        <img src={prod.img} alt={prod.name} />
         <div className={s.info}>
-        <h3>{prod.name}</h3>
-        <h4>$ {prod.price}</h4>
+          <h3>{prod.name}</h3>
+          <h4>$ {prod.price}</h4>
         </div>
-    </div>
-    <CardDetail key={prod.id} handleClose={hideModal} isNotInCart={true} 
-      id={prod.id} show={show} setShow={setShow}/>
-  </>  )
+      </div>
+      <CardDetail
+        key={prod.id}
+        handleClose={hideModal}
+        notInCart={true}
+        id={prod.id}
+        show={show}
+        setShow={setShow}
+      />
+    </>
+  )
 }
 
 export default Card

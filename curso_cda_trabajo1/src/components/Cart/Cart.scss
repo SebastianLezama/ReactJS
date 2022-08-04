@@ -1,7 +1,12 @@
 .contact-form {
-  padding: 40px;
-  margin: 40px;
-  
+  margin-top: 10px;
+  margin-right: 10px;
+  width: 16%;
+  max-width: 35%;
+
+  position: fixed;
+  right: 0;
+
   li {
     overflow: hidden;
     display: block;
@@ -11,19 +16,22 @@
     padding: 4px;
   }
 
+  ul {
+    padding: 0;
+  }
+
   input {
     height: 22px;
-    width: 245px;
+    width: 80%;
   }
-  
-  
+
   .flat-button {
     color: #188fff;
     height: 60px;
-    width: 250px;
+    width: 80%;
     font-size: 16px;
     font-family: 'PT Sans Caption', sans-serif;
-    letter-spacing: 5px;
+    letter-spacing: 3px;
     font-weight: 800;
     text-decoration: none;
     padding: 8px 10px;
@@ -33,7 +41,7 @@
     text-transform: uppercase;
     text-align: center;
     cursor: pointer;
-    
+
     &:hover {
       background: #166dbe;
       color: #222;
@@ -68,16 +76,17 @@
 }
 
 .cartTotalContainer {
-  width: 15%;
+  width: 16%;
   max-width: 35%;
   padding-top: 50px;
   position: fixed;
   right: 0;
+  margin-right: 10px;
+  list-style: none;
 }
 
 .cartTotalContainer h2 {
   font-size: 1.3em;
-
 }
 
 .infoCartDetail {
@@ -86,8 +95,6 @@
   align-items: center;
   width: 100%;
   padding: 0;
-
-
 }
 
 .infoCartDetail img {
@@ -97,26 +104,25 @@
   cursor: pointer;
 
   &:hover {
-  transform: scale(1.05);
-}
+    transform: scale(1.05);
+  }
 }
 
 .infoCartDetail article {
   display: inline-block;
   margin-left: 130px;
-}
 
-.infoCartDetail article h3 {
-  margin: 0px 5px;
-}
+  h3 {
+    margin: 0px 5px;
+  }
 
-.infoCartDetail article h4 {
-  margin: 0px 5px;
-}
-.infoCartDetail article h5 {
-  margin: 0px 3px;
-  font-size: 0.85em;
-
+  h4 {
+    margin: 0px 5px;
+  }
+  h5 {
+    margin: 0px 3px;
+    font-size: 0.85em;
+  }
 }
 
 .stock {
@@ -147,19 +153,18 @@
 }
 
 .subcontainer {
-  display:table;
+  display: table;
 }
 
 .titulo {
   display: flex;
   justify-content: center;
-
 }
 
 .subtotal {
   display: flex;
   align-items: center;
-  justify-content:space-between;
+  justify-content: space-between;
 
   width: 250px;
   background-color: rgba(195, 195, 195, 0.895);
@@ -192,7 +197,7 @@
 
   &:hover {
     transform: scale(1.05);
-    }
+  }
 }
 
 .botonDelete {
@@ -207,7 +212,7 @@
   margin-right: 10px;
 
   &:hover {
-  background-color: #188fff;
+    background-color: #188fff;
   }
 }
 
@@ -224,7 +229,7 @@
 
   &:hover {
     background-color: #166dbe;
-    }
+  }
 }
 
 @media screen and (max-width: 960px) {
@@ -234,5 +239,4 @@
     position: relative;
     margin-top: 80px;
   }
-
 }

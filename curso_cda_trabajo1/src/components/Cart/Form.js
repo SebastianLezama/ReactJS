@@ -1,87 +1,75 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import './Cart.scss'
 
-const Form = () => {
+const URL = 'https://fake-products-eric.herokuapp.com/api/orders'
 
-  const [ formData, setFormData ] = useState({
-    nombre: '',
-    apellido: '',
-    mail: '',
-    ciudad: '',
-    telefono: '',
-    cp: ''
-})
+const Form = ({ totalPrice, cart, clearCart }) => {
+  const [formData, setFormData] = useState({
+    user: '',
+    phone: '',
+  })
+
+  const navigate = useNavigate()
+
+  const order = async () => {
+    const user = formData.user
+    const phone = formData.phone
+
+    const sendInfo = await fetch(URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        cart,
+        total: totalPrice,
+        user,
+        phone,
+      }),
+    })
+    const response = await sendInfo.json()
+    clearCart()
+    navigate(`/checkout/${response.id}`)
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    order()
   }
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target
+
     setFormData({
-      ...formData, [name]: value
-    });
+      ...formData,
+      [name]: value,
+    })
   }
 
   return (
-    <div className='contact-form'>
+    <div className="contact-form">
       <form onSubmit={handleSubmit}>
         <ul>
           <li>
-          <input 
-            type="text" 
-            name='nombre'
-            placeholder='Nombre'
-            onChange={handleChange}
-            value={formData.nombre}
-          />
-        </li>
-        <li>
-          <input 
-            type="text" 
-            name='apellido'
-            placeholder='Apellido'
-            onChange={handleChange}
-            value={formData.nombre}
-          />
-        </li>
-        <li>
-          <input 
-            type="email" 
-            name='mail'
-            placeholder='Mail'
-            onChange={handleChange}
-            value={formData.nombre}
-          />
-        </li>
-        <li>
-          <input 
-            type="text" 
-            name='ciudad'
-            placeholder='Ciudad'
-            onChange={handleChange}
-            value={formData.nombre}
-          />
-        </li>
-        <li>
-          <input 
-            type="text"
-            name='telefono'
-            placeholder='Telefono'
-            onChange={handleChange}
-            value={formData.nombre}
-          />
-        </li>
-        <li>
-          <input 
-            type="text" 
-            name='cp'
-            placeholder='Codigo Postal'
-            onChange={handleChange}
-            value={formData.nombre}
-          />
-        </li>
-        <input type="submit" className="flat-button" value="SEND" />
+            <input
+              type="text"
+              name="user"
+              placeholder="Nombre"
+              onChange={handleChange}
+              value={formData.user}
+            />
+          </li>
+          <li>
+            <input
+              type="text"
+              name="phone"
+              placeholder="Telefono"
+              onChange={handleChange}
+              value={formData.phone}
+            />
+          </li>
+          <input type="submit" className="flat-button" value="COMPRAR" />
         </ul>
       </form>
     </div>
