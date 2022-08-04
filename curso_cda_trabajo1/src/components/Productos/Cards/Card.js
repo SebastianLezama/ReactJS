@@ -1,16 +1,16 @@
-import React, { useState } from 'react'
-import s from './Card.module.css'
-import CardDetail from './CardDetail'
+import React, { useState } from "react";
+import s from "./Card.module.css";
+import CardDetail from "./CardDetail";
 
 const Card = ({ prod, notInCart }) => {
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(false);
   const handleClick = () => {
-    setShow(true)
-  }
+    setShow(true);
+  };
 
   const hideModal = () => {
-    setShow(false)
-  }
+    setShow(false);
+  };
 
   return (
     <>
@@ -18,7 +18,7 @@ const Card = ({ prod, notInCart }) => {
         <img src={prod.img} alt={prod.name} />
         <div className={s.info}>
           <h3>{prod.name}</h3>
-          <h4>$ {prod.price}</h4>
+          <h4>Precio: $ {prod.price}</h4>
         </div>
       </div>
       <CardDetail
@@ -30,7 +30,7 @@ const Card = ({ prod, notInCart }) => {
         setShow={setShow}
       />
     </>
-  )
-}
+  );
+};
 
-export default Card
+export default Card;

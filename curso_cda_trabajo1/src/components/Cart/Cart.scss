@@ -1,7 +1,6 @@
 .contact-form {
   margin-top: 10px;
-  margin-right: 10px;
-  width: 18%;
+  width: 23%;
   max-width: 35%;
 
   position: fixed;
@@ -59,14 +58,14 @@
 
 .cartContainer {
   padding: 20px;
-  margin: 25px;
+  margin: 25px 0px 0px 25px;
   background-color: rgb(235, 235, 235);
   border-radius: 8px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   margin-bottom: 90px;
-  width: 85%;
+  width: 79%;
 }
 
 .containerCartDetail {
@@ -78,13 +77,12 @@
 }
 
 .cartTotalContainer {
-  width: 18%;
+  width: 23%;
   max-width: 35%;
   padding-top: 50px;
   position: fixed;
   right: 0;
   margin: 0;
-  margin-right: 10px;
   text-align: center;
   align-items: center;
 
@@ -102,7 +100,6 @@
   .subTotalContainer {
     margin: 0;
     margin-top: 20px;
-    // width: 90%;
     justify-content: center;
     align-items: center;
     justify-items: end;
@@ -112,7 +109,6 @@
   .subTotal {
     display: flex;
     align-items: center;
-    // width: 90%;
     justify-content: space-between;
     margin: 0;
     border: 0;
@@ -187,7 +183,7 @@
   position: absolute;
   display: inline-block;
   justify-content: start;
-  left: 13%;
+  left: 14%;
   font-size: 0.8em;
   width: 30%;
   max-width: 350px;
@@ -212,7 +208,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   width: 250px;
   background-color: rgba(195, 195, 195, 0.895);
   padding: 5px;
@@ -273,6 +268,7 @@
   cursor: pointer;
   border: none;
   margin-top: 160px;
+  width: 90%;
   &:hover {
     background-color: #166dbe;
   }

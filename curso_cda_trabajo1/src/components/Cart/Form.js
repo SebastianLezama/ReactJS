@@ -1,51 +1,53 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import './Cart.scss'
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./Cart.scss";
 
-const URL = 'https://fake-products-eric.herokuapp.com/api/orders'
+const URL = "https://fake-products-eric.herokuapp.com/api/orders";
 
 const Form = ({ totalPrice, cart, clearCart }) => {
   const [formData, setFormData] = useState({
-    user: '',
-    phone: '',
-  })
+    user: "",
+    phone: "",
+  });
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const order = async () => {
-    const user = formData.user
-    const phone = formData.phone
+    const user = formData.user;
+    const phone = formData.phone;
 
-    const sendInfo = await fetch(URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        cart,
-        total: totalPrice,
-        user,
-        phone,
-      }),
-    })
-    const response = await sendInfo.json()
-    clearCart()
-    navigate(`/checkout/${response.id}`)
-  }
+    if (formData) {
+      const sendInfo = await fetch(URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          cart,
+          total: totalPrice,
+          user,
+          phone,
+        }),
+      });
+      const response = await sendInfo.json();
+      clearCart();
+      navigate(`/checkout/${response.id}`);
+    }
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    order()
-  }
+    e.preventDefault();
+    order();
+  };
 
   const handleChange = (e) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
 
     setFormData({
       ...formData,
       [name]: value,
-    })
-  }
+    });
+  };
 
   return (
     <div className="contact-form">
@@ -73,7 +75,7 @@ const Form = ({ totalPrice, cart, clearCart }) => {
         </ul>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default Form
+export default Form;

@@ -1,13 +1,12 @@
-import React from 'react'
-import s from './Card.module.css'
-import { MdClose } from 'react-icons/md'
-import Counter from '../../Counter/Counter'
+import React from "react";
+import s from "./Card.module.css";
+import { MdClose } from "react-icons/md";
+import Counter from "../../Counter/Counter";
 
 const CardModal = ({
   item,
   handleClose,
   show,
-  notInCart,
   modalRef,
   closeModal,
   showItemInCart,
@@ -30,7 +29,7 @@ const CardModal = ({
         </div>
       )}
     </>
-  )
-}
+  );
+};
 
-export default CardModal
+export default CardModal;

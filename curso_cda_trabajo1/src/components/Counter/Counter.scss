@@ -4,7 +4,6 @@
   margin-left: 5px;
   padding: 2px;
   cursor: pointer;
-  // position: absolute;
   left: 17%;
   color: #188fff;
   height: 60px;
@@ -21,6 +20,7 @@
   text-transform: uppercase;
   text-align: center;
   margin-top: 5%;
+
   &:hover {
     background: #166dbe;
     color: #222;
@@ -58,9 +58,6 @@
 }
 
 .Counter {
-  // width: 100%;
-  // height: 120px;
-  // position: absolute;
   left: 15%;
   bottom: 3%;
   padding: 5px;

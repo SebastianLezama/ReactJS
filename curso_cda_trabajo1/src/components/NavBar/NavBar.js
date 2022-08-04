@@ -1,31 +1,31 @@
-import React, { useContext, useState } from 'react'
-import { Link } from 'react-router-dom'
-import DropDown from '../Header/DropDown'
-import { CartContext } from '../../context/CartContext'
-import style from './NavBar.module.css'
-import { BsGithub, BsCart } from 'react-icons/bs'
-import { AiFillLinkedin } from 'react-icons/ai'
-import { FaBars, FaTimes } from 'react-icons/fa'
+import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
+import DropDown from "./Header/DropDown";
+import { CartContext } from "../../context/CartContext";
+import style from "./NavBar.module.css";
+import { BsGithub, BsCart } from "react-icons/bs";
+import { AiFillLinkedin } from "react-icons/ai";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 function NavBar({ isInHeader }) {
-  const { cartItems } = useContext(CartContext)
+  const { cartItems } = useContext(CartContext);
 
-  const [drop, setDrop] = useState(false)
+  const [drop, setDrop] = useState(false);
 
-  const [click, setClick] = useState(false)
-  const handleClick = () => setClick(!click)
-  const closeMobileMenu = () => setClick(false)
+  const [click, setClick] = useState(false);
+  const handleClick = () => setClick(!click);
+  const closeMobileMenu = () => setClick(false);
 
   const onMouseEnter = () => {
     if (window.innerWidth < 960) {
-      setDrop(false)
+      setDrop(false);
     } else {
-      setDrop(true)
+      setDrop(true);
     }
-  }
+  };
   const onMouseLeave = () => {
-    setDrop(false)
-  }
+    setDrop(false);
+  };
 
   const ShowIcon = () => {
     return (
@@ -36,8 +36,8 @@ function NavBar({ isInHeader }) {
           <FaBars size={30} onClick={handleClick} />
         )}
       </div>
-    )
-  }
+    );
+  };
 
   const Favoritos = () => {
     return (
@@ -51,8 +51,8 @@ function NavBar({ isInHeader }) {
           </div>
         </Link>
       </li>
-    )
-  }
+    );
+  };
 
   return (
     <nav className={isInHeader ? style.nav : style.navFooter}>
@@ -106,7 +106,7 @@ function NavBar({ isInHeader }) {
         </li>
       </ul>
     </nav>
-  )
+  );
 }
 
-export default NavBar
+export default NavBar;

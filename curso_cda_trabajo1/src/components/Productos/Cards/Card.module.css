@@ -8,9 +8,9 @@
 .card {
   box-shadow: 0px 0px 10px 1px rgba(63, 63, 63, 0.347);
   margin: 15px;
-  min-width: 38%;
-  max-width: 550px;
-  /* width: 30%; */
+  width: 40%;
+  min-width: 450px;
+  max-width: 600px;
   display: flex;
   cursor: pointer;
   border: none;
@@ -50,13 +50,12 @@
 }
 
 .CardContainer {
-  display: 'flex';
-  justify-content: 'center';
-  flex-direction: 'column';
-  align-items: 'center';
+  display: "flex";
+  justify-content: "center";
+  flex-direction: "column";
+  align-items: "center";
   position: relative;
   padding-bottom: 70px;
-
 }
 
 .CardDetail {
@@ -135,16 +134,12 @@
 
 @media screen and (max-width: 960px) {
   .CardContainer {
-    display: 'flex';
-    justify-content: 'center';
-    flex-direction: 'column';
-    align-items: 'center';
+    display: "flex";
+    justify-content: "center";
+    flex-direction: "column";
+    align-items: "center";
     position: relative;
     margin-top: 80px;
     z-index: 1;
   }
-
-  /* .divModal h2 {
-    margin: 3px;
-  } */
 }
