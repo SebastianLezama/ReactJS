@@ -14,10 +14,6 @@
   cursor: pointer;
 }
 
-.dropdown-menu.clicked {
-  display: none;
-}
-
 .dropdown-link {
   display: block;
   height: 100%;

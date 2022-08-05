@@ -1,31 +1,26 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./DropDown.css";
-import { categories } from "../../../utils/Productos";
+import { categoriesFromApi } from "../../../utils/Productos";
 
-const DropDown = () => {
-  const [click, setClick] = useState(false);
-
-  const handleClick = () => {
-    setClick(!click);
-  };
-
+export const MapCategories = ({ categories, className }) => {
   return (
-    <ul
-      onClick={handleClick}
-      className={click ? "dropdown-menu clicked" : "dropdown-menu"}
-    >
-      {categories.map((op, index) => (
+    <>
+      {categories.map((cat, index) => (
         <li key={index}>
-          <Link
-            className="dropdown-link"
-            to={`/${op.value}`}
-            onClick={() => setClick(false)}
-          >
-            {op.label}
+          <Link className={className} to={`/${cat.value}`}>
+            {cat.label}
           </Link>
         </li>
       ))}
+    </>
+  );
+};
+
+const DropDown = () => {
+  return (
+    <ul className="dropdown-menu">
+      <MapCategories categories={categoriesFromApi} className="dropdown-link" />
     </ul>
   );
 };

@@ -4,6 +4,7 @@ import s from "./Card.module.css";
 import { useParams } from "react-router-dom";
 import PropagateLoader from "react-spinners/PropagateLoader";
 import Search from "../Search";
+import { categoriesSpanish } from "../../../utils/Productos";
 
 const CardContainer = () => {
   const [items, setItems] = useState([]);
@@ -33,15 +34,7 @@ const CardContainer = () => {
     };
   }, [categoryId]);
 
-  const categories = {
-    remeras: "Remeras",
-    camisas: "Camisas",
-    gorras: "Gorras",
-    billeteras: "Billeteras",
-    rinoneras: "Riñoneras",
-  };
-
-  const item = categoryId ? categories[category] : "Productos";
+  const prodCategory = categoryId ? categoriesSpanish[category] : "Productos";
 
   const handleQuery = (e) => {
     setQuery(e);
@@ -49,15 +42,12 @@ const CardContainer = () => {
 
   return (
     <div className={s.CardContainer}>
-      <h2>{item}</h2>
-      <Search handleQuery={handleQuery} />
-      <CardList
-        items={items}
-        notInCart={true}
-        query={query}
-        categoryId={categoryId}
-      />
-      <div className={s.loading}>{loading && <PropagateLoader />}</div>
+      <div className="mainContainer">
+        <h2>{prodCategory}</h2>
+        <Search handleQuery={handleQuery} />
+        <CardList items={items} notInCart={true} query={query} />
+        <div className={s.loading}>{loading && <PropagateLoader />}</div>
+      </div>
     </div>
   );
 };

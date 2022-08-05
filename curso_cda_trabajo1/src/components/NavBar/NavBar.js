@@ -10,12 +10,11 @@ import { FaBars, FaTimes } from "react-icons/fa";
 function NavBar({ isInHeader }) {
   const { cartItems } = useContext(CartContext);
 
-  const [drop, setDrop] = useState(false);
-
   const [click, setClick] = useState(false);
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
+  const [drop, setDrop] = useState(false);
   const onMouseEnter = () => {
     if (window.innerWidth < 960) {
       setDrop(false);

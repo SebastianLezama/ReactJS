@@ -1,19 +1,19 @@
-import React, { useContext, useState } from 'react'
-import { CartContext } from '../../context/CartContext'
-import CardDetail from '../Productos/Cards/CardDetail'
-import './Cart.scss'
+import React, { useContext, useState } from "react";
+import { CartContext } from "../../context/CartContext";
+import CardDetail from "../Productos/Cards/CardDetail";
+import "./Cart.scss";
 
 const CartDetail = ({ prod }) => {
-  const { deleteItem, addOne, subOne } = useContext(CartContext)
+  const { deleteItem, addOne, subOne } = useContext(CartContext);
 
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(false);
   const handleClick = () => {
-    setShow(true)
-  }
+    setShow(true);
+  };
 
   const hideModal = () => {
-    setShow(false)
-  }
+    setShow(false);
+  };
 
   return (
     <>
@@ -25,7 +25,7 @@ const CartDetail = ({ prod }) => {
               <h3>{prod.name}</h3>
             </div>
             <div className="stock">
-              <h6>Quedan en stock: {prod.stock}</h6>
+              <h6>Quedan en stock: {prod.stock - prod.quantity}</h6>
             </div>
           </div>
           <article>
@@ -62,7 +62,7 @@ const CartDetail = ({ prod }) => {
         setShow={setShow}
       />
     </>
-  )
-}
+  );
+};
 
-export default CartDetail
+export default CartDetail;
