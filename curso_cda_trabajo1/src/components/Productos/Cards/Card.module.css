@@ -5,12 +5,48 @@
   justify-content: center;
 }
 
+.cardMain {
+  box-shadow: 0px 0px 10px 1px rgba(63, 63, 63, 0.347);
+  margin: 15px;
+  width: 50%;
+  min-width: 100px;
+  max-width: 150px;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  margin-bottom: 50px;
+  height: 310px;
+}
+
+.cardMain:hover {
+  box-shadow: 2px 2px 10px 1px rgba(63, 63, 63, 0.347);
+  transform: scale(1.02);
+  margin-bottom: 0;
+  height: 360px;
+  transition: 0.2s;
+}
+
+.cardMain img {
+  width: 100%;
+  border-radius: 6px 6px 0px 0px;
+  border: 0;
+}
+
+.cardMain .info h3 {
+  font-size: 1em;
+  background-color: #166dbe;
+  color: #fff;
+  padding: 8px;
+  margin: 0;
+}
+
 .card {
   box-shadow: 0px 0px 10px 1px rgba(63, 63, 63, 0.347);
   margin: 15px;
-  min-width: 38%;
-  max-width: 550px;
-  /* width: 30%; */
+  width: 40%;
+  min-width: 450px;
+  max-width: 600px;
+  min-height: 140px;
   display: flex;
   cursor: pointer;
   border: none;
@@ -25,18 +61,21 @@
 .card img {
   width: 25%;
   object-fit: cover;
+  border-radius: 4px 0px 0px 4px;
 }
 
 .card .info {
-  padding: 10px;
+  padding: 0px 10px 0px 10px;
+  width: 100%;
   border-left: 5px solid rgba(204, 204, 204, 0.278);
 }
 
 .card .info h3 {
   position: relative;
+  margin: 5px 0px 7px 0px;
   font-size: 20px;
   min-width: 280px;
-  margin-bottom: 7px;
+  margin-top: 3%;
   color: #222;
   background-color: #166dbe;
   color: #fff;
@@ -45,18 +84,27 @@
 }
 
 .card .info h4 {
-  font-size: 19px;
-  font-weight: 400;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.2em;
+  margin: 0px 10px 0px 10px;
+}
+
+.shipping h6 {
+  font-family: "Roboto", sans-serif;
+  font-size: 0.8em;
+  color: rgb(10, 192, 34);
+  margin: 0;
+  margin-top: 10px;
+  margin-bottom: 5px;
 }
 
 .CardContainer {
-  display: 'flex';
-  justify-content: 'center';
-  flex-direction: 'column';
-  align-items: 'center';
+  display: "flex";
+  justify-content: "center";
+  flex-direction: "column";
+  align-items: "center";
   position: relative;
   padding-bottom: 70px;
-
 }
 
 .CardDetail {
@@ -135,16 +183,24 @@
 
 @media screen and (max-width: 960px) {
   .CardContainer {
-    display: 'flex';
-    justify-content: 'center';
-    flex-direction: 'column';
-    align-items: 'center';
+    display: "flex";
+    justify-content: "center";
+    flex-direction: "column";
+    align-items: "center";
     position: relative;
     margin-top: 80px;
     z-index: 1;
   }
-
-  /* .divModal h2 {
-    margin: 3px;
-  } */
+  .cardMain {
+    box-shadow: 0px 0px 10px 1px rgba(63, 63, 63, 0.347);
+    margin: 15px;
+    width: 50%;
+    min-width: 100px;
+    max-width: 150px;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    height: 360px;
+  }
 }

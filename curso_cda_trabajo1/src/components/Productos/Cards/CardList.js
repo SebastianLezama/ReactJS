@@ -1,19 +1,26 @@
-import React, { useState } from 'react'
-import Card from './Card'
-import s from './Card.module.css'
+import React from "react";
+import Card from "./Card";
+import s from "./Card.module.css";
 
+const CardList = ({ items, notInCart, query, onMain }) => {
+  const filterItems = (prod, text) => {
+    if (!text) {
+      return prod;
+    }
 
-const CardList = ({ items }) => {
+    return prod.filter((prod) => prod.name.toLowerCase().includes(query));
+  };
 
-  const data = [...items]
-        .sort((a, b) => a.name > b.name ? 1 : -1)
+  const filteredItems = query ? filterItems(items, query) : items;
+  const data = filteredItems.sort((a, b) => (a.name > b.name ? 1 : -1));
+
   return (
     <div className={s.CardList}>
       {data.map((prod) => (
-          <Card prod={prod} key={prod.id} />
+        <Card prod={prod} key={prod.id} notInCart={notInCart} onMain={onMain} />
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default CardList
+export default CardList;

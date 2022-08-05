@@ -1,7 +1,11 @@
 .contact-form {
-  padding: 40px;
-  margin: 40px;
-  
+  margin-top: 10px;
+  width: 23%;
+  max-width: 35%;
+
+  position: fixed;
+  right: 0;
+
   li {
     overflow: hidden;
     display: block;
@@ -11,19 +15,23 @@
     padding: 4px;
   }
 
+  ul {
+    padding: 0;
+    display: inline-block;
+  }
+
   input {
     height: 22px;
-    width: 245px;
+    width: 90%;
   }
-  
-  
+
   .flat-button {
     color: #188fff;
     height: 60px;
-    width: 250px;
+    width: 90%;
     font-size: 16px;
-    font-family: 'PT Sans Caption', sans-serif;
-    letter-spacing: 5px;
+    font-family: "PT Sans Caption", sans-serif;
+    letter-spacing: 3px;
     font-weight: 800;
     text-decoration: none;
     padding: 8px 10px;
@@ -33,7 +41,7 @@
     text-transform: uppercase;
     text-align: center;
     cursor: pointer;
-    
+
     &:hover {
       background: #166dbe;
       color: #222;
@@ -45,18 +53,19 @@
   display: flex;
   flex-direction: row;
   position: relative;
+  width: 90%;
 }
 
 .cartContainer {
   padding: 20px;
-  margin: 25px;
+  margin: 25px 0px 0px 25px;
   background-color: rgb(235, 235, 235);
   border-radius: 8px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   margin-bottom: 90px;
-  width: 75%;
+  width: 79%;
 }
 
 .containerCartDetail {
@@ -68,16 +77,57 @@
 }
 
 .cartTotalContainer {
-  width: 15%;
+  width: 23%;
   max-width: 35%;
   padding-top: 50px;
   position: fixed;
   right: 0;
-}
+  margin: 0;
+  text-align: center;
+  align-items: center;
 
-.cartTotalContainer h2 {
-  font-size: 1.3em;
+  ul {
+    list-style: none;
+    padding: 0;
+    width: 80%;
+    margin: auto;
+    h6 {
+      margin: 3px;
+      text-align: left;
+    }
+  }
 
+  .subTotalContainer {
+    margin: 0;
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+    justify-items: end;
+    right: 0;
+  }
+
+  .subTotal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+    border: 0;
+    position: relative;
+
+    margin-left: 12px;
+    margin-right: 10px;
+  }
+
+  h2 {
+    font-size: 1.3em;
+  }
+
+  .total {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 12px;
+    margin-right: 10px;
+  }
 }
 
 .infoCartDetail {
@@ -86,37 +136,36 @@
   align-items: center;
   width: 100%;
   padding: 0;
-
-
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .infoCartDetail img {
   width: 7%;
-  border-radius: 8px;
+  border-radius: 20%;
   margin-left: 10px;
   cursor: pointer;
 
   &:hover {
-  transform: scale(1.05);
-}
+    transform: scale(1.05);
+  }
 }
 
 .infoCartDetail article {
   display: inline-block;
   margin-left: 130px;
-}
 
-.infoCartDetail article h3 {
-  margin: 0px 5px;
-}
+  h3 {
+    margin: 0px 5px;
+  }
 
-.infoCartDetail article h4 {
-  margin: 0px 5px;
-}
-.infoCartDetail article h5 {
-  margin: 0px 3px;
-  font-size: 0.85em;
-
+  h4 {
+    margin: 0px 5px;
+  }
+  h5 {
+    margin: 0px 3px;
+    font-size: 0.85em;
+  }
 }
 
 .stock {
@@ -134,7 +183,7 @@
   position: absolute;
   display: inline-block;
   justify-content: start;
-  left: 13%;
+  left: 14%;
   font-size: 0.8em;
   width: 30%;
   max-width: 350px;
@@ -147,20 +196,18 @@
 }
 
 .subcontainer {
-  display:table;
+  display: table;
 }
 
 .titulo {
   display: flex;
   justify-content: center;
-
 }
 
 .subtotal {
   display: flex;
   align-items: center;
-  justify-content:space-between;
-
+  justify-content: space-between;
   width: 250px;
   background-color: rgba(195, 195, 195, 0.895);
   padding: 5px;
@@ -192,7 +239,7 @@
 
   &:hover {
     transform: scale(1.05);
-    }
+  }
 }
 
 .botonDelete {
@@ -207,7 +254,7 @@
   margin-right: 10px;
 
   &:hover {
-  background-color: #188fff;
+    background-color: #188fff;
   }
 }
 
@@ -220,11 +267,11 @@
   font-size: 1.3em;
   cursor: pointer;
   border: none;
-  margin: 10px 0px;
-
+  margin-top: 160px;
+  width: 90%;
   &:hover {
     background-color: #166dbe;
-    }
+  }
 }
 
 @media screen and (max-width: 960px) {
@@ -234,5 +281,4 @@
     position: relative;
     margin-top: 80px;
   }
-
 }
