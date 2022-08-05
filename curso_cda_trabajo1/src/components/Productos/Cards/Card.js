@@ -13,16 +13,12 @@ const Card = ({ prod, notInCart, onMain }) => {
     setShow(false);
   };
 
-  const [drop, setDrop] = useState(false);
+  const [grow, setGrow] = useState(false);
   const onMouseEnter = () => {
-    if (window.innerWidth < 960) {
-      setDrop(false);
-    } else {
-      setDrop(true);
-    }
+    setGrow(true);
   };
   const onMouseLeave = () => {
-    setDrop(false);
+    setGrow(false);
   };
 
   const newPrice = prod.price * 20;
@@ -39,7 +35,7 @@ const Card = ({ prod, notInCart, onMain }) => {
         <div className={s.info}>
           <h3>{prod.name}</h3>
           <h4>Precio: $ {newPrice}</h4>
-          {drop && <Shipping priceValue={newPrice} className={s.shipping} />}
+          <Shipping priceValue={newPrice} className={s.shipping} grow={grow} />
         </div>
       </div>
       <CardDetail

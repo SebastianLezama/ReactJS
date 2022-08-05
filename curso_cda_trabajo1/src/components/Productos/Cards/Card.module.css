@@ -29,6 +29,7 @@
 .cardMain img {
   width: 100%;
   border-radius: 6px 6px 0px 0px;
+  border: 0;
 }
 
 .cardMain .info h3 {
@@ -36,6 +37,7 @@
   background-color: #166dbe;
   color: #fff;
   padding: 8px;
+  margin: 0;
 }
 
 .card {
@@ -188,5 +190,17 @@
     position: relative;
     margin-top: 80px;
     z-index: 1;
+  }
+  .cardMain {
+    box-shadow: 0px 0px 10px 1px rgba(63, 63, 63, 0.347);
+    margin: 15px;
+    width: 50%;
+    min-width: 100px;
+    max-width: 150px;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    height: 360px;
   }
 }
