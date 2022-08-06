@@ -17,7 +17,7 @@ function Main() {
             <MapCategories categories={categoriesFromApi} className="catMain" />
           </ul>
           <li className="favList">
-            <h2>Productos en favoritos</h2>
+            {favs.length !== 0 && <h2>Productos en favoritos</h2>}
             <CardList items={favs} notInCart={false} onMain={true} />
           </li>
         </ul>

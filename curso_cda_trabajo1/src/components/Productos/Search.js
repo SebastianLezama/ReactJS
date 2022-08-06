@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./Search.scss";
 
 const Search = ({ handleQuery }) => {
   const [text, setText] = useState("");
@@ -15,12 +16,13 @@ const Search = ({ handleQuery }) => {
   return (
     <form onSubmit={handleSubmit}>
       <input
+        className="buscador"
         type="text"
         placeholder="Buscar productos"
         onChange={handleChange}
         value={text}
       />
-      <button>Buscar</button>
+      <button className="buscarButton">Buscar</button>
     </form>
   );
 };

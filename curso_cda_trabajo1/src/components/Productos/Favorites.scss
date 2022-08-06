@@ -1,5 +1,19 @@
+.vaciarFavs {
+  padding: 6px 8px;
+  border-radius: 5px;
+  background-color: #707070;
+  color: white;
+  font-weight: bold;
+  font-size: 1.3em;
+  cursor: pointer;
+  border: none;
+  &:hover {
+    background-color: #166dbe;
+  }
+}
+
 @media screen and (max-width: 960px) {
   .favs-container {
-    margin-top: 80px;
+    // margin-top: 80px;
   }
 }

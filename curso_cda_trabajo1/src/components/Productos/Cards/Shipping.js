@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 
-const Shipping = ({ priceValue, className, grow }) => {
+const Shipping = ({ priceValue, className, grow, onProd }) => {
   const [width, setWidth] = useState(false);
   const Cuotas = () => {
     if (priceValue >= 4000) {
@@ -38,7 +38,7 @@ const Shipping = ({ priceValue, className, grow }) => {
     );
   };
 
-  if (width < 960) {
+  if (width < 960 || onProd) {
     return <CuotasEnvios />;
   }
   if (grow) {

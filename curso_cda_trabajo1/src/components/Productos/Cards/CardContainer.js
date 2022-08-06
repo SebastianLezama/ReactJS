@@ -45,7 +45,7 @@ const CardContainer = () => {
       <div className="mainContainer">
         <h2>{prodCategory}</h2>
         <Search handleQuery={handleQuery} />
-        <CardList items={items} notInCart={true} query={query} />
+        <CardList items={items} notInCart={true} query={query} onProd={true} />
         <div className={s.loading}>{loading && <PropagateLoader />}</div>
       </div>
     </div>

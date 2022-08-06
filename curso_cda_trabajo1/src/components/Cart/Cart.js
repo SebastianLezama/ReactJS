@@ -17,9 +17,40 @@ const Cart = () => {
 
   if (cart.length === 0) {
     return (
+      <div>
+        <div className="cartDisplay">
+          <div className="cartContainer">
+            <h2>No hay productos</h2>
+          </div>
+          <div className="cartTotalContainer">
+            <Form totalPrice={total} cart={cart} clearCart={clearCart} />
+            <ul>
+              <li key="button">
+                <button className="vaciar" onClick={clearCart}>
+                  Vaciar carrito
+                </button>
+              </li>
+              <li key="subtotal" className="subTotalContainer">
+                <Subtotal />
+              </li>
+              <li key="total" className="total">
+                <h2>Total: </h2>
+                <h2>${total}</h2>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div>
       <div className="cartDisplay">
         <div className="cartContainer">
-          <h2>No hay productos</h2>
+          {cart.map((p) => (
+            <CartDetail key={p.id} prod={p} />
+          ))}
         </div>
         <div className="cartTotalContainer">
           <Form totalPrice={total} cart={cart} clearCart={clearCart} />
@@ -38,33 +69,6 @@ const Cart = () => {
             </li>
           </ul>
         </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="cartDisplay">
-      <div className="cartContainer">
-        {cart.map((p) => (
-          <CartDetail key={p.id} prod={p} />
-        ))}
-      </div>
-      <div className="cartTotalContainer">
-        <Form totalPrice={total} cart={cart} clearCart={clearCart} />
-        <ul>
-          <li key="button">
-            <button className="vaciar" onClick={clearCart}>
-              Vaciar carrito
-            </button>
-          </li>
-          <li key="subtotal" className="subTotalContainer">
-            <Subtotal />
-          </li>
-          <li key="total" className="total">
-            <h2>Total: </h2>
-            <h2>${total}</h2>
-          </li>
-        </ul>
       </div>
     </div>
   );

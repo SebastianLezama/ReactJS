@@ -4,12 +4,19 @@ import CardList from "./Cards/CardList";
 import "./Favorites.scss";
 
 const Favorites = () => {
-  const { favs } = useContext(FavContext);
+  const { favs, clearFavs } = useContext(FavContext);
 
   if (favs.length === 0) {
     return (
-      <div>
-        <h2>No hay favoritos</h2>
+      <div className="favs-container">
+        <div className="mainContainer">
+          <div className="favs">
+            <h2>No hay favoritos</h2>
+            <button className="vaciarFavs" onClick={clearFavs}>
+              Vaciar Favoritos
+            </button>
+          </div>
+        </div>
       </div>
     );
   }
@@ -19,9 +26,12 @@ const Favorites = () => {
       <div className="mainContainer">
         <div className="favs">
           <h2>Favoritos</h2>
+          <button className="vaciarFavs" onClick={clearFavs}>
+            Vaciar Favoritos
+          </button>
         </div>
         <div className="card-container">
-          <CardList items={favs} notInCart={false} />
+          <CardList items={favs} notInCart={false} onProd={true} />
         </div>
       </div>
     </div>

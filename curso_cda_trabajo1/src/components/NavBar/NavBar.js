@@ -55,7 +55,7 @@ function NavBar({ isInHeader }) {
 
   return (
     <nav className={isInHeader ? style.nav : style.navFooter}>
-      <Link className={style.navLinks} to="/">
+      <Link className={style.navLinks} to="/" onClick={closeMobileMenu}>
         <h2>e-Commerce</h2>
       </Link>
       <ShowIcon className={style.menuIcon} />

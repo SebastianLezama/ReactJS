@@ -58,14 +58,13 @@
 
 .cartContainer {
   padding: 20px;
-  margin: 25px 0px 0px 25px;
+  margin: 40px 0px 90px 25px;
   background-color: rgb(235, 235, 235);
   border-radius: 8px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  margin-bottom: 90px;
   width: 79%;
+  min-height: 550px;
 }
 
 .containerCartDetail {
@@ -267,7 +266,7 @@
   font-size: 1.3em;
   cursor: pointer;
   border: none;
-  margin-top: 160px;
+  margin-top: 195px;
   width: 90%;
   &:hover {
     background-color: #166dbe;
@@ -280,5 +279,13 @@
     flex-direction: row;
     position: relative;
     margin-top: 80px;
+  }
+
+  .cartContainer {
+    margin: 43px 0px 90px 25px;
+  }
+
+  .cartTotalContainer {
+    padding-top: 53px;
   }
 }

@@ -1,7 +1,7 @@
 .checkoutContainer {
   padding: 20px;
   margin: 25px;
-  margin-top: 60px;
+  margin-top: 40px;
   background-color: rgb(235, 235, 235);
   border-radius: 8px;
   display: flex;
@@ -48,5 +48,21 @@
     h2 {
       margin: 15px;
     }
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .checkoutContainer {
+    padding: 20px;
+    margin: 25px;
+    margin-top: 123px;
+    background-color: rgb(235, 235, 235);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }

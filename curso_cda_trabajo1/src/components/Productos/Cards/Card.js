@@ -3,7 +3,7 @@ import s from "./Card.module.css";
 import CardDetail from "./CardDetail";
 import Shipping from "./Shipping";
 
-const Card = ({ prod, notInCart, onMain }) => {
+const Card = ({ prod, notInCart, onMain, onProd }) => {
   const [show, setShow] = useState(false);
   const handleClick = () => {
     setShow(true);
@@ -35,7 +35,12 @@ const Card = ({ prod, notInCart, onMain }) => {
         <div className={s.info}>
           <h3>{prod.name}</h3>
           <h4>Precio: $ {newPrice}</h4>
-          <Shipping priceValue={newPrice} className={s.shipping} grow={grow} />
+          <Shipping
+            priceValue={newPrice}
+            className={s.shipping}
+            grow={grow}
+            onProd={onProd}
+          />
         </div>
       </div>
       <CardDetail
