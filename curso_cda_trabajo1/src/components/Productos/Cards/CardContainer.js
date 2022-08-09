@@ -13,6 +13,13 @@ const CardContainer = () => {
   const [loading, setLoading] = useState(false);
   const [query, setQuery] = useState("");
 
+  const newPrice = () => {
+    const itemsCopy = [...items];
+    itemsCopy.map((prod) => (prod.price = prod.price * 20));
+    console.log(itemsCopy);
+    setItems(itemsCopy);
+  };
+
   useEffect(() => {
     setLoading(true);
 
@@ -26,11 +33,14 @@ const CardContainer = () => {
       .then((res) => {
         setItems(res);
         setLoading(false);
+        newPrice();
       });
+
     setCategory(categoryId);
 
     return () => {
       setQuery("");
+      // newPrice();
     };
   }, [categoryId]);
 

@@ -21,8 +21,6 @@ const Card = ({ prod, notInCart, onMain, onProd }) => {
     setGrow(false);
   };
 
-  const newPrice = prod.price * 20;
-
   return (
     <>
       <div
@@ -34,9 +32,9 @@ const Card = ({ prod, notInCart, onMain, onProd }) => {
         <img src={prod.img} alt={prod.name} />
         <div className={s.info}>
           <h3>{prod.name}</h3>
-          <h4>Precio: $ {newPrice}</h4>
+          <h4>Precio: $ {prod.price}</h4>
           <Shipping
-            priceValue={newPrice}
+            priceValue={prod.price}
             className={s.shipping}
             grow={grow}
             onProd={onProd}

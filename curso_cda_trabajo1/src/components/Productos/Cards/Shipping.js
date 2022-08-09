@@ -2,9 +2,15 @@ import React, { useCallback, useEffect, useState } from "react";
 
 const Shipping = ({ priceValue, className, grow, onProd }) => {
   const [width, setWidth] = useState(false);
+
+  const cuota = (price, numOfCuota) => {
+    return numOfCuota + "x $ " + (price / numOfCuota).toFixed(2);
+  };
   const Cuotas = () => {
     if (priceValue >= 4000) {
-      return <>6x $ {(priceValue / 6).toFixed(2)}</>;
+      return <>{cuota(priceValue, 6)}</>;
+    } else if (priceValue > 1000) {
+      return <>{cuota(priceValue, 3)}</>;
     }
   };
 
@@ -17,7 +23,7 @@ const Shipping = ({ priceValue, className, grow, onProd }) => {
   const checkWidth = useCallback(() => {
     const updatedWidth = window.innerWidth;
     setWidth(updatedWidth);
-  });
+  }, []);
 
   useEffect(() => {
     checkWidth();
