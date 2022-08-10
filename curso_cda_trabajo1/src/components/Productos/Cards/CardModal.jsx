@@ -1,5 +1,5 @@
 import React from "react";
-import s from "./Card.module.css";
+import "./CardModal.scss";
 import { MdClose } from "react-icons/md";
 import Counter from "../../Counter/Counter";
 
@@ -10,21 +10,24 @@ const CardModal = ({
   modalRef,
   closeModal,
   showItemInCart,
+  notInCart,
 }) => {
   return (
     <>
       {show && (
-        <div className={s.CardDetail} ref={modalRef} onClick={closeModal}>
-          <div className={s.divModal}>
-            <div>
-              <h2>Detalle del producto</h2>
+        <div className="cardDetail" ref={modalRef} onClick={closeModal}>
+          <div className="divModal">
+            <div className="infoModal">
+              <h1>Detalle del producto</h1>
               <h2>{item.name}</h2>
               <p>${item.price}</p>
               <Counter item={item} />
-              {showItemInCart()}
+              {notInCart && showItemInCart()}
             </div>
-            <img src={item.img} alt={item.name} />
-            <MdClose className={s.MdClose} onClick={handleClose} />
+            <div className="imgModal">
+              <img src={item.img} alt={item.name} />
+            </div>
+            <MdClose className="mdClose" onClick={handleClose} />
           </div>
         </div>
       )}

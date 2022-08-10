@@ -6,6 +6,7 @@ import style from "./NavBar.module.css";
 import { BsGithub, BsCart } from "react-icons/bs";
 import { AiFillLinkedin } from "react-icons/ai";
 import { FaBars, FaTimes } from "react-icons/fa";
+import { VscHome } from "react-icons/vsc";
 
 function NavBar({ isInHeader }) {
   const { cartItems } = useContext(CartContext);
@@ -44,22 +45,31 @@ function NavBar({ isInHeader }) {
         className={click ? style.navLinksMobile : style.navItem}
         onClick={closeMobileMenu}
       >
-        <Link to="/favs">
-          <div className={style.navFav}>
+        <div className={style.navProd}>
+          <Link to="/favs" className={style.productos}>
             <h2>Favoritos</h2>
-          </div>
-        </Link>
+          </Link>
+        </div>
       </li>
     );
   };
 
   return (
     <nav className={isInHeader ? style.nav : style.navFooter}>
-      <Link className={style.navLinks} to="/" onClick={closeMobileMenu}>
-        <h2>e-Commerce</h2>
+      <Link className={style.navItem} to="/" onClick={closeMobileMenu}>
+        <div className={style.navFav}>
+          <h2>e-Commerce</h2>
+        </div>
       </Link>
       <ShowIcon className={style.menuIcon} />
       <ul className={click ? style.navMenuActive : style.navMenu}>
+        {isInHeader && (
+          <Link className={style.navLinks} to="/" onClick={closeMobileMenu}>
+            <div className={style.home}>
+              <VscHome size={42} color="white" />
+            </div>
+          </Link>
+        )}
         {isInHeader && <Favoritos />}
         <li className={click ? style.navLinksMobile : style.navItem} to="/cart">
           {isInHeader ? (

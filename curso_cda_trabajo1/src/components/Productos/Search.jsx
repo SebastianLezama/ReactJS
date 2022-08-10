@@ -1,12 +1,17 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Search.scss";
 
-const Search = ({ handleQuery }) => {
+const Search = () => {
   const [text, setText] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleQuery(text);
+    setText("");
+    text.length !== 0
+      ? navigate(`/productos/search/${text}`)
+      : navigate("/productos");
   };
 
   const handleChange = (e) => {
@@ -14,7 +19,7 @@ const Search = ({ handleQuery }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="searchDiv">
       <input
         className="buscador"
         type="text"

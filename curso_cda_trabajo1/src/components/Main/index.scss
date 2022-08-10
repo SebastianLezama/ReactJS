@@ -6,7 +6,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 550px;
+  min-width: 250px;
+  min-height: 500px;
 }
 
 .listContainer {
@@ -23,8 +24,6 @@
 }
 
 .catContainer {
-  display: flex;
-  flex-wrap: wrap;
   margin: 10px 40px 10px 40px;
   padding: 5% 3% 5% 3%;
   font-size: 1em;
@@ -33,6 +32,9 @@
   color: #188fff;
   align-items: center;
   border-radius: 4px;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 
   li {
     align-items: center;
@@ -68,6 +70,30 @@
 
 @media screen and (max-width: 960px) {
   .mainContainer {
-    margin-top: 123px;
+    margin: 100px 20px 0px 20px;
+  }
+
+  .catContainer {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 40em) {
+  .catMain {
+    width: 300px;
+  }
+}
+
+@media (max-width: 30em) {
+  .main {
+    display: flex;
+    justify-content: center;
+  }
+  .mainContainer {
+    margin: 20px 20px 0px 20px;
+  }
+  .catMain {
+    width: 250px;
   }
 }

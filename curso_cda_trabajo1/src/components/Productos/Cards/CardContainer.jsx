@@ -11,14 +11,6 @@ const CardContainer = () => {
   const { categoryId } = useParams();
   const [category, setCategory] = useState("");
   const [loading, setLoading] = useState(false);
-  const [query, setQuery] = useState("");
-
-  const newPrice = () => {
-    const itemsCopy = [...items];
-    itemsCopy.map((prod) => (prod.price = prod.price * 20));
-    console.log(itemsCopy);
-    setItems(itemsCopy);
-  };
 
   useEffect(() => {
     setLoading(true);
@@ -31,31 +23,21 @@ const CardContainer = () => {
     fetch(fetchCategory)
       .then((res) => res.json())
       .then((res) => {
+        res.map((prod) => (prod.price = prod.price * 20));
         setItems(res);
         setLoading(false);
-        newPrice();
       });
 
     setCategory(categoryId);
-
-    return () => {
-      setQuery("");
-      // newPrice();
-    };
   }, [categoryId]);
 
-  const prodCategory = categoryId ? categoriesSpanish[category] : "Productos";
-
-  const handleQuery = (e) => {
-    setQuery(e);
-  };
-
+  const prodCategory = categoryId && categoriesSpanish[category];
   return (
-    <div className={s.CardContainer}>
-      <div className="mainContainer">
+    <div className="mainContainer">
+      <div className={s.cardContainer}>
         <h2>{prodCategory}</h2>
-        <Search handleQuery={handleQuery} />
-        <CardList items={items} notInCart={true} query={query} onProd={true} />
+        <Search />
+        <CardList items={items} notInCart={true} onProd={true} />
         <div className={s.loading}>{loading && <PropagateLoader />}</div>
       </div>
     </div>

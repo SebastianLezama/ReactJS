@@ -52,7 +52,6 @@ a:active {
   background-color: #1888ff;
   border-radius: 4px;
   transition: all 0.2s ease-out;
-  color: #222222;
 }
 
 .productos {
@@ -171,6 +170,11 @@ a:active {
   transition: all 0.2s ease-out;
 }
 
+.currentLink {
+  background-color: #1888ff;
+  border-radius: 4px;
+}
+
 .navMenu {
   position: absolute;
   display: grid;
@@ -187,11 +191,20 @@ a:active {
   margin: 0;
 }
 
+.home {
+  padding-top: 13px;
+}
+
 .navLinks {
   color: white;
   text-decoration: none;
   padding: 0.5rem 1rem;
+
   cursor: pointer;
+}
+.navLinks h2 {
+  margin: 0;
+  padding: 27px 0px 27px 0px;
 }
 
 .navLinks:hover {
@@ -203,6 +216,9 @@ a:active {
 @media screen and (max-width: 960px) {
   .NavbarItems {
     position: relative;
+  }
+  .home {
+    display: none;
   }
 
   .navMenuActive {
@@ -233,7 +249,7 @@ a:active {
   }
 
   .navLinks h2 {
-    margin-left: 80px;
+    margin-left: 20px;
   }
 
   .navProd {
@@ -273,6 +289,8 @@ a:active {
 
   .nav {
     position: absolute;
+    justify-content: space-between;
+
     top: 0;
     left: 0;
     align-items: center;
@@ -322,16 +340,14 @@ a:active {
   .bars svg {
     padding: 0;
     height: 35px;
-    padding-top: 20px;
-    padding-bottom: 25px;
+    padding-top: 25px;
+    padding-bottom: 20px;
     background-color: #1888ff;
     border-radius: 4px;
   }
 
   .navFav {
     color: #fff;
-    padding: 1.5rem;
-    height: 90px;
   }
 
   .navFav h2 {
@@ -361,6 +377,7 @@ a:active {
     background: #166dbe;
     text-decoration: none;
     color: #fff;
+    font-size: 2.45em;
   }
 
   .navLinksMobile:hover {

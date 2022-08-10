@@ -77,3 +77,11 @@
     color: #188fff;
   }
 }
+
+@media (max-width: 55em) {
+  .icon,
+  .icon-hover,
+  .icon-max {
+    margin-top: 0;
+  }
+}

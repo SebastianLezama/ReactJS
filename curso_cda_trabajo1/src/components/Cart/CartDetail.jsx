@@ -19,35 +19,31 @@ const CartDetail = ({ prod }) => {
     <>
       <div className="containerCartDetail">
         <ul className="infoCartDetail">
-          <img src={prod.img} alt={prod.name} onClick={() => handleClick()} />
-          <div className="nombre">
-            <div>
-              <h3>{prod.name}</h3>
-            </div>
+          <div className="prodInfo">
+            <img src={prod.img} alt={prod.name} onClick={() => handleClick()} />
             <div className="stock">
-              <h6>Quedan en stock: {prod.stock - prod.quantity}</h6>
+              <h3>{prod.name}</h3>
+              <p>Quedan en stock: {prod.stock - prod.quantity}</p>
             </div>
           </div>
-          <article>
-            <div className="subContainer">
-              <div className="titulo">
-                <h4>Precio: $ {prod.price}</h4>
-              </div>
-              <div className="subtotal">
-                <div className="botonera">
-                  <button className="boton" onClick={() => subOne(prod)}>
-                    -
-                  </button>
-                  <h4>{prod.quantity} </h4>
-                  <button className="boton" onClick={() => addOne(prod)}>
-                    +
-                  </button>
-                </div>
-                <h5> Subtotal: </h5>
-                <h5> ${prod.price * prod.quantity}.-</h5>
-              </div>
+          <div className="subContainer">
+            <div className="titulo">
+              <h4>Precio: $ {prod.price}</h4>
             </div>
-          </article>
+            <div className="subtotal">
+              <div className="botonera">
+                <button className="boton" onClick={() => subOne(prod)}>
+                  -
+                </button>
+                <h4> {prod.quantity} </h4>
+                <button className="boton" onClick={() => addOne(prod)}>
+                  +
+                </button>
+              </div>
+              <h5> Subtotal: </h5>
+              <h5> ${prod.price * prod.quantity}.-</h5>
+            </div>
+          </div>
           <button className="botonDelete" onClick={() => deleteItem(prod.id)}>
             Eliminar
           </button>

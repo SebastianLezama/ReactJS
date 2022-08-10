@@ -7,18 +7,30 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 90px;
-  display: flex;
   align-items: center;
   justify-content: center;
 
-  .codigo {
+  .checkout {
     background-color: rgba(196, 196, 196, 0.372);
     margin: 6px;
     padding: 6px;
     border-radius: 8px;
-    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
     div {
-      padding: 20px;
+      width: 50%;
+
+      min-width: 330px;
+      max-width: 600px;
+
+      padding: 5px;
+
+      h5 {
+        margin: 0;
+      }
     }
   }
   .flatButton {
@@ -49,6 +61,21 @@
       margin: 15px;
     }
   }
+
+  .copyButton {
+    font-size: 1.1em;
+    margin-left: 5px;
+    padding: 6px 8px;
+    border-radius: 5px;
+    background-color: #166dbe;
+    color: white;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    &:hover {
+      background-color: #188fff;
+    }
+  }
 }
 
 @media screen and (max-width: 960px) {
@@ -61,7 +88,6 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 90px;
-    display: flex;
     align-items: center;
     justify-content: center;
   }

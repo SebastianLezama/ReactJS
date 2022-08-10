@@ -13,42 +13,41 @@ const Counter = ({ item }) => {
     iconClassDash: "icon",
     iconClassPlus: "icon",
   });
+  const itemCartStock = stockCart(item);
+  const currentStock = itemCartStock ? item.stock - itemCartStock : item.stock;
+  const changeIconClassPlus = (iconClass) => {
+    setIconClass((currentState) => ({
+      ...currentState,
+      iconClassPlus: iconClass,
+    }));
+  };
+  const changeIconClassDash = (iconClass) => {
+    setIconClass((currentState) => ({
+      ...currentState,
+      iconClassDash: iconClass,
+    }));
+  };
 
   useEffect(() => {
-    if (count === 1) {
-      setIconClass((currentState) => ({
-        ...currentState,
-        iconClassPlus: "icon",
-      }));
-      setIconClass((currentState) => ({
-        ...currentState,
-        iconClassDash: "icon",
-      }));
-    } else if (count < item.stock) {
-      setIconClass((currentState) => ({
-        ...currentState,
-        iconClassPlus: "icon-hover",
-      }));
+    if (count === 1 || currentStock === 0) {
+      changeIconClassPlus("icon");
+      changeIconClassDash("icon");
+    } else if (count < currentStock) {
+      changeIconClassPlus("icon-hover");
     } else {
-      setIconClass((currentState) => ({
-        ...currentState,
-        iconClassPlus: "icon-max",
-      }));
+      changeIconClassPlus("icon-max");
     }
-  }, [count, item.stock]);
+  }, [count, item.stock, currentStock]);
 
   const dashOnClick = () => {
     if (count > 1) {
       setCount(count - 1);
-      setIconClass((currentState) => ({
-        ...currentState,
-        iconClassDash: "icon-hover",
-      }));
+      changeIconClassDash("icon-hover");
     }
   };
 
   const plusOnClick = () => {
-    count < item.stock && setCount(count + 1);
+    count < currentStock && setCount(count + 1);
   };
 
   const Favoritos = ({ item }) => {
@@ -63,19 +62,19 @@ const Counter = ({ item }) => {
     );
   };
 
-  const itemCartStock = stockCart(item);
+  const handleClick = () => {
+    addToCart(item, count);
+    setCount(1);
+  };
 
   return (
     <div className="Counter">
       <BsCartDash size="33" className={iconClassDash} onClick={dashOnClick} />
       <BsCartPlus size="33" className={iconClassPlus} onClick={plusOnClick} />
-      <div>
-        Stock Disponible:{" "}
-        {itemCartStock ? item.stock - itemCartStock : item.stock}
-      </div>
+      <div>Stock Disponible: {currentStock}</div>
       <div>Cantidad: {count}</div>
       <Favoritos item={item}></Favoritos>
-      <button onClick={() => addToCart(item, count)}>
+      <button onClick={() => handleClick()}>
         {isInCart(item.id) ? "Sumar Cantidad" : "Añadir al Carrito"}
       </button>
     </div>

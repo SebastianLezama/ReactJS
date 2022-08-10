@@ -1,17 +1,20 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 import Card from "./Card";
 import s from "./Card.module.css";
 
-const CardList = ({ items, notInCart, query, onMain, onProd }) => {
+const CardList = ({ items, notInCart, onMain, onProd }) => {
+  const { input } = useParams();
+
   const filterItems = (prod, text) => {
     if (!text) {
       return prod;
     }
 
-    return prod.filter((prod) => prod.name.toLowerCase().includes(query));
+    return prod.filter((prod) => prod.name.toLowerCase().includes(input));
   };
 
-  const filteredItems = query ? filterItems(items, query) : items;
+  const filteredItems = input ? filterItems(items, input) : items;
   const data = filteredItems.sort((a, b) => (a.name > b.name ? 1 : -1));
 
   return (

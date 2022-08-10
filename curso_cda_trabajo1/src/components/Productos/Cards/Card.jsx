@@ -1,7 +1,7 @@
 import React, { useState } from "react";
+import Shipping from "../Shipping";
 import s from "./Card.module.css";
 import CardDetail from "./CardDetail";
-import Shipping from "./Shipping";
 
 const Card = ({ prod, notInCart, onMain, onProd }) => {
   const [show, setShow] = useState(false);

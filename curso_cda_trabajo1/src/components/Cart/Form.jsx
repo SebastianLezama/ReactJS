@@ -16,7 +16,7 @@ const Form = ({ totalPrice, cart, clearCart }) => {
     const user = formData.user;
     const phone = formData.phone;
 
-    if (formData) {
+    if (formData.user.length !== 0 && formData.phone.length !== 0) {
       const sendInfo = await fetch(URL, {
         method: "POST",
         headers: {
@@ -32,6 +32,8 @@ const Form = ({ totalPrice, cart, clearCart }) => {
       const response = await sendInfo.json();
       clearCart();
       navigate(`/checkout/${response.id}`);
+    } else {
+      alert("Por favor ingrese nombre y telefono!");
     }
   };
 
