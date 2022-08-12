@@ -1,30 +1,68 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import Shipping from "../Shipping";
 import s from "./Card.module.css";
 import CardDetail from "./CardDetail";
 
 const Card = ({ prod, notInCart, onMain, onProd }) => {
-  const [show, setShow] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [width, setWidth] = useState(false);
+  const [grow, setGrow] = useState(false);
+
+  const minShippingValue = 2000;
+
   const handleClick = () => {
-    setShow(true);
+    setShowModal(true);
   };
 
   const hideModal = () => {
-    setShow(false);
+    setShowModal(false);
   };
 
-  const [grow, setGrow] = useState(false);
   const onMouseEnter = () => {
-    setGrow(true);
+    prod.price >= minShippingValue && setGrow(true);
   };
   const onMouseLeave = () => {
     setGrow(false);
   };
 
+  const checkWidth = useCallback(() => {
+    const updatedWidth = window.innerWidth;
+    setWidth(updatedWidth);
+  }, []);
+
+  useEffect(() => {
+    checkWidth();
+    window.addEventListener("resize", checkWidth);
+    return () => window.removeEventListener("resize", checkWidth);
+  }, [width, checkWidth]);
+
+  const GrowCard = () => {
+    if (width < 960 || onProd) {
+      return (
+        <Shipping priceValue={prod.price} minShippingValue={minShippingValue} />
+      );
+    }
+    if (grow) {
+      return (
+        <Shipping priceValue={prod.price} minShippingValue={minShippingValue} />
+      );
+    }
+  };
+
+  const handleClass = () => {
+    if (grow) {
+      return s.cardMain;
+    } else if (onMain) {
+      return s.cardMainCopy;
+    } else {
+      return s.card;
+    }
+  };
+
   return (
     <>
       <div
-        className={onMain ? s.cardMain : s.card}
+        className={handleClass()}
         onClick={() => handleClick()}
         onMouseEnter={onMain && onMouseEnter}
         onMouseLeave={onMain && onMouseLeave}
@@ -33,12 +71,7 @@ const Card = ({ prod, notInCart, onMain, onProd }) => {
         <div className={s.info}>
           <h3>{prod.name}</h3>
           <h4>Precio: $ {prod.price}</h4>
-          <Shipping
-            priceValue={prod.price}
-            className={s.shipping}
-            grow={grow}
-            onProd={onProd}
-          />
+          <GrowCard />
         </div>
       </div>
       <CardDetail
@@ -46,8 +79,8 @@ const Card = ({ prod, notInCart, onMain, onProd }) => {
         handleClose={hideModal}
         notInCart={notInCart}
         id={prod.id}
-        show={show}
-        setShow={setShow}
+        showModal={showModal}
+        setShowModal={setShowModal}
       />
     </>
   );

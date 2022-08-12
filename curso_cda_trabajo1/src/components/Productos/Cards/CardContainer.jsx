@@ -29,6 +29,10 @@ const CardContainer = () => {
       });
 
     setCategory(categoryId);
+
+    return () => {
+      setItems([]);
+    };
   }, [categoryId]);
 
   const prodCategory = categoryId && categoriesSpanish[category];

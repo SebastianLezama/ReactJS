@@ -1,8 +1,7 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
+import s from "./Cards/Card.module.css";
 
-const Shipping = ({ priceValue, className, grow, onProd }) => {
-  const [width, setWidth] = useState(false);
-
+const Shipping = ({ priceValue, minShippingValue }) => {
   const cuota = (price, numOfCuota) => {
     return numOfCuota + "x $ " + (price / numOfCuota).toFixed(2);
   };
@@ -15,41 +14,21 @@ const Shipping = ({ priceValue, className, grow, onProd }) => {
   };
 
   const Envios = () => {
-    if (priceValue >= 2000) {
+    if (priceValue >= minShippingValue) {
       return <>Envío gratis</>;
     }
   };
 
-  const checkWidth = useCallback(() => {
-    const updatedWidth = window.innerWidth;
-    setWidth(updatedWidth);
-  }, []);
-
-  useEffect(() => {
-    checkWidth();
-    window.addEventListener("resize", checkWidth);
-    return () => window.removeEventListener("resize", checkWidth);
-  }, [width, checkWidth]);
-
-  const CuotasEnvios = () => {
-    return (
-      <div className={className}>
-        <h6>
-          <Cuotas />
-        </h6>
-        <h6>
-          <Envios />
-        </h6>
-      </div>
-    );
-  };
-
-  if (width < 960 || onProd) {
-    return <CuotasEnvios />;
-  }
-  if (grow) {
-    return <CuotasEnvios />;
-  }
+  return (
+    <div className={s.shipping}>
+      <h6>
+        <Cuotas />
+      </h6>
+      <h6>
+        <Envios />
+      </h6>
+    </div>
+  );
 };
 
 export default Shipping;

@@ -12,8 +12,8 @@
 
   .checkout {
     background-color: rgba(196, 196, 196, 0.372);
-    margin: 6px;
-    padding: 6px;
+    margin: 20px 0px;
+    padding: 15px;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
@@ -22,11 +22,9 @@
 
     div {
       width: 50%;
-
       min-width: 330px;
       max-width: 600px;
-
-      padding: 5px;
+      padding: 5px 0px;
 
       h5 {
         margin: 0;
@@ -37,7 +35,7 @@
     color: #188fff;
     height: 60px;
     width: 50%;
-    max-width: 600px;
+    max-width: 450px;
     min-width: 330px;
     font-size: 16px;
     font-family: "PT Sans Caption", sans-serif;
@@ -75,6 +73,25 @@
     &:hover {
       background-color: #188fff;
     }
+  }
+}
+
+.codigoPedido {
+  width: 250px;
+}
+
+.checkoutItems {
+  margin: 20px 0px;
+  h3 {
+    margin: 3px;
+  }
+}
+
+.orderItems {
+  display: flex;
+  justify-content: space-between;
+  h6 {
+    margin: 3px;
   }
 }
 

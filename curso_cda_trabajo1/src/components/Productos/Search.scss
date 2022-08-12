@@ -5,6 +5,7 @@ input[type="text"] {
   padding: 5px;
   margin: 5px;
   background: transparent;
+  // width: 240px;
 }
 
 .buscador,
@@ -28,6 +29,10 @@ input {
   &:hover {
     background-color: #188fff;
   }
+}
+
+.buscarButton:focus {
+  background-color: #166dbe;
 }
 
 .searchDiv {

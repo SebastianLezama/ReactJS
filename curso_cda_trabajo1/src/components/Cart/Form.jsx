@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { CartContext } from "../../context/CartContext";
 import "./Cart.scss";
 
 const URL = "https://fake-products-eric.herokuapp.com/api/orders";
 
-const Form = ({ totalPrice, cart, clearCart }) => {
+const Form = () => {
+  const { cart, total, clearCart, checkoutOrder } = useContext(CartContext);
+
   const [formData, setFormData] = useState({
     user: "",
     phone: "",
@@ -24,12 +27,13 @@ const Form = ({ totalPrice, cart, clearCart }) => {
         },
         body: JSON.stringify({
           cart,
-          total: totalPrice,
+          total: total,
           user,
           phone,
         }),
       });
       const response = await sendInfo.json();
+      checkoutOrder(user, phone);
       clearCart();
       navigate(`/checkout/${response.id}`);
     } else {

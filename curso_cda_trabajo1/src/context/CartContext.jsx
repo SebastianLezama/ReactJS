@@ -10,6 +10,7 @@ const CartProvider = (props) => {
 
   const [total, setTotal] = useState(0);
   const [cartItems, setCartItems] = useState(0);
+  const [checkoutDetail, setCheckoutDetail] = useState([]);
 
   const deleteItem = (id) => {
     const filteredProd = cart.filter((prod) => prod.id !== id);
@@ -91,6 +92,13 @@ const CartProvider = (props) => {
     }
   };
 
+  const checkoutOrder = (user, phone) => {
+    setCheckoutDetail([
+      { user: user, phone: phone, total: total },
+      { items: [...cart] },
+    ]);
+  };
+
   useEffect(() => {
     calcTotal();
     cartItemsCounter();
@@ -103,6 +111,7 @@ const CartProvider = (props) => {
         cart,
         total,
         cartItems,
+        checkoutDetail,
         addOne,
         subOne,
         isInCart,
@@ -111,6 +120,7 @@ const CartProvider = (props) => {
         deleteItem,
         calcTotal,
         stockCart,
+        checkoutOrder,
       }}
     >
       {props.children}

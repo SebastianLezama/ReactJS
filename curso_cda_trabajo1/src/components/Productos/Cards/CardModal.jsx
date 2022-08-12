@@ -6,7 +6,7 @@ import Counter from "../../Counter/Counter";
 const CardModal = ({
   item,
   handleClose,
-  show,
+  showModal,
   modalRef,
   closeModal,
   showItemInCart,
@@ -14,7 +14,7 @@ const CardModal = ({
 }) => {
   return (
     <>
-      {show && (
+      {showModal && (
         <div className="cardDetail" ref={modalRef} onClick={closeModal}>
           <div className="divModal">
             <div className="infoModal">

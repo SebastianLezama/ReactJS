@@ -3,7 +3,13 @@ import { Link } from "react-router-dom";
 import { CartContext } from "../../../context/CartContext";
 import CardModal from "./CardModal";
 
-const CardDetail = ({ id, handleClose, show, setShow, notInCart }) => {
+const CardDetail = ({
+  id,
+  handleClose,
+  showModal,
+  setShowModal,
+  notInCart,
+}) => {
   const { isInCart } = useContext(CartContext);
 
   const modalRef = useRef();
@@ -20,7 +26,7 @@ const CardDetail = ({ id, handleClose, show, setShow, notInCart }) => {
   }, [apiUrl]);
 
   const closeModal = (e) => {
-    if (modalRef.current === e.target) setShow(false);
+    if (modalRef.current === e.target) setShowModal(false);
   };
 
   const showItemInCart = () => {
@@ -37,7 +43,7 @@ const CardDetail = ({ id, handleClose, show, setShow, notInCart }) => {
     <CardModal
       item={item}
       handleClose={handleClose}
-      show={show}
+      showModal={showModal}
       notInCart={notInCart}
       modalRef={modalRef}
       closeModal={closeModal}

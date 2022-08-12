@@ -6,13 +6,14 @@ import "./Cart.scss";
 const CartDetail = ({ prod }) => {
   const { deleteItem, addOne, subOne } = useContext(CartContext);
 
-  const [show, setShow] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
   const handleClick = () => {
-    setShow(true);
+    setShowModal(true);
   };
 
   const hideModal = () => {
-    setShow(false);
+    setShowModal(false);
   };
 
   return (
@@ -54,8 +55,8 @@ const CartDetail = ({ prod }) => {
         handleClose={hideModal}
         notInCart={false}
         id={prod.id}
-        show={show}
-        setShow={setShow}
+        showModal={showModal}
+        setShowModal={setShowModal}
       />
     </>
   );
