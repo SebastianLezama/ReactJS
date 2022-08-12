@@ -79,19 +79,24 @@ svg {
   background: #fcfcfc;
   justify-self: center;
   margin: 0;
-  align-items: center;
+  /* align-items: center; */
   border: 1px solid #dedede;
   border-radius: 5px;
   box-shadow: -1px 7px 8px -5px rgba(0, 0, 0, 0.14);
   width: 36.5%;
-  min-width: 480px;
-  max-width: 526px;
-  height: 730px;
+  min-width: 288px;
+  max-width: 600px;
+  height: 75%;
+  display: flex;
+  flex-direction: column;
 }
 
 .avatar {
   border-radius: 50%;
-  margin: 15px 25px 10px 25px;
+  margin-top: 4%;
+  margin-bottom: 4%;
+  margin-left: 6%;
+  margin-right: 5%;
 }
 
 .header {
@@ -99,23 +104,25 @@ svg {
 }
 
 .header h2 {
-  font-size: 14px;
+  font-size: 0.9em;
   font-weight: 500;
   margin-top: 21px;
 }
 
 .header p {
-  font-size: 10px;
+  font-size: 0.65em;
   font-weight: 400;
   margin-top: 5px;
 }
 
 .swiper {
-  width: 100%;
+  max-width: 100%;
+  height: auto;
 }
 
 .swiper-slide {
   width: 100%;
+  min-height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: -webkit-flex;
@@ -197,29 +204,31 @@ svg {
   padding: 10px;
   margin-bottom: 5px;
 }
-.line {
-  position: absolute;
-  padding: 0;
-  margin: 0;
-  left: 330px;
-}
 
 .info {
   display: flex;
-  margin-left: 20px;
-  margin-right: 20px;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.bottom-container {
+  display: flex;
+  flex-direction: column;
 }
 
 .comments-container {
-  position: relative;
-  margin: 20px;
-  width: 92%;
-  max-height: 175px;
+  margin-left: 5%;
+  margin-top: 3%;
+  margin-right: 5%;
+  width: 90%;
+  height: 100%;
+
+  overflow-y: auto;
 }
 
 .info p {
   font-weight: 400;
-  font-size: 12px;
+  font-size: clamp(0.1em, 1em + 30vw, 0.8em);
 }
 
 .firstSecond {
@@ -228,14 +237,18 @@ svg {
 
 .posted-comments {
   font-weight: 400;
-  font-size: 12px;
-  height: 175px;
-  max-height: 175px;
+  font-size: 0.8em;
+  width: 100%;
+  height: 100%;
   overflow-y: auto;
 }
 
 .posted-comments p {
   margin-bottom: 5px;
+}
+.footer {
+  width: 100%;
+  margin-bottom: 5%;
 }
 
 .input {
@@ -244,18 +257,22 @@ svg {
   align-items: center;
   justify-content: center;
   border-radius: 5px;
-  margin-bottom: 5px;
+  margin-bottom: 2%;
+  bottom: 0;
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 input[type="text"] {
   background-color: #f1f1f1;
-  width: 100%;
   padding: 3%;
   padding-left: 5%;
   font-weight: 400;
   font-size: 12px;
   border: none;
   border-radius: 5px;
+  width: 90%;
 }
 
 input:focus {

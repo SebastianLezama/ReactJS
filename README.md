@@ -7,7 +7,6 @@
     ·
     <a href="https://github.com/SebastianLezama/ReactJS/issues/new?template=feature.md&labels=feature">Request feature</a>
   </p>
-</p>
 
 ## Table of contents
 
