@@ -3,9 +3,9 @@
   <p align="center">
     Short description
     <br>
-    <a href="https://github.com/SebastianLezama/ReactJS/issues/new?template=bug.md">Report bug</a>
+    <a href="https://github.com/SebastianLezama/e-Commerce/issues/new?template=bug.md">Report bug</a>
     ·
-    <a href="https://github.com/SebastianLezama/ReactJS/issues/new?template=feature.md&labels=feature">Request feature</a>
+    <a href="https://github.com/SebastianLezama/e-Commerce/issues/new?template=feature.md&labels=feature">Request feature</a>
   </p>
 
 ## Table of contents
