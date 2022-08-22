@@ -1,8 +1,6 @@
-import React, { useReducer } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { HANDLE_USER } from "../actions/loginActions";
-import { initialLoginState, loginReducer } from "../reducers/loginReducer";
 import { logIn } from "../store/slices/loginSlice";
 import Button from "@mui/material/Button";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -12,29 +10,34 @@ import { TextField } from "@mui/material";
 
 const Login = () => {
   const navigate = useNavigate();
-  const [loginState, loginDispatch] = useReducer(
-    loginReducer,
-    initialLoginState
-  );
+  const [loginState, setLoginState] = useState({
+    user: "",
+    password: "",
+  });
 
   const dispatch = useDispatch();
+  const login = useSelector((state) => state.login.user);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
-    loginDispatch({
-      type: HANDLE_USER,
-      payload: value,
-      field: name,
-    });
+    if (name === "user") {
+      setLoginState((current) => ({ ...current, user: value }));
+    } else {
+      setLoginState((current) => ({ ...current, password: value }));
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     localStorage.setItem("login", JSON.stringify(loginState));
     dispatch(logIn(loginState));
     navigate("/");
   };
+
+  useEffect(() => {
+    login.length !== 0 && navigate("/");
+  }, [login]);
 
   return (
     <div className="login">
