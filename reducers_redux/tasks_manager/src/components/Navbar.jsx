@@ -12,7 +12,7 @@ const Navbar = () => {
     <div className="navBar">
       <div>Tasks Manager</div>
       <div className="user">
-        <div>{user}</div>
+        <div style={{ textTransform: "capitalize" }}>{user}</div>
         <Button
           type="submit"
           className="button-submit"
