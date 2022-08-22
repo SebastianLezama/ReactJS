@@ -1,0 +1,41 @@
+.tasksForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.links {
+  padding: 5px;
+  a {
+    margin: 5px;
+    &:active,
+    &:focus,
+    &:target {
+      color: var(--primary);
+    }
+  }
+}
+
+.activeLink {
+  color: var(--primary);
+}
+
+.taskInput {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  div {
+    margin: 0px 5px;
+
+    button {
+      margin: 0px 5px;
+      height: 55px;
+    }
+  }
+}
+
+.taskText {
+  width: 300px;
+}
