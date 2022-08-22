@@ -9,7 +9,7 @@ import {
   editThisTask,
   removeTasks,
   saveThisTask,
-} from "../../store/slices/tasksSlice";
+} from "../../features/slices/tasksSlice";
 import TasksList from "./TasksList";
 import { Grid } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";

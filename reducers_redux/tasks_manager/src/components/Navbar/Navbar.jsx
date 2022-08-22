@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { logOut } from "../store/slices/loginSlice";
+import { logOut } from "../../features/slices/loginSlice";
 import Button from "@mui/material/Button";
 import "./Navbar.scss";
 

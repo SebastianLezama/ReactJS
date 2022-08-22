@@ -1,8 +1,8 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import Login from "./components/Login";
+import Login from "./components/Login/Login";
 import Tasks from "./components/Tasks/Tasks";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar/Navbar";
 import PrivateRoute from "./utils/PrivateRoute";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
