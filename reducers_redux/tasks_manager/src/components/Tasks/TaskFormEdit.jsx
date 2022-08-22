@@ -12,6 +12,14 @@ const TaskFormEdit = ({ task, saveTask }) => {
     e.preventDefault();
   };
 
+  const editTask = () => {
+    if (newTitle.length === 0) {
+      saveTask(task.id, task.title);
+    } else {
+      saveTask(task.id, newTitle);
+    }
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       <input
@@ -21,7 +29,7 @@ const TaskFormEdit = ({ task, saveTask }) => {
         placeholder={task.title}
         onChange={handleChange}
       />
-      <Button onClick={() => saveTask(task.id, newTitle)}>Save</Button>
+      <Button onClick={() => editTask()}>Save</Button>
     </form>
   );
 };
