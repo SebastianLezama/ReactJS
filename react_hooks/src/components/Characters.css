@@ -1,0 +1,35 @@
+img {
+  width: 35%;
+  border-radius: 50%;
+  margin: 4px;
+}
+
+.characterCard {
+  display: flex;
+  flex-wrap: nowrap;
+  box-shadow: 0px 0px 10px 1px rgba(63, 63, 63, 0.347);
+  border-radius: 3px;
+  margin: 10px;
+  width: 360px;
+  height: 150px;
+  cursor: pointer;
+}
+
+.characterCard:hover {
+  transform: scale(1.02);
+}
+
+.characterName {
+  justify-content: left;
+  margin: 5px 0px 0px 10px;
+}
+
+.characterInfo {
+  justify-content: left;
+  margin: 5px 0px 0px 10px;
+}
+
+.characterList {
+  display: flex;
+  flex-wrap: wrap;
+}
