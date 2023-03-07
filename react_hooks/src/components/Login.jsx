@@ -11,7 +11,9 @@ const Login = () => {
     e.preventDefault();
     localStorage.clear();
     localStorage.setItem("login", JSON.stringify(values));
-    navigate("/products");
+    if ((values.email === "") | (values.password === "")) {
+      alert("Please Enter email and password!");
+    } else navigate("/products");
   };
 
   return (

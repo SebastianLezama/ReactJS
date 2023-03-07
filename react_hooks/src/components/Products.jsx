@@ -5,15 +5,18 @@ const Products = () => {
   const APIURL = "https://rickandmortyapi.com/api/character";
   const [characters, setCharacters] = useState();
 
-  useEffect(() => {
-    fetch(APIURL)
-      .then((res) => res.json())
-      .then((res) => {
-        setCharacters(res);
-      });
-  }, [APIURL]);
+  const fetchCharacters = async () => {
+    const fetchedCharacters = fetch(APIURL).then((res) => res.json());
 
-  return <CharacterList list={characters} />;
+    const response = await fetchedCharacters;
+    setCharacters(response);
+  };
+
+  useEffect(() => {
+    fetchCharacters();
+  }, []);
+
+  return <CharacterList list={characters ? characters : null} />;
 };
 
 export default Products;
