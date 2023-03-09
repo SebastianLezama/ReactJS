@@ -3,29 +3,23 @@ import "./App.css";
 import FullCalendar from "@fullcalendar/react";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import { gapi } from "gapi-script";
-import * as dotenv from "dotenv";
-
-// import "@fullcalendar/core/main.css";
-// import "@fullcalendar/daygrid/main.css";
-
-dotenv.config();
 
 function App() {
   const [events, setEvents] = useState([]);
 
   // const events = [{ title: "Agus", date: new Date() }];
-  const calendarID = process.env.REACT_APP_CALENDAR_ID;
-  const apiKey = process.env.REACT_APP_G_API_KEY;
+  const calendarID = import.meta.env.VITE_CALENDAR_ID;
+  const apiKey = import.meta.env.VITE_G_API_KEY;
 
-  const getEventsFromCalendar = (calendarID, apiKey) => {
-    function initiate() {
-      gapi.client
+  const getEventsFromCalendar = async (calendarID, apiKey) => {
+    async function initiate() {
+      await gapi.client
         .init({
           apiKey: apiKey,
         })
-        .then(function() {
-          return gapi.client.request({
-            path: `https://www.googleapis.com/calendar/v3/calendars/${calendarID}/events`,
+        .then(async function() {
+          return await gapi.client.request({
+            path: `https://www.googleapis.com/calendar/v3/calendars/${calendarID}/events/`,
           });
         })
         .then(
@@ -45,11 +39,7 @@ function App() {
     const events = getEventsFromCalendar(calendarID, apiKey);
     console.log(events);
     setEvents(events);
-
-    return () => {
-      second;
-    };
-  }, [third]);
+  }, []);
 
   return (
     <div className="Calendar">
