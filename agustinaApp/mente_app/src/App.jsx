@@ -18,100 +18,61 @@ function App() {
   ];
   const SCOPE = "https://www.googleapis.com/auth/calendar.events";
 
-  const getEventsFromCalendar = async (CALENDAR_ID, API_KEY) => {
+  const getEventsFromCalendar = async (calendarID, apiKey) => {
     async function initiate() {
-      await gapi.client.init({
-        apiKey: API_KEY,
-        clientId: CALENDAR_ID,
-        discoveryDocs: DISCOVERY_DOCS,
-        scope: SCOPE,
-      });
+      await gapi.client
+        .init({
+          apiKey: apiKey,
+        })
+        .then(async function() {
+          return await gapi.client.request({
+            path: `https://www.googleapis.com/calendar/v3/calendars/${calendarID}/events/`,
+            timeMin: new Date().toISOString(),
+            showDeleted: false,
+            singleEvents: true,
+            maxResults: 33,
+            orderBy: "startTime",
+          });
+          //   return await gapi.client.calendar.events.list({
+          //     calendarId: CALENDAR_ID,
+          //     timeMin: new Date().toISOString(),
+          //     showDeleted: false,
+          //     singleEvents: true,
+          //     orderBy: "startTime",
+          //   });
+          // })
+          // .then((response) => {
+          //   let events = response.result.items;
+          //   console.log(events);
+        })
+        .then(
+          (response) => {
+            let events = response.result.items;
+            events.map((e) => {
+              e
+                ? {
+                    title: e.attendees,
+                    date: e.start.DayTime,
+                  }
+                : e;
+            });
+
+            console.log(events);
+            setEvents(events);
+          },
+          function(err) {
+            return [false, err];
+          }
+        );
     }
     gapi.load("client", initiate);
   };
 
   useEffect(() => {
     const events = getEventsFromCalendar(CALENDAR_ID, API_KEY);
-    console.log(events);
+    // console.log(events);
     setEvents(events);
   }, []);
-
-  gapi.client.calendar.events
-    .list({
-      calendarId: "primary",
-      timeMin: new Date().toISOString(),
-      showDeleted: false,
-      singleEvents: true,
-      maxResults: 20,
-      orderBy: "startTime",
-    })
-    .then((response) => {
-      const events = response.result.items;
-      console.log("events: ", events);
-    });
-
-  // const calConfig = {
-  //   clientId: `${calendarID}`,
-  //   apiKey: `${apiKey}`,
-  //   scope: "https://www.googleapis.com/auth/calendar.events",
-  //   discoveryDocs: [
-  //     "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest",
-  //   ],
-  // };
-
-  // const apiCalendar = new ApiCalendar(calConfig);
-  // apiCalendar.handleAuthClick();
-
-  // const getEventsFromCalendar = async () => {
-  //   await apiCalendar
-  //     .listEvents(
-  //       {
-  //         maxResults: 10,
-  //         orderBy: "updated",
-  //       },
-  //       calendarID
-  //     )
-  //     .then((result) => {
-  //       console.log(result.items);
-  //       return result.items;
-  //     });
-  // };
-
-  // useEffect(() => {
-  //   const events = getEventsFromCalendar();
-  //   console.log(events);
-  //   setEvents(events);
-  // }, []);
-
-  // const getEventsFromCalendar = async (calendarID, apiKey) => {
-  //   async function initiate() {
-  //     await gapi.client
-  //       .init({
-  //         apiKey: apiKey,
-  //       })
-  //       .then(async function() {
-  //         return await gapi.client.request({
-  //           path: `https://www.googleapis.com/calendar/v3/calendars/${calendarID}/events/`,
-  //         });
-  //       })
-  //       .then(
-  //         (response) => {
-  //           let events = response.result.items;
-  //           setEvents(events);
-  //         },
-  //         function(err) {
-  //           return [false, err];
-  //         }
-  //       );
-  //   }
-  //   gapi.load("client", initiate);
-  // };
-
-  // useEffect(() => {
-  //   const events = getEventsFromCalendar(calendarID, apiKey);
-  //   console.log(events);
-  //   setEvents(events);
-  // }, []);
 
   return (
     <div className="Calendar">
