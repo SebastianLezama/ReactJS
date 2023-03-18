@@ -3,6 +3,7 @@ import { supabase } from "./SupabaseClient";
 
 const Users = () => {
   // TODO Store users in local storage
+  // TODO Make form to init user Log, with email
   const [users, setUsers] = useState([]);
 
   async function getLog() {
@@ -11,7 +12,7 @@ const Users = () => {
       console.log("Error: ", error);
       if (error) throw error;
       if (data != null) setUsers(data);
-      console.log(await data);
+      console.log(data);
     } catch (error) {
       alert(error.message);
     }
