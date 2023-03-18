@@ -10,7 +10,6 @@ function Calendar() {
   const [events, setEvents] = useState([
     { title: null, date: null, rrule: null },
   ]);
-  // TODO make function for calendar events out of larger event arrays
 
   const CALENDAR_ID = import.meta.env.VITE_CALENDAR_ID;
   const API_KEY = import.meta.env.VITE_G_API_KEY;
