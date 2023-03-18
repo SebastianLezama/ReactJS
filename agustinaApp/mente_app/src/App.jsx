@@ -1,13 +1,13 @@
 import "./App.css";
 import Calendar from "./components/Calendar";
-import Users from "./components/users";
 import { Routes, Route } from "react-router-dom";
+import LogIn from "./components/LogIn";
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Users />} />
+        <Route path="/" element={<LogIn />} />
         <Route path="/calendar" element={<Calendar />} />
       </Routes>
     </>
