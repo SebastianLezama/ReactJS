@@ -1,15 +1,21 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridMonth from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import googleCalendarPlugin from "@fullcalendar/google-calendar";
 import { gapi } from "gapi-script";
+import { getFromSupabase } from "./SupabaseClient";
+import Modal from "./Modal";
 
 function Calendar() {
-  const [events, setEvents] = useState([
-    { title: null, date: null, rrule: null },
-  ]);
+  const [events, setEvents] = useState([]);
+
+  //{ title: null, date: null, rrule: null }
+  // TODO request info of the log for selected event (email)
+  const [logInfo, setLogInfo] = useState([]);
+  const modalRef = useRef();
+  const [showModal, setShowModal] = useState(false);
 
   const CALENDAR_ID = import.meta.env.VITE_CALENDAR_ID;
   const API_KEY = import.meta.env.VITE_G_API_KEY;
@@ -40,6 +46,7 @@ function Calendar() {
           (response) => {
             console.log(response.result.items);
             const events = response.result.items.map((e) => ({
+              email: e.attendees ? e.attendees[0].email : null,
               title: e.summary,
               id: e.id,
               start: e.start.dateTime || e.start.date,
@@ -66,6 +73,23 @@ function Calendar() {
     setEvents(events);
   }, []);
 
+  const eventClick = async (info) => {
+    console.log(info.event);
+    console.log(info.event._def.publicId);
+    const currentEvent = events.find(
+      (e) =>
+        e.recurringEventId === info.event._def.publicId ||
+        e.id === info.event._def.publicId
+    );
+    console.log(await getFromSupabase("Log", currentEvent.email));
+    setLogInfo(await getFromSupabase("Log", currentEvent.email));
+    setShowModal(true);
+  };
+
+  const closeModal = (e) => {
+    if (modalRef.current === e.target) setShowModal(false);
+  };
+
   return (
     <div className="Calendar">
       <FullCalendar
@@ -83,15 +107,19 @@ function Calendar() {
         initialView="timeGridWeek"
         selectable={true}
         editable={true}
-        eventClick={(info) => {
-          console.log(info.event);
-        }}
+        eventClick={eventClick}
         events={events}
         height="100%"
         width="100%"
         weekends={false}
         slotMinTime="09:00:00"
         slotMaxTime="21:00:00"
+      />
+      <Modal
+        showModal={showModal}
+        modalRef={modalRef}
+        closeModal={closeModal}
+        logInfo={logInfo}
       />
     </div>
   );

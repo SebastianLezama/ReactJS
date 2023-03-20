@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { supabase } from "./SupabaseClient";
+import { supabase } from "../SupabaseClient";
 
 const Users = () => {
   // TODO Store users in local storage
   // TODO Make form to init user Log, with email
   const [users, setUsers] = useState([]);
 
-  async function getLog() {
+  async function getUsers() {
     try {
       const { data, error } = await supabase.from("Users").select("*");
       console.log("Error: ", error);
@@ -19,13 +19,17 @@ const Users = () => {
   }
 
   useEffect(() => {
-    getLog();
+    getUsers();
   }, []);
 
   return (
     <div>
       {users.map((e) => (
-        <div key={e.user_id}>{e.email}</div>
+        <div key={e.user_id}>
+          <div>{e.name}</div>
+          <div>{e.edad}</div>
+          <div>{e.email}</div>
+        </div>
       ))}
     </div>
   );

@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { Auth } from "@supabase/auth-ui-react";
-import {
-  // Import predefined theme
-  ThemeSupa,
-} from "@supabase/auth-ui-shared";
+import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { supabase } from "./SupabaseClient";
 
 const LogIn = () => {
@@ -14,9 +11,10 @@ const LogIn = () => {
       const { data, error } = await supabase.auth.signInWithOtp({
         email: logIn,
         options: {
-          emailRedirectTo: "http://127.0.0.1:5173/",
+          emailRedirectTo: "http://127.0.0.1:5173/calendar",
         },
       });
+      console.log(logIn);
       console.log(data);
       if (error) throw error;
     } catch (error) {
