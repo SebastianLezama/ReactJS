@@ -11,8 +11,6 @@ import Modal from "./Modal";
 function Calendar() {
   const [events, setEvents] = useState([]);
 
-  //{ title: null, date: null, rrule: null }
-  // TODO request info of the log for selected event (email)
   const [logInfo, setLogInfo] = useState([]);
   const modalRef = useRef();
   const [showModal, setShowModal] = useState(false);
@@ -20,7 +18,6 @@ function Calendar() {
   const CALENDAR_ID = import.meta.env.VITE_CALENDAR_ID;
   const API_KEY = import.meta.env.VITE_G_API_KEY;
 
-  // TODO make events with larger info in the array
   const getEventsFromCalendar = async (calendarID, apiKey) => {
     // const dateMonth = new Date().getMonth();
     // console.log(dateMonth);
@@ -29,7 +26,7 @@ function Calendar() {
         .init({
           apiKey: apiKey,
         })
-        .then(async function() {
+        .then(async function () {
           return await gapi.client.request({
             path: `https://www.googleapis.com/calendar/v3/calendars/${calendarID}/events/`,
             params: {
@@ -60,7 +57,7 @@ function Calendar() {
             setEvents(events);
             return events;
           },
-          function(err) {
+          function (err) {
             return [false, err];
           }
         );
@@ -91,37 +88,39 @@ function Calendar() {
   };
 
   return (
-    <div className="Calendar">
-      <FullCalendar
-        plugins={[
-          dayGridMonth,
-          timeGridPlugin,
-          interactionPlugin,
-          googleCalendarPlugin,
-        ]}
-        headerToolbar={{
-          left: "prev,next today",
-          center: "title",
-          right: "dayGridMonth,timeGridWeek,timeGridDay",
-        }}
-        initialView="timeGridWeek"
-        selectable={true}
-        editable={true}
-        eventClick={eventClick}
-        events={events}
-        height="100%"
-        width="100%"
-        weekends={false}
-        slotMinTime="09:00:00"
-        slotMaxTime="21:00:00"
-      />
+    <>
+      <div className="Calendar">
+        <FullCalendar
+          plugins={[
+            dayGridMonth,
+            timeGridPlugin,
+            interactionPlugin,
+            googleCalendarPlugin,
+          ]}
+          headerToolbar={{
+            left: "prev,next today",
+            center: "title",
+            right: "dayGridMonth,timeGridWeek,timeGridDay",
+          }}
+          initialView="timeGridWeek"
+          selectable={true}
+          editable={true}
+          eventClick={eventClick}
+          events={events}
+          height="100%"
+          width="100%"
+          weekends={false}
+          slotMinTime="09:00:00"
+          slotMaxTime="21:00:00"
+        />
+      </div>
       <Modal
         showModal={showModal}
         modalRef={modalRef}
         closeModal={closeModal}
         logInfo={logInfo}
       />
-    </div>
+    </>
   );
 }
 
