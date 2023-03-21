@@ -5,12 +5,12 @@ const UserForm = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    habitos_aumentar_1: "",
-    habitos_aumentar_2: "",
-    habitos_aumentar_3: "",
-    habitos_disminuir_1: "",
-    habitos_disminuir_2: "",
-    habitos_disminuir_3: "",
+    habitos_aumentar_1: null,
+    habitos_aumentar_2: null,
+    habitos_aumentar_3: null,
+    habitos_disminuir_1: null,
+    habitos_disminuir_2: null,
+    habitos_disminuir_3: null,
   });
 
   const insertNewUser = async ({

@@ -10,6 +10,7 @@ import Modal from "./Modal";
 
 function Calendar() {
   const [events, setEvents] = useState([]);
+  const [currentEvent, setCurrentEvent] = useState([]);
 
   const [logInfo, setLogInfo] = useState([]);
   const modalRef = useRef();
@@ -26,7 +27,7 @@ function Calendar() {
         .init({
           apiKey: apiKey,
         })
-        .then(async function () {
+        .then(async function() {
           return await gapi.client.request({
             path: `https://www.googleapis.com/calendar/v3/calendars/${calendarID}/events/`,
             params: {
@@ -57,7 +58,7 @@ function Calendar() {
             setEvents(events);
             return events;
           },
-          function (err) {
+          function(err) {
             return [false, err];
           }
         );
@@ -71,8 +72,8 @@ function Calendar() {
   }, []);
 
   const eventClick = async (info) => {
-    console.log(info.event);
-    console.log(info.event._def.publicId);
+    // console.log(info.event);
+    // console.log(info.event._def.publicId);
     const currentEvent = events.find(
       (e) =>
         e.recurringEventId === info.event._def.publicId ||
@@ -80,6 +81,8 @@ function Calendar() {
     );
     console.log(await getFromSupabase("Log", currentEvent.email));
     setLogInfo(await getFromSupabase("Log", currentEvent.email));
+    console.log(await getFromSupabase("Users", currentEvent.email));
+    setCurrentEvent(await getFromSupabase("Users", currentEvent.email));
     setShowModal(true);
   };
 
@@ -119,6 +122,7 @@ function Calendar() {
         modalRef={modalRef}
         closeModal={closeModal}
         logInfo={logInfo}
+        currentEvent={currentEvent}
       />
     </>
   );
