@@ -5,8 +5,8 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import googleCalendarPlugin from "@fullcalendar/google-calendar";
 import { gapi } from "gapi-script";
-import { getFromSupabase } from "./SupabaseClient";
-import Modal from "./Modal";
+import { getFromSupabase } from "../components/SupabaseClient";
+import Modal from "../components/Modal";
 
 function Calendar() {
   const [events, setEvents] = useState([]);

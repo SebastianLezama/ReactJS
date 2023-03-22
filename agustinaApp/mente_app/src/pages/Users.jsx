@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { supabase } from "../SupabaseClient";
-import UserForm from "./UserForm";
-import UserList from "./UserList";
-import "./Users.css";
+import { supabase } from "../components/SupabaseClient";
+import UserForm from "../components/Users/UserForm";
+import UserList from "../components/Users/UserList";
+import "../components/Users/Users.css";
 
 // Show buttons for the users list and user form
 const Users = () => {

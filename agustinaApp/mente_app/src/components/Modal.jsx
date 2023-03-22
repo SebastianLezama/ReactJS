@@ -3,6 +3,7 @@ import dayGridMonth from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import googleCalendarPlugin from "@fullcalendar/google-calendar";
+import listPlugin from "@fullcalendar/list";
 import React from "react";
 import "./Modal.css";
 import CustomView from "./CustomPlugin";
@@ -12,12 +13,14 @@ const Modal = ({ showModal, logInfo, modalRef, closeModal, currentEvent }) => {
 
   const logEvents = logInfo.map((e) => ({
     email: e.email,
-    title: e.name,
+    title: e.comentario,
     id: e.user_id,
-    start: Date(e.date),
+    start: new Date(e.date).toISOString(),
+    end: new Date(e.date).toISOString(),
     allDay: true,
   }));
 
+  // TODO ver de usar los metodos day de Date, para mostrar en una grid de semana
   return (
     <>
       {showModal && (
@@ -25,20 +28,30 @@ const Modal = ({ showModal, logInfo, modalRef, closeModal, currentEvent }) => {
           <div className="modal">
             <div className="divModal">
               {currentEvent[0].name}
-              <div className="calendar">
-                <FullCalendar
+              <div className="logList">
+                {logInfo.map((e) => (
+                  <div key={e.date}>
+                    {e.date} - Alegría: {e.alegria} - Enojo: {e.enojo} -
+                    Tristeza: {e.tristeza} - Verguenza: {e.verguenza} - Culpa:{" "}
+                    {e.culpa} - Frustración: {e.frustracion} - Ansiedad:{" "}
+                    {e.ansiedad} - Sorpresa: {e.sorpresa} - Comentario:{" "}
+                    {e.comentario}
+                  </div>
+                ))}
+                {/* <FullCalendar
                   plugins={[
                     dayGridMonth,
                     timeGridPlugin,
                     interactionPlugin,
                     googleCalendarPlugin,
+                    listPlugin,
                   ]}
                   headerToolbar={{
                     left: "prev,next today",
                     center: "title",
-                    right: "dayGridMonth,timeGridWeek,timeGridDay",
+                    right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
                   }}
-                  initialView="timeGridWeek"
+                  initialView="listWeek"
                   selectable={true}
                   editable={true}
                   eventClick={closeModal}
@@ -47,8 +60,8 @@ const Modal = ({ showModal, logInfo, modalRef, closeModal, currentEvent }) => {
                   width="100%"
                   weekends={false}
                   slotMinTime="09:00:00"
-                  slotMaxTime="17:00:00"
-                />
+                  slotMaxTime="19:00:00"
+                /> */}
               </div>
             </div>
           </div>

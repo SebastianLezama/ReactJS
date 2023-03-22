@@ -1,16 +1,34 @@
 import "./App.css";
-import Calendar from "./components/Calendar";
-import { Routes, Route } from "react-router-dom";
-import LogIn from "./components/LogIn";
-import Users from "./components/Users/Users";
+import Calendar from "./pages/calendar";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import LogIn from "./pages/LogIn";
+import Users from "./pages/Users";
+import { useEffect } from "react";
+import { supabase } from "./components/SupabaseClient";
+import Layout from "./components/Layout/Layout";
 
 function App() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    supabase.auth.onAuthStateChange((event, session) => {
+      console.log(event, session);
+      if (!session) {
+        navigate("/login");
+      } else {
+        navigate("/");
+      }
+    });
+  }, [navigate]);
+
   return (
     <>
       <Routes>
-        <Route path="/" element={<Calendar />} />
         <Route path="/login" element={<LogIn />} />
-        <Route path="/users" element={<Users />} />
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Calendar />} />
+          <Route path="/users" element={<Users />} />
+        </Route>
       </Routes>
     </>
   );
