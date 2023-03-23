@@ -5,6 +5,7 @@ const UserForm = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    id: "",
     habitos_aumentar_1: null,
     habitos_aumentar_2: null,
     habitos_aumentar_3: null,
@@ -16,6 +17,7 @@ const UserForm = () => {
   const insertNewUser = async ({
     name,
     email,
+    id,
     habitos_aumentar_1,
     habitos_aumentar_2,
     habitos_aumentar_3,
@@ -24,9 +26,11 @@ const UserForm = () => {
     habitos_disminuir_3,
   }) => {
     try {
+      const user = await supabase.auth.user();
       const { error } = await supabase.from("Users").insert({
         name: name,
         email: email,
+        id: user.id,
         habitos_aumentar_1: habitos_aumentar_1,
         habitos_aumentar_2: habitos_aumentar_2,
         habitos_aumentar_3: habitos_aumentar_3,

@@ -3,11 +3,19 @@ import { supabase } from "../SupabaseClient";
 
 const NavBAr = () => {
   return (
-    <div className="NavBar">
-      <button className="flat-button" onClick={() => supabase.auth.signOut()}>
-        Log Out
-      </button>
-    </div>
+    <nav className="NavBar">
+      <div>Mente App</div>
+      <ul>
+        <li>
+          <button
+            className="flat-button"
+            onClick={() => supabase.auth.signOut()}
+          >
+            Log Out
+          </button>
+        </li>
+      </ul>
+    </nav>
   );
 };
 

@@ -7,6 +7,7 @@ import googleCalendarPlugin from "@fullcalendar/google-calendar";
 import { gapi } from "gapi-script";
 import { getFromSupabase } from "../components/SupabaseClient";
 import Modal from "../components/Modal";
+import "./Calendar.css";
 
 function Calendar() {
   const [events, setEvents] = useState([]);
@@ -27,7 +28,7 @@ function Calendar() {
         .init({
           apiKey: apiKey,
         })
-        .then(async function() {
+        .then(async function () {
           return await gapi.client.request({
             path: `https://www.googleapis.com/calendar/v3/calendars/${calendarID}/events/`,
             params: {
@@ -42,7 +43,6 @@ function Calendar() {
         })
         .then(
           (response) => {
-            console.log(response.result.items);
             const events = response.result.items.map((e) => ({
               email: e.attendees ? e.attendees[0].email : null,
               title: e.summary,
@@ -54,11 +54,10 @@ function Calendar() {
               color: e.colorId,
               rrule: e.recurrence ? e.recurrence[0] : null,
             }));
-            console.log(events);
             setEvents(events);
             return events;
           },
-          function(err) {
+          function (err) {
             return [false, err];
           }
         );
@@ -79,9 +78,7 @@ function Calendar() {
         e.recurringEventId === info.event._def.publicId ||
         e.id === info.event._def.publicId
     );
-    console.log(await getFromSupabase("Log", currentEvent.email));
     setLogInfo(await getFromSupabase("Log", currentEvent.email));
-    console.log(await getFromSupabase("Users", currentEvent.email));
     setCurrentEvent(await getFromSupabase("Users", currentEvent.email));
     setShowModal(true);
   };
@@ -92,7 +89,7 @@ function Calendar() {
 
   return (
     <>
-      <div className="Calendar">
+      <div className="main-calendar">
         <FullCalendar
           plugins={[
             dayGridMonth,
@@ -111,7 +108,7 @@ function Calendar() {
           eventClick={eventClick}
           events={events}
           height="100%"
-          width="100%"
+          // width="100%"
           weekends={false}
           slotMinTime="09:00:00"
           slotMaxTime="21:00:00"

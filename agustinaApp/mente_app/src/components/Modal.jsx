@@ -28,8 +28,8 @@ const Modal = ({ showModal, logInfo, modalRef, closeModal, currentEvent }) => {
           <div className="modal">
             <div className="divModal">
               {currentEvent[0].name}
-              <div className="logList">
-                {logInfo.map((e) => (
+              <div className="calendar">
+                {/* {logInfo.map((e) => (
                   <div key={e.date}>
                     {e.date} - Alegría: {e.alegria} - Enojo: {e.enojo} -
                     Tristeza: {e.tristeza} - Verguenza: {e.verguenza} - Culpa:{" "}
@@ -37,31 +37,33 @@ const Modal = ({ showModal, logInfo, modalRef, closeModal, currentEvent }) => {
                     {e.ansiedad} - Sorpresa: {e.sorpresa} - Comentario:{" "}
                     {e.comentario}
                   </div>
-                ))}
-                {/* <FullCalendar
-                  plugins={[
-                    dayGridMonth,
-                    timeGridPlugin,
-                    interactionPlugin,
-                    googleCalendarPlugin,
-                    listPlugin,
-                  ]}
-                  headerToolbar={{
-                    left: "prev,next today",
-                    center: "title",
-                    right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
-                  }}
-                  initialView="listWeek"
-                  selectable={true}
-                  editable={true}
-                  eventClick={closeModal}
-                  events={logEvents}
-                  height="100%"
-                  width="100%"
-                  weekends={false}
-                  slotMinTime="09:00:00"
-                  slotMaxTime="19:00:00"
-                /> */}
+                ))} */}
+                {
+                  <FullCalendar
+                    plugins={[
+                      dayGridMonth,
+                      timeGridPlugin,
+                      interactionPlugin,
+                      googleCalendarPlugin,
+                      listPlugin,
+                    ]}
+                    headerToolbar={{
+                      left: "prev,next today",
+                      center: "title",
+                      right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
+                    }}
+                    initialView="listWeek"
+                    selectable={true}
+                    editable={true}
+                    eventClick={closeModal}
+                    events={logEvents}
+                    height="100%"
+                    // width="100%"
+                    weekends={false}
+                    slotMinTime="09:00:00"
+                    slotMaxTime="19:00:00"
+                  />
+                }
               </div>
             </div>
           </div>

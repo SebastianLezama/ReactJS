@@ -1,6 +1,6 @@
 #root {
-  /* max-width: 1280px;
-  margin: 0 auto; */
+  /* max-width: 1280px; */
+  margin: 0 auto;
   text-align: center;
 }
 
@@ -11,18 +11,60 @@
 .read-the-docs {
   color: #888;
 }
+<<<<<<< HEAD
+=======
+
+.main {
+  height: 800px;
+  width: 100%;
+  margin: 20px 0 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+>>>>>>> c5363049e373e312e576f5a86ec429bf1026b4dd
 .App {
   text-align: center;
+  align-items: center;
   overflow-x: hidden;
   overflow-y: hidden;
   width: 100vmax;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* min-height: 80vh; */
+  min-width: 100vh;
   position: relative;
   flex-grow: 1;
   overflow: hidden;
-  width: 100%;
+  /* width: 100%; */
+}
+
+.NavBar {
+  /* display: flex; */
+  flex-direction: row;
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  /* margin: 5px 0 0 0; */
+  display: flex;
+  align-items: center;
+  clear: both;
+  justify-content: center;
+
+  height: 80px;
+  padding-top: 3px;
+  padding-left: 2px;
+  z-index: 1;
+}
+
+.NavBar ul {
+  position: fixed;
+  right: 0;
+}
+
+.NavBar ul li button {
+  width: 220px;
 }
 
 .Calendar {
