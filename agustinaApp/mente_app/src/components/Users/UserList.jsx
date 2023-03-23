@@ -24,13 +24,14 @@ const Users = () => {
 
   return (
     <div>
-      {users.map((e) => (
-        <div key={e.user_id}>
-          <div>{e.name}</div>
-          <div>{e.edad}</div>
-          <div>{e.email}</div>
-        </div>
-      ))}
+      {users &&
+        users.map((e) => (
+          <div key={e.user_id}>
+            <div>{e.name}</div>
+            <div>{e.edad}</div>
+            <div>{e.email}</div>
+          </div>
+        ))}
     </div>
   );
 };
