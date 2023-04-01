@@ -9,10 +9,10 @@ const Users = () => {
   async function getUsers() {
     try {
       const { data, error } = await supabase.from("Users").select("*");
-      console.log("Error: ", error);
+      // console.log("Error: ", error);
       if (error) throw error;
       if (data != null) setUsers(data);
-      console.log(data);
+      // console.log(data);
     } catch (error) {
       alert(error.message);
     }

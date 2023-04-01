@@ -26,19 +26,20 @@ const Modal = ({ showModal, logInfo, modalRef, closeModal, currentEvent }) => {
       {showModal && (
         <div className="cardDetail" ref={modalRef} onClick={closeModal}>
           <div className="modal">
-            <div className="divModal">
-              {currentEvent[0].name}
-              <div className="calendar">
-                {/* {logInfo.map((e) => (
-                  <div key={e.date}>
-                    {e.date} - Alegría: {e.alegria} - Enojo: {e.enojo} -
-                    Tristeza: {e.tristeza} - Verguenza: {e.verguenza} - Culpa:{" "}
-                    {e.culpa} - Frustración: {e.frustracion} - Ansiedad:{" "}
-                    {e.ansiedad} - Sorpresa: {e.sorpresa} - Comentario:{" "}
-                    {e.comentario}
-                  </div>
-                ))} */}
-                {
+            {currentEvent[0].name ? (
+              <div className="divModal">
+                {currentEvent[0].name}
+                <div className="calendar">
+                  {logInfo.map((e) => (
+                    <div key={e.date}>
+                      {e.date} - Alegría: {e.alegria} - Enojo: {e.enojo} -
+                      Tristeza: {e.tristeza} - Verguenza: {e.verguenza} - Culpa:{" "}
+                      {e.culpa} - Frustración: {e.frustracion} - Ansiedad:{" "}
+                      {e.ansiedad} - Sorpresa: {e.sorpresa} - Comentario:{" "}
+                      {e.comentario}
+                    </div>
+                  ))}
+                  {/* {
                   <FullCalendar
                     plugins={[
                       dayGridMonth,
@@ -62,10 +63,13 @@ const Modal = ({ showModal, logInfo, modalRef, closeModal, currentEvent }) => {
                     weekends={false}
                     slotMinTime="09:00:00"
                     slotMaxTime="19:00:00"
-                  />
-                }
+                    />
+                  } */}
+                </div>
               </div>
-            </div>
+            ) : (
+              alert("Falta invitar el usuario!")
+            )}
           </div>
         </div>
       )}

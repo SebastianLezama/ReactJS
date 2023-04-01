@@ -6,6 +6,7 @@ import Users from "./pages/Users";
 import { useEffect } from "react";
 import { supabase } from "./components/SupabaseClient";
 import Layout from "./components/Layout/Layout";
+import MockLog from "./pages/MockLog";
 
 function App() {
   const navigate = useNavigate();
@@ -28,6 +29,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Calendar />} />
           <Route path="/users" element={<Users />} />
+          <Route path="/mock" element={<MockLog />} />
         </Route>
       </Routes>
     </>

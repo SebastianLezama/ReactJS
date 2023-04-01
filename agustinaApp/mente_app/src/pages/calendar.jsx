@@ -14,6 +14,7 @@ function Calendar() {
   const [currentEvent, setCurrentEvent] = useState([]);
 
   const [logInfo, setLogInfo] = useState([]);
+
   const modalRef = useRef();
   const [showModal, setShowModal] = useState(false);
 
@@ -28,7 +29,7 @@ function Calendar() {
         .init({
           apiKey: apiKey,
         })
-        .then(async function () {
+        .then(async function() {
           return await gapi.client.request({
             path: `https://www.googleapis.com/calendar/v3/calendars/${calendarID}/events/`,
             params: {
@@ -57,7 +58,7 @@ function Calendar() {
             setEvents(events);
             return events;
           },
-          function (err) {
+          function(err) {
             return [false, err];
           }
         );
@@ -79,6 +80,7 @@ function Calendar() {
         e.id === info.event._def.publicId
     );
     setLogInfo(await getFromSupabase("Log", currentEvent.email));
+    console.log(await getFromSupabase("Log", currentEvent.email));
     setCurrentEvent(await getFromSupabase("Users", currentEvent.email));
     setShowModal(true);
   };
