@@ -10,7 +10,7 @@ export async function signInWithEmail(email) {
     const { data, error } = await supabase.auth.signInWithOtp({
       email: email,
       options: {
-        emailRedirectTo: "http://127.0.0.1:5173/calendar",
+        emailRedirectTo: "http://127.0.0.1:5173/",
       },
     });
     if (error) throw error;
@@ -19,7 +19,7 @@ export async function signInWithEmail(email) {
   }
 }
 
-export async function getFromSupabase(tableName, email) {
+export async function getUserByEmail(tableName, email) {
   try {
     const { data, error } = await supabase
       .from(tableName)

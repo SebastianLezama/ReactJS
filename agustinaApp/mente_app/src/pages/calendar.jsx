@@ -5,7 +5,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import googleCalendarPlugin from "@fullcalendar/google-calendar";
 import { gapi } from "gapi-script";
-import { getFromSupabase } from "../components/SupabaseClient";
+import { getUserByEmail } from "../components/SupabaseClient";
 import Modal from "../components/Modal";
 import "./Calendar.css";
 
@@ -79,9 +79,9 @@ function Calendar() {
         e.recurringEventId === info.event._def.publicId ||
         e.id === info.event._def.publicId
     );
-    setLogInfo(await getFromSupabase("Log", currentEvent.email));
-    console.log(await getFromSupabase("Log", currentEvent.email));
-    setCurrentEvent(await getFromSupabase("Users", currentEvent.email));
+    setLogInfo(await getUserByEmail("Log", currentEvent.email));
+    console.log(await getUserByEmail("Log", currentEvent.email));
+    setCurrentEvent(await getUserByEmail("Users", currentEvent.email));
     setShowModal(true);
   };
 

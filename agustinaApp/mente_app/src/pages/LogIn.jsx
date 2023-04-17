@@ -24,13 +24,15 @@ const LogIn = () => {
   console.log(logIn);
 
   return (
-    <Auth
-      supabaseClient={supabase}
-      appearance={{ theme: ThemeSupa }}
-      providers={[]}
-      view="magic_link"
-      onSubmit={() => setLogIn()}
-    />
+    <div className="main">
+      <Auth
+        supabaseClient={supabase}
+        appearance={{ theme: ThemeSupa }}
+        providers={[]}
+        view="magic_link"
+        onSubmit={() => setLogIn()}
+      />
+    </div>
   );
 };
 

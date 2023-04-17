@@ -1,11 +1,17 @@
 import React from "react";
 import { supabase } from "../SupabaseClient";
+import { useNavigate } from "react-router-dom";
 
 const NavBAr = () => {
+  const navigate = useNavigate();
+
   return (
     <nav className="NavBar">
-      <div>Mente App</div>
+      <div className="header" onClick={() => navigate("/")}>
+        Mente App
+      </div>
       <ul>
+        <li onClick={() => navigate("/users")}>USERS</li>
         <li>
           <button
             className="flat-button"

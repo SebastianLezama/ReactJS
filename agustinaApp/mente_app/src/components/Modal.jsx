@@ -11,14 +11,14 @@ import CustomView from "./CustomPlugin";
 const Modal = ({ showModal, logInfo, modalRef, closeModal, currentEvent }) => {
   const days = logInfo.length;
 
-  const logEvents = logInfo.map((e) => ({
-    email: e.email,
-    title: e.comentario,
-    id: e.user_id,
-    start: new Date(e.date).toISOString(),
-    end: new Date(e.date).toISOString(),
-    allDay: true,
-  }));
+  // const logEvents = logInfo.map((e) => ({
+  //   email: e.email,
+  //   title: e.comentario,
+  //   id: e.user_id,
+  //   start: new Date(e.date).toISOString(),
+  //   end: new Date(e.date).toISOString(),
+  //   allDay: true,
+  // }));
 
   // TODO ver de usar los metodos day de Date, para mostrar en una grid de semana
   return (

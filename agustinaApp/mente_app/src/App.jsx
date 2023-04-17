@@ -14,13 +14,14 @@ function App() {
   useEffect(() => {
     supabase.auth.onAuthStateChange((event, session) => {
       console.log(event, session);
-      if (!session.user) {
+      if (!session) {
+        // if (session === null) {
         navigate("/login");
       } else {
-        navigate("/");
+        // navigate("/");
       }
     });
-  }, [navigate]);
+  }, []);
 
   return (
     <>

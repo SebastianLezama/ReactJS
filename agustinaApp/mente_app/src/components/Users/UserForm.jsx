@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import { signInWithEmail, supabase } from "../SupabaseClient";
+import { signInWithEmail, supabase, getUserByEmail } from "../SupabaseClient";
 
 const UserForm = () => {
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    user_id: "",
-    habitos_aumentar_1: null,
-    habitos_aumentar_2: null,
-    habitos_aumentar_3: null,
-    habitos_disminuir_1: null,
-    habitos_disminuir_2: null,
-    habitos_disminuir_3: null,
+    // name: "",
+    // email: "",
+    // user_id: "",
+    // habitos_aumentar_1: null,
+    // habitos_aumentar_2: null,
+    // habitos_aumentar_3: null,
+    // habitos_disminuir_1: null,
+    // habitos_disminuir_2: null,
+    // habitos_disminuir_3: null,
   });
 
   const insertNewUser = async ({
@@ -25,12 +25,11 @@ const UserForm = () => {
     habitos_disminuir_3,
   }) => {
     try {
-      const user = await supabase.auth.getUser();
-      console.log("user: ", user);
+      // const user = await supabase.from("profiles").select(email);
+      // console.log("user: ", user);
       const { error } = await supabase.from("Users").insert({
         name: name,
         email: email,
-        user_id: user.id,
         habitos_aumentar_1: habitos_aumentar_1,
         habitos_aumentar_2: habitos_aumentar_2,
         habitos_aumentar_3: habitos_aumentar_3,
@@ -48,8 +47,15 @@ const UserForm = () => {
     e.preventDefault();
     console.log(formData);
     if ((formData.name != null) & (formData.email != null)) {
-      await insertNewUser(formData);
-      await signInWithEmail(formData.email);
+      const user = await getUserByEmail("Users", formData.email);
+      console.log(user);
+      if (user[0].email === formData.email) {
+        console.log("email exists!");
+        await signInWithEmail(formData.email);
+      } else {
+        await signInWithEmail(formData.email);
+        await insertNewUser(formData);
+      }
     }
   };
   const handleChange = (e) => {

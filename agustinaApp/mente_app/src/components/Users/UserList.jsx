@@ -26,7 +26,7 @@ const Users = () => {
     <div>
       {users &&
         users.map((e) => (
-          <div key={e.user_id}>
+          <div key={e.name}>
             <div>{e.name}</div>
             <div>{e.edad}</div>
             <div>{e.email}</div>
