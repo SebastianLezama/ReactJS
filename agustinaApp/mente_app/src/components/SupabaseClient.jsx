@@ -31,3 +31,14 @@ export async function getUserByEmail(tableName, email) {
     alert(error.message);
   }
 }
+
+export async function getSessionEmail() {
+  try {
+    const {
+      data: { email },
+    } = await supabase.auth.getSession();
+    console.log(email);
+  } catch (error) {
+    alert(error.message);
+  }
+}

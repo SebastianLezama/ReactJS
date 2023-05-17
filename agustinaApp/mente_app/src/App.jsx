@@ -4,7 +4,7 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import LogIn from "./pages/LogIn";
 import Users from "./pages/Users";
 import { useEffect } from "react";
-import { supabase } from "./components/SupabaseClient";
+import { getSessionEmail, supabase } from "./components/SupabaseClient";
 import Layout from "./components/Layout/Layout";
 import MockLog from "./pages/MockLog";
 
@@ -20,6 +20,7 @@ function App() {
       } else {
         // navigate("/");
       }
+      // console.log(getSessionEmail());
     });
   }, []);
 

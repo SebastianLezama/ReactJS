@@ -30,6 +30,7 @@ const UserForm = () => {
       const { error } = await supabase.from("Users").insert({
         name: name,
         email: email,
+        admin: false,
         habitos_aumentar_1: habitos_aumentar_1,
         habitos_aumentar_2: habitos_aumentar_2,
         habitos_aumentar_3: habitos_aumentar_3,

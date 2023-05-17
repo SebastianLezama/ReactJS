@@ -7,6 +7,7 @@ import listPlugin from "@fullcalendar/list";
 import React from "react";
 import "./Modal.css";
 import CustomView from "./CustomPlugin";
+import Table from "./Table/Table";
 
 const Modal = ({ showModal, logInfo, modalRef, closeModal, currentEvent }) => {
   const days = logInfo.length;
@@ -29,7 +30,8 @@ const Modal = ({ showModal, logInfo, modalRef, closeModal, currentEvent }) => {
             {currentEvent[0].name ? (
               <div className="divModal">
                 {currentEvent[0].name}
-                <div className="calendar">
+                <Table data={logInfo} />
+                {/* <div className="calendar">
                   {logInfo.map((e) => (
                     <div key={e.date}>
                       {e.date} - Alegría: {e.alegria} - Enojo: {e.enojo} -
@@ -39,33 +41,7 @@ const Modal = ({ showModal, logInfo, modalRef, closeModal, currentEvent }) => {
                       {e.comentario}
                     </div>
                   ))}
-                  {/* {
-                  <FullCalendar
-                    plugins={[
-                      dayGridMonth,
-                      timeGridPlugin,
-                      interactionPlugin,
-                      googleCalendarPlugin,
-                      listPlugin,
-                    ]}
-                    headerToolbar={{
-                      left: "prev,next today",
-                      center: "title",
-                      right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
-                    }}
-                    initialView="listWeek"
-                    selectable={true}
-                    editable={true}
-                    eventClick={closeModal}
-                    events={logEvents}
-                    height="100%"
-                    // width="100%"
-                    weekends={false}
-                    slotMinTime="09:00:00"
-                    slotMaxTime="19:00:00"
-                    />
-                  } */}
-                </div>
+                </div> */}
               </div>
             ) : (
               alert("Falta invitar el usuario!")
