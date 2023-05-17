@@ -16,8 +16,8 @@
 }
 
 .main {
-  height: 800px;
-  width: 100%;
+  /* height: 800px; */
+  /* width: 100%; */
   margin: 20px 0 0 0;
   display: flex;
   align-items: center;
@@ -28,11 +28,11 @@
   align-items: center;
   overflow-x: hidden;
   overflow-y: hidden;
-  width: 100vmax;
+  /* width: 100vmax; */
   /* display: flex; */
   /* flex-direction: column; */
   /* min-height: 80vh; */
-  min-width: 100vh;
+  /* min-width: 100vh; */
   position: relative;
   flex-grow: 1;
   overflow: hidden;
@@ -68,7 +68,7 @@
 }
 
 .NavBar ul li button {
-  width: 220px;
+  width: 150px;
 }
 
 .Calendar {
