@@ -72,8 +72,6 @@ function Calendar() {
   }, []);
 
   const eventClick = async (info) => {
-    // console.log(info.event);
-    // console.log(info.event._def.publicId);
     const currentEvent = events.find(
       (e) =>
         e.recurringEventId === info.event._def.publicId ||

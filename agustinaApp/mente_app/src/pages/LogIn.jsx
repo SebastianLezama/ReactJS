@@ -4,7 +4,7 @@ import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { supabase } from "../components/SupabaseClient";
 
 const LogIn = () => {
-  const { logIn, setLogIn } = useState("");
+  const [logIn, setLogIn] = useState("");
 
   async function signInWithEmail() {
     try {

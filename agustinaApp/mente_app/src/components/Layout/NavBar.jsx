@@ -11,7 +11,7 @@ const NavBAr = () => {
         Mente App
       </div>
       <ul>
-        <li onClick={() => navigate("/users")}>USERS</li>
+        <li onClick={() => navigate("/admin/users")}>USERS</li>
         <li>
           <button
             className="flat-button"
