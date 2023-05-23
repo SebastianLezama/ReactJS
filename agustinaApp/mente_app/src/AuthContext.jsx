@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { getUserByEmail, supabase } from "./components/SupabaseClient";
+import { useNavigate } from "react-router-dom";
 
 const authContext = createContext();
 
@@ -13,7 +14,8 @@ export const useAuth = () => {
 };
 
 function useProvideAuth() {
-  const [user, setUser] = useState(null);
+  const [admin, setAdmin] = useState(null);
+  const [userSession, setUserSession] = useState(null);
 
   const login = async (email) => {
     try {
@@ -32,34 +34,39 @@ function useProvideAuth() {
     const { error } = await supabase.auth.signOut();
   };
 
-  const isAdmin = async () => {
-    const auth = supabase.auth.onAuthStateChange(async (event, session) => {
-      const dbUser = await getUserByEmail("Users", session.user.email);
-      if (event === "SIGNED_IN" && dbUser[0].admin === true) {
-        console.log("1", user);
-        console.log("admin TRUE", dbUser[0].admin, dbUser[0].email);
-        console.log("2", dbUser);
-        setUser(dbUser);
-        console.log("3", user);
-        // if (dbUser[0].admin === true) {
-        // }
-      }
-      if (event === "SIGNED_OUT") {
-        setUser(null);
-      }
-    });
-  };
+  // const isAdmin = async () => {
+  //   supabase.auth.onAuthStateChange(async (event, session) => {
+  //     const dbUser = await getUserByEmail("Users", session.user.email);
+  //     if (event === "SIGNED_IN" && dbUser[0].admin === true) {
+  //       setAdmin(dbUser);
+  //     }
+  //     if (event === "SIGNED_OUT") {
+  //       setAdmin(null);
+  //     }
+  //   });
+  // };
 
   useEffect(() => {
     // const supabaseUser = supabase.auth.admin;
     // setUser(supabaseUser);
     // console.log(supabaseUser);
+    // isAdmin();
 
-    isAdmin();
-    // return () => {
-    //   auth.subscribe();
-    // };
+    const { data: authListener } = supabase.auth.onAuthStateChange(
+      async (event, session) => {
+        const dbUser = await getUserByEmail("Users", session.user.email);
+        if (event === "SIGNED_IN" && dbUser[0].admin === true) {
+          setAdmin(dbUser ?? null);
+        }
+        if (event === "SIGNED_OUT") {
+          setAdmin(null);
+        }
+      }
+    );
+    return () => {
+      authListener.subscription.unsubscribe();
+    };
   }, []);
 
-  return { user, login, logout };
+  return { admin, login, logout };
 }

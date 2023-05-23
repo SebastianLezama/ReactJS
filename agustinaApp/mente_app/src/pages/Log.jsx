@@ -1,7 +1,8 @@
 import React from "react";
+import DailyLog from "../components/DailyLog/DailyLog";
 
 const Log = () => {
-  return <div>Log</div>;
+  return <DailyLog />;
 };
 
 export default Log;

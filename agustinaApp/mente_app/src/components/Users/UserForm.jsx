@@ -2,17 +2,7 @@ import React, { useState } from "react";
 import { signInWithEmail, supabase, getUserByEmail } from "../SupabaseClient";
 
 const UserForm = () => {
-  const [formData, setFormData] = useState({
-    // name: "",
-    // email: "",
-    // user_id: "",
-    // habitos_aumentar_1: null,
-    // habitos_aumentar_2: null,
-    // habitos_aumentar_3: null,
-    // habitos_disminuir_1: null,
-    // habitos_disminuir_2: null,
-    // habitos_disminuir_3: null,
-  });
+  const [formData, setFormData] = useState({});
 
   const insertNewUser = async ({
     name,
@@ -25,8 +15,6 @@ const UserForm = () => {
     habitos_disminuir_3,
   }) => {
     try {
-      // const user = await supabase.from("profiles").select(email);
-      // console.log("user: ", user);
       const { error } = await supabase.from("Users").insert({
         name: name,
         email: email,
@@ -59,6 +47,7 @@ const UserForm = () => {
       }
     }
   };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
