@@ -23,6 +23,7 @@
     "dotenv": "^16.0.3",
     "gapi-script": "^1.2.0",
     "react": "^18.2.0",
+    "react-datepicker": "^4.11.0",
     "react-dom": "^18.2.0",
     "react-google-calendar-api": "^2.2.2",
     "react-router-dom": "^6.8.2"

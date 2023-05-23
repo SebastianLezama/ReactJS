@@ -15,7 +15,7 @@ export const useAuth = () => {
 
 function useProvideAuth() {
   const [admin, setAdmin] = useState(null);
-  const [userSession, setUserSession] = useState(null);
+  const [userSession, setUserSession] = useState([]);
 
   const login = async (email) => {
     try {
@@ -34,26 +34,16 @@ function useProvideAuth() {
     const { error } = await supabase.auth.signOut();
   };
 
-  // const isAdmin = async () => {
-  //   supabase.auth.onAuthStateChange(async (event, session) => {
-  //     const dbUser = await getUserByEmail("Users", session.user.email);
-  //     if (event === "SIGNED_IN" && dbUser[0].admin === true) {
-  //       setAdmin(dbUser);
-  //     }
-  //     if (event === "SIGNED_OUT") {
-  //       setAdmin(null);
-  //     }
-  //   });
-  // };
-
   useEffect(() => {
-    // const supabaseUser = supabase.auth.admin;
-    // setUser(supabaseUser);
-    // console.log(supabaseUser);
+    // setUserSession(supaSession());
+    // console.log(userSession);
     // isAdmin();
 
     const { data: authListener } = supabase.auth.onAuthStateChange(
       async (event, session) => {
+        // console.log(session.user);
+        setUserSession(session.user);
+        // console.log(userSession);
         const dbUser = await getUserByEmail("Users", session.user.email);
         if (event === "SIGNED_IN" && dbUser[0].admin === true) {
           setAdmin(dbUser ?? null);
@@ -64,9 +54,11 @@ function useProvideAuth() {
       }
     );
     return () => {
+      console.log(userSession);
+
       authListener.subscription.unsubscribe();
     };
   }, []);
 
-  return { admin, login, logout };
+  return { admin, userSession, login, logout };
 }
