@@ -15,6 +15,7 @@ export const useAuth = () => {
 
 function useProvideAuth() {
   const [admin, setAdmin] = useState(null);
+  const [user, setUser] = useState(null);
   const [userSession, setUserSession] = useState([]);
 
   const login = async (email) => {
@@ -35,21 +36,28 @@ function useProvideAuth() {
   };
 
   useEffect(() => {
-    // setUserSession(supaSession());
-    // console.log(userSession);
-    // isAdmin();
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUserSession(session);
+    });
 
     const { data: authListener } = supabase.auth.onAuthStateChange(
       async (event, session) => {
-        // console.log(session.user);
-        setUserSession(session.user);
-        // console.log(userSession);
+        console.log(event, session);
+        console.log(session.user);
+        setUserSession(session);
+        console.log(userSession);
         const dbUser = await getUserByEmail("Users", session.user.email);
         if (event === "SIGNED_IN" && dbUser[0].admin === true) {
           setAdmin(dbUser ?? null);
         }
         if (event === "SIGNED_OUT") {
           setAdmin(null);
+        }
+        if (event === "SIGNED_IN") {
+          setUser(session.user ?? null);
+        }
+        if (event === "SIGNED_OUT") {
+          setUser(null);
         }
       }
     );
@@ -60,5 +68,5 @@ function useProvideAuth() {
     };
   }, []);
 
-  return { admin, userSession, login, logout };
+  return { admin, user, userSession, login, logout };
 }

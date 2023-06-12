@@ -2,13 +2,25 @@ import React, { useState } from "react";
 import { supabase } from "../SupabaseClient";
 import "./DailyLog.css";
 import { useAuth } from "../../AuthContext";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import { addDays } from "@fullcalendar/core/internal";
+import Picker from "../Picker";
 
 const DailyLog = () => {
-  const [formData, setFormData] = useState({});
   const [startDate, setStartDate] = useState(new Date());
+  const form = {
+    date: { startDate },
+    alegria: "0",
+    enojo: "0",
+    tristeza: "0",
+    verguenza: "0",
+    culpa: "0",
+    frustracion: "0",
+    ansiedad: "0",
+    sorpresa: "0",
+    otra: "",
+    valor: "0",
+    comentarios: "",
+  };
+  const [formData, setFormData] = useState(form);
   const auth = useAuth();
 
   const emociones = [
@@ -24,6 +36,7 @@ const DailyLog = () => {
 
   const insertNewDailyLog = async ({
     date,
+    email,
     alegria,
     enojo,
     tristeza,
@@ -34,12 +47,12 @@ const DailyLog = () => {
     sorpresa,
     otra,
     valor,
-    comentario,
+    comentarios,
   }) => {
     try {
       const { error } = await supabase.from("Log").insert({
         date: date,
-        email: auth.userSession.email,
+        email: email,
         alegria: alegria,
         enojo: enojo,
         tristeza: tristeza,
@@ -50,7 +63,7 @@ const DailyLog = () => {
         sorpresa: sorpresa,
         otra: otra,
         valor: valor,
-        comentario: comentario,
+        comentarios: comentarios,
       });
       if (error) throw error;
     } catch (error) {
@@ -61,15 +74,16 @@ const DailyLog = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
-    const answer = window.confirm("Seguro?");
     const newFormData = {
       ...formData,
-      email: auth.userSession?.email,
+      email: auth.userSession?.user?.email,
       date: startDate.toDateString(),
     };
+    const answer = window.confirm("Seguro que desea registrar las emociones?");
     if (answer) {
-      await insertNewDailyLog(newFormData);
       console.log(newFormData);
+      await insertNewDailyLog(newFormData);
+      setFormData(form);
       const session = auth.userSession?.user?.email;
       console.log("sesssssion", session);
     }
@@ -95,62 +109,76 @@ const DailyLog = () => {
   return (
     <div className="daily-log">
       <div>Registro de Emociones</div>
-      <div>
-        <form onSubmit={handleSubmit}>
-          <DatePicker
-            className="date-picker"
-            dateFormat="dd/MM/yyyy"
-            maxDate={addDays(new Date(), 0)}
-            name="date"
-            value={formData.date}
-            selected={startDate}
-            onChange={handleDateChange}
-          ></DatePicker>
+      <form onSubmit={handleSubmit}>
+        <div className="date-log">
+          <Picker
+            formData={formData}
+            startDate={startDate}
+            handleDateChange={handleDateChange}
+          />
           <ul className="log">
             {emociones.map((e) => (
-              <li key={e.name}>
+              <li key={e.name} className="log-border">
                 <p>{e.name}</p>
-                <select name={e.name.toLowerCase()} onChange={handleChange}>
-                  <option value={formData.e}>0</option>
-                  <option value={formData.e}>1</option>
-                  <option value={formData.e}>2</option>
-                  <option value={formData.e}>3</option>
-                  <option value={formData.e}>4</option>
-                  <option value={formData.e}>5</option>
+                <select
+                  name={e.name.toLowerCase()}
+                  value={formData.e}
+                  onChange={handleChange}
+                >
+                  <option>0</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
                 </select>
               </li>
             ))}
+            <div className="comment-log">
+              <ul>
+                <li className="log-border">
+                  <input
+                    type="text"
+                    name="otra"
+                    className="input-otra"
+                    placeholder="Otra"
+                    onChange={handleChange}
+                    value={formData.otra}
+                  />
+                  <select
+                    name="valor"
+                    value={formData.valor}
+                    onChange={handleChange}
+                  >
+                    <option>0</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+                </li>
+              </ul>
+            </div>
           </ul>
-          <ul>
-            <li></li>
-            <li>
-              <input
-                type="text"
-                name="otra"
-                placeholder="Otra"
-                onChange={handleChange}
-                value={formData.otra}
-              />
-              <select name="valor" onChange={handleChange}>
-                <option value={formData.valor}>0</option>
-                <option value={formData.valor}>1</option>
-                <option value={formData.valor}>2</option>
-                <option value={formData.valor}>3</option>
-                <option value={formData.valor}>4</option>
-                <option value={formData.valor}>5</option>
-              </select>
-            </li>
-            <p>Comentarios</p>
+          <div className="register-button">
             <input
-              type="text"
+              type="submit"
+              className="flat-button button-margin"
+              value="REGISTRAR EMOCIONES"
+            />
+          </div>
+          <ul className="log-border">
+            <p>Comentarios del día</p>
+            <textarea
+              className="comments"
               name="comentarios"
               onChange={handleChange}
               value={formData.comentarios}
             />
           </ul>
-          <input type="submit" className="flat-button" value="SUBMIT" />
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   );
 };

@@ -19,7 +19,7 @@ const NavBAr = () => {
           }
         }}
       >
-        Mente App
+        HANASAKI
       </div>
       <ul>
         {auth.admin === null ? (

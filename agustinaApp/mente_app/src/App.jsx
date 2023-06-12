@@ -16,36 +16,30 @@ function App() {
   const auth = useAuth();
 
   useEffect(() => {
-    if (
-      auth.userSession?.id === "3ad48f8-cddf-4b0f-818f-f927f1d16a98" ||
-      auth.userSession?.id === "33f15321-9673-4c56-baf6-992d96461248"
-    ) {
-      navigate("/admin");
-    }
-    if (!auth.userSession) {
-      // if (session === null) {
-      navigate("/login");
-    } else {
-      navigate("/");
-    }
+    // if (
+    //   auth.userSession?.id === "3ad48f8-cddf-4b0f-818f-f927f1d16a98" ||
+    //   auth.userSession?.id === "33f15321-9673-4c56-baf6-992d96461248"
+    // ) {
+    //   navigate("/admin");
+    // }
+    // if (!auth.userSession) {
+    //   navigate("/login");
+    // } else {
+    //   navigate("/");
+    // }
     supabase.auth.onAuthStateChange((event, session) => {
-      // console.log(event, session);
       if (!session) {
-        // if (session === null) {
         navigate("/login");
       }
-      // console.log(auth.user);
 
-      // if (
-      //   session.user.id === "3ad48f8-cddf-4b0f-818f-f927f1d16a98" ||
-      //   session.user.id === "33f15321-9673-4c56-baf6-992d96461248"
-      // ) {
-      //   navigate("/admin");
-      // } else {
-      //   navigate("/");
-      // }
-
-      // console.log(getSessionEmail());
+      if (
+        session.user.id === "3ad48f8-cddf-4b0f-818f-f927f1d16a98" ||
+        session.user.id === "33f15321-9673-4c56-baf6-992d96461248"
+      ) {
+        navigate("/admin");
+      } else {
+        navigate("/");
+      }
     });
   }, []);
 
