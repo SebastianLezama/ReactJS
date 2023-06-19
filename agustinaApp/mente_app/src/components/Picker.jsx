@@ -33,18 +33,17 @@ const Picker = ({ formData, startDate, handleDateChange }) => {
   const Mycontainer = ({ className, children }) => {
     return (
       <div
-        // className="customDatePickerWidth"
-        style={{
-          padding: "3px",
-          height: "302px",
-          marginTop: "18px",
-          // background: "#216ba5",
-          // color: "#fff",
-          // borderRadius: "4px",
-        }}
+        className="datepicker"
+        // style={{
+        //   padding: "3px",
+        //   height: "302px",
+        //   marginTop: "18px",
+        // background: "#216ba5",
+        // color: "#fff",
+        // borderRadius: "4px",
       >
         <CalendarContainer className={className}>
-          <div style={{ padding: "3px" }}>DÍA A REGISTRAR</div>
+          <div style={{ padding: "3px" }}>Día a registrar</div>
           <div style={{ position: "relative" }}>{children}</div>
         </CalendarContainer>
       </div>

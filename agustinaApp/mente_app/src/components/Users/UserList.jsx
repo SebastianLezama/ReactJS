@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../SupabaseClient";
+import UserCard from "./UserCard";
 
 const Users = () => {
   // TODO Store users in local storage
@@ -11,7 +12,8 @@ const Users = () => {
       const { data, error } = await supabase.from("Users").select("*");
       // console.log("Error: ", error);
       if (error) throw error;
-      if (data != null) setUsers(data);
+      const sortedData = data.sort((a, b) => (a.name > b.name ? 1 : -1));
+      if (data != null) setUsers(sortedData);
       // console.log(data);
     } catch (error) {
       alert(error.message);
@@ -22,18 +24,7 @@ const Users = () => {
     getUsers();
   }, []);
 
-  return (
-    <div>
-      {users &&
-        users.map((e) => (
-          <div key={e.name}>
-            <div>{e.name}</div>
-            <div>{e.edad}</div>
-            <div>{e.email}</div>
-          </div>
-        ))}
-    </div>
-  );
+  return <UserCard users={users} />;
 };
 
 export default Users;

@@ -1,4 +1,4 @@
-.log {
+/* .log {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
@@ -28,7 +28,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   /* grid-template-rows: 1fr 1fr; */
-  margin: 0px 10px 0px 10px;
+/* margin: 0px 10px 0px 10px;
   justify-content: center;
   align-items: center;
   align-content: center;
@@ -40,7 +40,7 @@
 .comment-log {
   display: grid;
   grid-template-columns: 1fr;
-  /* grid-template-rows: 1fr 1fr; */
+  /* grid-template-rows: 1fr 1fr; 
 }
 
 .register-button {
@@ -75,7 +75,7 @@
 /* .react-datepicker {
   width: 400px;
   height: 400px;
-} */
+} 
 
 .react-datepicker__month-container {
   width: 100%;
@@ -111,4 +111,4 @@
 .react-datepicker__navigation--next {
   border-left-color: #ccc;
   right: 1em;
-}
+} */

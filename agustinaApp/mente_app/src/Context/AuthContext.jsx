@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { getUserByEmail, supabase } from "./components/SupabaseClient";
-import { useNavigate } from "react-router-dom";
+import { getUserByEmail, supabase } from "../components/SupabaseClient";
+import { Router, useNavigate } from "react-router-dom";
 
 const authContext = createContext();
 
@@ -13,10 +13,37 @@ export const useAuth = () => {
   return useContext(authContext);
 };
 
+export async function login(email) {
+  try {
+    const { data, error } = await supabase.auth.signInWithOtp({
+      email: email,
+      options: {
+        emailRedirectTo: "http://127.0.0.1:5173/",
+      },
+    });
+    if (error) throw error;
+  } catch (error) {
+    alert(error.message);
+  }
+}
+
 function useProvideAuth() {
   const [admin, setAdmin] = useState(null);
   const [user, setUser] = useState(null);
   const [userSession, setUserSession] = useState([]);
+
+  const signUp = async (email, password) => {
+    try {
+      console.log("en el f signup");
+      const { data, error } = await supabase.auth.signUp({
+        email: email,
+        password: password,
+      });
+      if (error) throw error;
+    } catch (error) {
+      alert(error.message);
+    }
+  };
 
   const login = async (email) => {
     try {
@@ -36,8 +63,13 @@ function useProvideAuth() {
   };
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    supabase.auth.getSession().then(async ({ data: { session } }) => {
+      console.log(session);
       setUserSession(session);
+      const dbUser = await getUserByEmail("Users", session.user.email);
+      if (session && dbUser[0].admin === true) {
+        setAdmin(dbUser ?? null);
+      }
     });
 
     const { data: authListener } = supabase.auth.onAuthStateChange(
@@ -45,7 +77,6 @@ function useProvideAuth() {
         console.log(event, session);
         console.log(session.user);
         setUserSession(session);
-        console.log(userSession);
         const dbUser = await getUserByEmail("Users", session.user.email);
         if (event === "SIGNED_IN" && dbUser[0].admin === true) {
           setAdmin(dbUser ?? null);
@@ -62,11 +93,9 @@ function useProvideAuth() {
       }
     );
     return () => {
-      console.log(userSession);
-
       authListener.subscription.unsubscribe();
     };
   }, []);
 
-  return { admin, user, userSession, login, logout };
+  return { admin, user, userSession, login, logout, signUp };
 }

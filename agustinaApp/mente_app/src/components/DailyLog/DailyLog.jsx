@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { supabase } from "../SupabaseClient";
 import "./DailyLog.css";
-import { useAuth } from "../../AuthContext";
-import Picker from "../Picker";
+import { useAuth } from "../../Context/AuthContext";
+import DailyLogForm from "./DailyLogForm";
 
 const DailyLog = () => {
   const [startDate, setStartDate] = useState(new Date());
@@ -23,16 +23,11 @@ const DailyLog = () => {
   const [formData, setFormData] = useState(form);
   const auth = useAuth();
 
-  const emociones = [
-    { name: "Alegria" },
-    { name: "Enojo" },
-    { name: "Tristeza" },
-    { name: "Verguenza" },
-    { name: "Culpa" },
-    { name: "Frustracion" },
-    { name: "Ansiedad" },
-    { name: "Sorpresa" },
-  ];
+  // function to display log in datepicker
+
+  const displayLog = () => {};
+
+  // use effect fetch of log
 
   const insertNewDailyLog = async ({
     date,
@@ -99,87 +94,16 @@ const DailyLog = () => {
   };
   const handleDateChange = (date) => {
     setStartDate(date);
-
-    // setFormData({
-    //   ...formData,
-    //   date: startDate,
-    // });
   };
 
   return (
-    <div className="daily-log">
-      <div>Registro de Emociones</div>
-      <form onSubmit={handleSubmit}>
-        <div className="date-log">
-          <Picker
-            formData={formData}
-            startDate={startDate}
-            handleDateChange={handleDateChange}
-          />
-          <ul className="log">
-            {emociones.map((e) => (
-              <li key={e.name} className="log-border">
-                <p>{e.name}</p>
-                <select
-                  name={e.name.toLowerCase()}
-                  value={formData.e}
-                  onChange={handleChange}
-                >
-                  <option>0</option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </select>
-              </li>
-            ))}
-            <div className="comment-log">
-              <ul>
-                <li className="log-border">
-                  <input
-                    type="text"
-                    name="otra"
-                    className="input-otra"
-                    placeholder="Otra"
-                    onChange={handleChange}
-                    value={formData.otra}
-                  />
-                  <select
-                    name="valor"
-                    value={formData.valor}
-                    onChange={handleChange}
-                  >
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                  </select>
-                </li>
-              </ul>
-            </div>
-          </ul>
-          <div className="register-button">
-            <input
-              type="submit"
-              className="flat-button button-margin"
-              value="REGISTRAR EMOCIONES"
-            />
-          </div>
-          <ul className="log-border">
-            <p>Comentarios del día</p>
-            <textarea
-              className="comments"
-              name="comentarios"
-              onChange={handleChange}
-              value={formData.comentarios}
-            />
-          </ul>
-        </div>
-      </form>
-    </div>
+    <DailyLogForm
+      handleChange={handleChange}
+      handleDateChange={handleDateChange}
+      handleSubmit={handleSubmit}
+      formData={formData}
+      startDate={startDate}
+    />
   );
 };
 

@@ -1,15 +1,16 @@
 import { createClient } from "@supabase/supabase-js";
-import { useAuth } from "../AuthContext";
+import { login } from "../Context/AuthContext";
 
 const SUPABASE_URL = "https://waouznfjhihauptkfimb.supabase.co";
 const SUPABASE_API_KEY = import.meta.env.VITE_SUPABASE_API_KEY;
 
 export const supabase = createClient(SUPABASE_URL, SUPABASE_API_KEY);
 
-export async function signInWithEmail(email) {
-  const auth = useAuth();
-  await auth.login(email);
+export function signInWithEmail(email) {
+  login(email);
 }
+
+export function userSignUp(email, password) {}
 
 export async function getUserByEmail(tableName, email) {
   try {

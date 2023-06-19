@@ -19,37 +19,30 @@
 }
 
 .main {
-  /* height: 800px; */
-  /* width: 100%; */
-  margin: 20px 0 0 0;
+  margin-top: auto;
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100vh;
 }
 .App {
   text-align: center;
   align-items: center;
   overflow-x: hidden;
   overflow-y: hidden;
-  /* width: 100vmax; */
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* min-height: 80vh; */
-  /* min-width: 100vh; */
+
   position: relative;
   flex-grow: 1;
   overflow: hidden;
-  /* width: 100%; */
 }
 
-.NavBar {
+/* .NavBar {
   display: flex;
   flex-direction: row;
   position: relative;
   top: 0;
   left: 0;
   right: 0;
-  /* margin: 5px 0 0 0; */
   align-items: center;
   clear: both;
   justify-content: center;
@@ -58,8 +51,8 @@
   padding-top: 3px;
   padding-left: 2px;
   z-index: 1;
-}
-
+} */
+/* 
 .NavBar ul {
   position: fixed;
   right: 0;
@@ -78,7 +71,48 @@
   height: 800px;
   width: 1100px;
 }
-
+*/
 .header {
   cursor: pointer;
+}
+
+.react-datepicker {
+  font-size: 2em;
+  padding: "3px";
+  height: "302px";
+  margin-top: "18px";
+}
+.react-datepicker__header {
+  padding-top: 0.8em;
+}
+.react-datepicker__month {
+  margin: 0.4em 1em;
+}
+.react-datepicker__day-name,
+.react-datepicker__day {
+  width: 1.9em;
+  line-height: 1.9em;
+  margin: 0.166em;
+}
+.react-datepicker__current-month {
+  font-size: 1.4em;
+}
+.react-datepicker__navigation {
+  top: 1em;
+  line-height: 1.7em;
+  border: 0.45em solid transparent;
+}
+.react-datepicker__navigation--previous {
+  border-right-color: #ccc;
+  left: 1em;
+}
+.react-datepicker__navigation--next {
+  border-left-color: #ccc;
+  right: 1em;
+}
+
+.datepicker {
+  padding: "3px";
+  height: "302px";
+  margin-top: "18px";
 }
