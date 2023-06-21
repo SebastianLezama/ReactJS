@@ -22,10 +22,6 @@ function App() {
       navigate("/login");
     }
 
-    if (auth.user !== null) {
-      navigate("/");
-    }
-
     return () => {
       const { data: listener } = supabase.auth.onAuthStateChange(
         (_event, session) => {

@@ -8,11 +8,11 @@ import SideBar from "./SideBar";
 
 const Layout = () => {
   return (
-    <Grid templateColumns="repeat(7, 1fr)">
+    <Grid templateColumns="repeat(8, 1fr)">
       <SideBar />
       <GridItem
         as="main"
-        colSpan={{ base: 7, md: 6, lg: 6, xl: 6 }}
+        colSpan={{ base: 8, md: 7, lg: 6, xl: 6 }}
         pt="30px"
         pl="30px"
         pr="30px"

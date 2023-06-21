@@ -17,7 +17,7 @@ const SideBar = () => {
   return (
     <GridItem
       as="aside"
-      colSpan={{ base: 7, md: 1, lg: 1, xl: 1 }}
+      colSpan={{ base: 8, md: 1, lg: 2, xl: 2 }}
       bg="purple.300"
       minHeight="100vh"
       p={{ base: "0px", md: "20px", lg: "30px" }}
@@ -36,7 +36,7 @@ const SideBar = () => {
           <ListItem>
             <NavLink className="header" to={"/log"}>
               <ListIcon as={CalendarIcon} />
-              LOG
+              Registro de Emociones
             </NavLink>
           </ListItem>
         ) : (

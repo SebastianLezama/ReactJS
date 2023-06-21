@@ -23,6 +23,7 @@ const DailyLogForm = ({
   handleSubmit,
   formData,
   startDate,
+  logData,
 }) => {
   const emociones = [
     { name: "Alegria" },
@@ -35,6 +36,7 @@ const DailyLogForm = ({
     { name: "Sorpresa" },
   ];
 
+  // TODO volver radios a cero en el Front
   return (
     <Box justify="center">
       <form>
@@ -47,6 +49,7 @@ const DailyLogForm = ({
                 formData={formData}
                 startDate={startDate}
                 handleDateChange={handleDateChange}
+                logData={logData}
               />
               <Textarea
                 placeholder="Comentarios del día"

@@ -1,6 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { getUserByEmail, supabase } from "../components/SupabaseClient";
-import { Router, useNavigate } from "react-router-dom";
 
 const authContext = createContext();
 
@@ -29,6 +28,7 @@ export async function login(email) {
 
 function useProvideAuth() {
   const [admin, setAdmin] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
   const [userSession, setUserSession] = useState([]);
 

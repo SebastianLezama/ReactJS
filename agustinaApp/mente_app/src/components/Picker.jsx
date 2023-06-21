@@ -3,7 +3,7 @@ import DatePicker, { CalendarContainer } from "react-datepicker";
 import { addDays } from "@fullcalendar/core/internal";
 import "react-datepicker/dist/react-datepicker.css";
 
-const Picker = ({ formData, startDate, handleDateChange }) => {
+const Picker = ({ formData, startDate, handleDateChange, logData }) => {
   const days = ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"];
   const months = [
     "Enero",
@@ -50,20 +50,33 @@ const Picker = ({ formData, startDate, handleDateChange }) => {
     );
   };
 
+  const logHighlights = logData.map((e) => new Date(e.date));
+
+  //   logData &&
+  //   // },
+  // ];
+  // // [new Date(e.date)]
+
+  // console.log(logHighlights);
+
   return (
-    <DatePicker
-      className="date-picker"
-      dateFormat="dd/MM/yyyy"
-      locale={locale}
-      maxDate={addDays(new Date(), 0)}
-      name="date"
-      value={formData.date}
-      selected={startDate}
-      onChange={handleDateChange}
-      calendarContainer={Mycontainer}
-      inline
-      // size="xs"
-    ></DatePicker>
+    logData && (
+      <DatePicker
+        className="date-picker"
+        dateFormat="dd/MM/yyyy"
+        locale={locale}
+        maxDate={addDays(new Date(), 0)}
+        name="date"
+        value={formData.date}
+        selected={startDate}
+        onChange={handleDateChange}
+        calendarContainer={Mycontainer}
+        inline
+        // highlightDates={[logData && new Date(logData[0]?.date)]}
+        highlightDates={logHighlights}
+        // size="xs"
+      ></DatePicker>
+    )
   );
 };
 

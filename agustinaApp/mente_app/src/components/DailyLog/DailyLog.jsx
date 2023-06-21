@@ -1,11 +1,12 @@
-import React, { useState } from "react";
-import { supabase } from "../SupabaseClient";
+import React, { useEffect, useState } from "react";
+import { getUserByEmail, supabase } from "../SupabaseClient";
 import "./DailyLog.css";
 import { useAuth } from "../../Context/AuthContext";
 import DailyLogForm from "./DailyLogForm";
 
 const DailyLog = () => {
   const [startDate, setStartDate] = useState(new Date());
+  const [logData, setLogData] = useState([]);
   const form = {
     date: { startDate },
     alegria: "0",
@@ -23,11 +24,21 @@ const DailyLog = () => {
   const [formData, setFormData] = useState(form);
   const auth = useAuth();
 
-  // function to display log in datepicker
+  // function to display log in dailyLogForm
 
   const displayLog = () => {};
 
   // use effect fetch of log
+  const getLog = async () => {
+    setLogData(await getUserByEmail("Log", auth.user?.email));
+    logData && console.log("DailyLog useEffect", new Date(logData[0]?.date));
+    localStorage.setItem("userLog", JSON.stringify(logData));
+  };
+
+  useEffect(() => {
+    getLog();
+    // return () => {};
+  }, []);
 
   const insertNewDailyLog = async ({
     date,
@@ -72,7 +83,8 @@ const DailyLog = () => {
     const newFormData = {
       ...formData,
       email: auth.userSession?.user?.email,
-      date: startDate.toDateString(),
+      date: startDate,
+      // date: startDate.toDateString(),
     };
     const answer = window.confirm("Seguro que desea registrar las emociones?");
     if (answer) {
@@ -103,6 +115,7 @@ const DailyLog = () => {
       handleSubmit={handleSubmit}
       formData={formData}
       startDate={startDate}
+      logData={logData}
     />
   );
 };
