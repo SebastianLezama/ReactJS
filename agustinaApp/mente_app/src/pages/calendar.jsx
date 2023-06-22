@@ -8,6 +8,8 @@ import { gapi } from "gapi-script";
 import { getUserByEmail } from "../components/SupabaseClient";
 import Modal from "../components/Modal";
 import "./Calendar.css";
+import { Box } from "@chakra-ui/react";
+import esLocale from "@fullcalendar/core/locales/es";
 
 function Calendar() {
   const [events, setEvents] = useState([]);
@@ -89,7 +91,8 @@ function Calendar() {
 
   return (
     <>
-      <div className="main-calendar">
+      {/* <div className="main-calendar"> */}
+      <Box>
         <FullCalendar
           plugins={[
             dayGridMonth,
@@ -103,17 +106,19 @@ function Calendar() {
             right: "dayGridMonth,timeGridWeek,timeGridDay",
           }}
           initialView="timeGridWeek"
+          locale={esLocale}
           selectable={true}
           editable={true}
           eventClick={eventClick}
           events={events}
-          height="100%"
-          // width="100%"
+          height="700px"
+          width="100%"
           weekends={false}
-          slotMinTime="09:00:00"
+          slotMinTime="10:00:00"
           slotMaxTime="21:00:00"
         />
-      </div>
+      </Box>
+      {/* </div> */}
       <Modal
         showModal={showModal}
         modalRef={modalRef}

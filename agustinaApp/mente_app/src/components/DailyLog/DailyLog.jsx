@@ -106,14 +106,12 @@ const DailyLog = () => {
   };
   const handleDateChange = (e) => {
     const eventDate = new Date(e).getDate() + "/" + new Date(e).getMonth();
-    console.log(eventDate);
 
     const filteredDate = data?.logData?.find(
       (log) =>
         new Date(log?.date).getDate() + "/" + new Date(log?.date).getMonth() ===
         eventDate
     );
-    console.log("date change", filteredDate);
     if (
       data?.logData?.some(
         (log) =>
@@ -123,6 +121,8 @@ const DailyLog = () => {
           eventDate
       )
     ) {
+      setStartDate(e);
+
       setFormData(filteredDate);
     } else {
       setFormData(form);
