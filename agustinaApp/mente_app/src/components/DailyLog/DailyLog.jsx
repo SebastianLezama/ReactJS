@@ -3,10 +3,12 @@ import { getUserByEmail, supabase } from "../SupabaseClient";
 import "./DailyLog.css";
 import { useAuth } from "../../Context/AuthContext";
 import DailyLogForm from "./DailyLogForm";
+import { useLogData } from "../../Context/LogContext";
+// import { moment } from "moment";
 
 const DailyLog = () => {
   const [startDate, setStartDate] = useState(new Date());
-  const [logData, setLogData] = useState([]);
+  // const [logData, setLogData] = useState([]);
   const form = {
     date: { startDate },
     alegria: "0",
@@ -23,20 +25,16 @@ const DailyLog = () => {
   };
   const [formData, setFormData] = useState(form);
   const auth = useAuth();
+  const data = useLogData();
 
   // function to display log in dailyLogForm
 
   const displayLog = () => {};
 
   // use effect fetch of log
-  const getLog = async () => {
-    setLogData(await getUserByEmail("Log", auth.user?.email));
-    logData && console.log("DailyLog useEffect", new Date(logData[0]?.date));
-    localStorage.setItem("userLog", JSON.stringify(logData));
-  };
 
   useEffect(() => {
-    getLog();
+    // data?.getLog(auth.userSession?.user?.email);
     // return () => {};
   }, []);
 
@@ -76,6 +74,7 @@ const DailyLog = () => {
       alert(error.message);
     }
   };
+  const [selectedRadio, setSelectedRadio] = useState("0");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -90,7 +89,8 @@ const DailyLog = () => {
     if (answer) {
       console.log(newFormData);
       await insertNewDailyLog(newFormData);
-      setFormData(form);
+      data.getLog(auth?.userSession?.user?.email);
+      // setFormData(form);
       const session = auth.userSession?.user?.email;
       console.log("sesssssion", session);
     }
@@ -104,18 +104,62 @@ const DailyLog = () => {
       [name]: value,
     });
   };
-  const handleDateChange = (date) => {
-    setStartDate(date);
+  const handleDateChange = (e) => {
+    const eventDate = new Date(e).getDate() + "/" + new Date(e).getMonth();
+    console.log(eventDate);
+
+    const filteredDate = data?.logData?.find(
+      (log) =>
+        new Date(log?.date).getDate() + "/" + new Date(log?.date).getMonth() ===
+        eventDate
+    );
+    console.log("date change", filteredDate);
+    if (
+      data?.logData?.some(
+        (log) =>
+          new Date(log?.date).getDate() +
+            "/" +
+            new Date(log?.date).getMonth() ===
+          eventDate
+      )
+    ) {
+      setFormData(filteredDate);
+    } else {
+      setFormData(form);
+      setStartDate(e);
+    }
   };
+
+  const handleRadio = (e) => {
+    const { name, value } = e.target;
+
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+    setSelectedRadio(e.target.value);
+  };
+  const isRadioSelected = (value) => {
+    selectedRadio === value;
+  };
+
+  // useEffect(() => {
+  //   setFormData();
+
+  //   return () => {};
+  // }, [startDate]);
 
   return (
     <DailyLogForm
       handleChange={handleChange}
       handleDateChange={handleDateChange}
       handleSubmit={handleSubmit}
+      handleRadio={handleRadio}
+      isRadioSelected={isRadioSelected}
       formData={formData}
+      setFormData={setFormData}
       startDate={startDate}
-      logData={logData}
+      logData={data?.logData}
     />
   );
 };

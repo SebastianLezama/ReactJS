@@ -2,8 +2,10 @@ import React from "react";
 import DatePicker, { CalendarContainer } from "react-datepicker";
 import { addDays } from "@fullcalendar/core/internal";
 import "react-datepicker/dist/react-datepicker.css";
+import { useLogData } from "../Context/LogContext";
+import es from "date-fns/locale/es";
 
-const Picker = ({ formData, startDate, handleDateChange, logData }) => {
+const Picker = ({ formData, startDate, handleDateChange }) => {
   const days = ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"];
   const months = [
     "Enero",
@@ -30,6 +32,8 @@ const Picker = ({ formData, startDate, handleDateChange, logData }) => {
     },
   };
 
+  const data = useLogData();
+
   const Mycontainer = ({ className, children }) => {
     return (
       <div
@@ -50,7 +54,7 @@ const Picker = ({ formData, startDate, handleDateChange, logData }) => {
     );
   };
 
-  const logHighlights = logData.map((e) => new Date(e.date));
+  const logHighlights = data?.logData?.map((e) => new Date(e.date));
 
   //   logData &&
   //   // },
@@ -60,23 +64,24 @@ const Picker = ({ formData, startDate, handleDateChange, logData }) => {
   // console.log(logHighlights);
 
   return (
-    logData && (
-      <DatePicker
-        className="date-picker"
-        dateFormat="dd/MM/yyyy"
-        locale={locale}
-        maxDate={addDays(new Date(), 0)}
-        name="date"
-        value={formData.date}
-        selected={startDate}
-        onChange={handleDateChange}
-        calendarContainer={Mycontainer}
-        inline
-        // highlightDates={[logData && new Date(logData[0]?.date)]}
-        highlightDates={logHighlights}
-        // size="xs"
-      ></DatePicker>
-    )
+    // data?.logData &&
+    <DatePicker
+      className="date-picker"
+      dateFormat="dd/MM/yyyy"
+      // locale={locale}
+      locale={es}
+      maxDate={addDays(new Date(), 0)}
+      name="date"
+      value={formData.date}
+      selected={startDate}
+      onChange={handleDateChange}
+      calendarContainer={Mycontainer}
+      inline
+      disabledKeyboardNavigation
+      // highlightDates={[logData && new Date(logData[0]?.date)]}
+      highlightDates={logHighlights}
+      // size="xs"
+    ></DatePicker>
   );
 };
 

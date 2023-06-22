@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { getUserByEmail, supabase } from "../components/SupabaseClient";
+import { getLocalStorage } from "./LogContext";
 
 const authContext = createContext();
 
@@ -12,19 +13,19 @@ export const useAuth = () => {
   return useContext(authContext);
 };
 
-export async function login(email) {
-  try {
-    const { data, error } = await supabase.auth.signInWithOtp({
-      email: email,
-      options: {
-        emailRedirectTo: "http://127.0.0.1:5173/",
-      },
-    });
-    if (error) throw error;
-  } catch (error) {
-    alert(error.message);
-  }
-}
+// export async function login(email) {
+//   try {
+//     const { data, error } = await supabase.auth.signInWithOtp({
+//       email: email,
+//       options: {
+//         emailRedirectTo: "http://127.0.0.1:5173/",
+//       },
+//     });
+//     if (error) throw error;
+//   } catch (error) {
+//     alert(error.message);
+//   }
+// }
 
 function useProvideAuth() {
   const [admin, setAdmin] = useState(null);
@@ -62,27 +63,36 @@ function useProvideAuth() {
     const { error } = await supabase.auth.signOut();
   };
 
+  const getLocalStorageSession = () => {
+    const session = getLocalStorage("sb-waouznfjhihauptkfimb-auth-token");
+    console.log(session);
+    return session;
+  };
+
   useEffect(() => {
-    supabase.auth.getSession().then(async ({ data: { session } }) => {
-      console.log(session);
-      setUserSession(session);
-      const dbUser = await getUserByEmail("Users", session.user.email);
-      if (session && dbUser[0].admin === true) {
-        setAdmin(dbUser ?? null);
-      }
-    });
+    // supabase.auth.getSession().then(async ({ data: { session } }) => {
+    //   console.log(session);
+    //   setUserSession(session);
+    //   const dbUser = await getUserByEmail("Users", session.user.email);
+    //   if (session && dbUser[0].admin === true) {
+    //     setAdmin(dbUser ?? null);
+    //   }
+    // });
+
+    setUserSession(getLocalStorageSession());
 
     const { data: authListener } = supabase.auth.onAuthStateChange(
       async (event, session) => {
         console.log(event, session);
         console.log(session.user);
-        setUserSession(session);
+        // setUserSession(session);
         const dbUser = await getUserByEmail("Users", session.user.email);
         if (event === "SIGNED_IN" && dbUser[0].admin === true) {
           setAdmin(dbUser ?? null);
         }
         if (event === "SIGNED_OUT") {
           setAdmin(null);
+          setIsLoggedIn(false);
         }
         if (event === "SIGNED_IN") {
           setUser(session.user ?? null);

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { signInWithEmail, supabase, getUserByEmail } from "../SupabaseClient";
+import { supabase, getUserByEmail } from "../SupabaseClient";
 import {
   Box,
   Button,
@@ -144,6 +144,33 @@ const UserForm = () => {
     });
   };
 
+  const handleSubmit = async (values, actions) => {
+    console.log(values);
+    setFormData(values);
+    try {
+      if (
+        (values.name != undefined) &
+        (values.email != undefined) &
+        (values.name != "") &
+        (values.email != "")
+      ) {
+        const user = await getUserByEmail("Users", values.email);
+        console.log(user);
+        if (user[0] === undefined) {
+          console.log("inserting");
+          // UNCOMMENT to send invite
+          auth.signUp(values.email, values.dni);
+          await insertNewUser(values);
+          showToast("Consultante agregado!", "success", "Invitacion enviada");
+          actions.resetForm();
+        }
+      }
+    } catch (error) {
+      showToast("Hubo un error", "error", error);
+    }
+    actions.resetForm();
+  };
+
   return (
     <Formik
       initialValues={{ ...formData }}
@@ -155,36 +182,7 @@ const UserForm = () => {
           .email()
           .required("Por favor ingrese un email"),
       })}
-      onSubmit={async (values, actions) => {
-        console.log(values);
-        setFormData(values);
-        try {
-          if (
-            (values.name != undefined) &
-            (values.email != undefined) &
-            (values.name != "") &
-            (values.email != "")
-          ) {
-            const user = await getUserByEmail("Users", values.email);
-            console.log(user);
-            if (user[0] === undefined) {
-              console.log("inserting");
-              // UNCOMMENT to send invite
-              auth.signUp(values.email, values.dni);
-              await insertNewUser(values);
-              showToast(
-                "Consultante agregado!",
-                "success",
-                "Invitacion enviada"
-              );
-              actions.resetForm();
-            }
-          }
-        } catch (error) {
-          showToast("Hubo un error", "error", error);
-        }
-        actions.resetForm();
-      }}
+      onSubmit={handleSubmit}
     >
       {(formik) => (
         <VStack

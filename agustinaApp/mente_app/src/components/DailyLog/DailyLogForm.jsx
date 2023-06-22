@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Picker from "../Picker";
 import {
   Box,
@@ -15,13 +15,18 @@ import {
   Spacer,
   Textarea,
   Wrap,
+  useRadioGroup,
 } from "@chakra-ui/react";
+import LogRadio from "./LogRadio";
 
 const DailyLogForm = ({
   handleChange,
   handleDateChange,
   handleSubmit,
+  handleRadio,
+  isRadioSelected,
   formData,
+  setFormData,
   startDate,
   logData,
 }) => {
@@ -35,6 +40,11 @@ const DailyLogForm = ({
     { name: "Ansiedad" },
     { name: "Sorpresa" },
   ];
+
+  const { value, getRadioProps, getRootProps } = useRadioGroup({
+    defaultValue: "0",
+    onChange: handleChange,
+  });
 
   // TODO volver radios a cero en el Front
   return (
@@ -76,16 +86,17 @@ const DailyLogForm = ({
               {emociones.map((e) => (
                 <RadioGroup
                   key={e.name}
-                  defaultValue="0"
+                  defaultValue={formData[e.name.toLowerCase()]}
                   name={e.name.toLowerCase()}
-                  value={formData.e}
-                  colorScheme="pink"
+                  value={formData[e.name.toLowerCase()]}
+                  colorScheme="blue"
+                  _checked={isRadioSelected(formData.e)}
                 >
                   <FormLabel m="0">{e.name}</FormLabel>
                   <HStack
                     justify="space-between"
                     paddingBottom="17px"
-                    onChange={handleChange}
+                    onChange={handleRadio}
                   >
                     <Radio value="0">0</Radio>
                     <Radio value="1">1</Radio>
@@ -104,16 +115,17 @@ const DailyLogForm = ({
                 marginBottom="4px"
               />
               <RadioGroup
-                defaultValue="0"
+                defaultValue={formData.valor}
                 name="valor"
                 value={formData.valor}
-                colorScheme="pink"
+                colorScheme="blue"
+                _checked={isRadioSelected(formData.valor)}
               >
                 <HStack
                   justify="space-between"
                   paddingBottom="17px"
                   name="valor"
-                  onChange={handleChange}
+                  onChange={handleRadio}
                 >
                   <Radio value="0">0</Radio>
                   <Radio value="1">1</Radio>
@@ -124,6 +136,7 @@ const DailyLogForm = ({
                 </HStack>
               </RadioGroup>
             </FormControl>
+            {/* <LogRadio formData={formData} /> */}
           </GridItem>
           {/* <Spacer /> */}
         </Grid>
