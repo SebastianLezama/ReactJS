@@ -1,10 +1,16 @@
 import React from "react";
-import { useAuth } from "../AuthContext";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
+import { useAuth } from "../Context/AuthContext";
 
 const AdminRoute = ({ children }) => {
-  const auth = useAuth();
-  return auth.user ? children : <Navigate to={"/login"} />;
+  const { admin } = useAuth();
+
+  const location = useLocation();
+  return admin ? (
+    children
+  ) : (
+    <Navigate to={"/login"} state={{ from: location }} replace />
+  );
 };
 
 export default AdminRoute;

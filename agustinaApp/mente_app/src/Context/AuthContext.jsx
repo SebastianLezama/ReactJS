@@ -28,8 +28,7 @@ export const useAuth = () => {
 // }
 
 function useProvideAuth() {
-  const [admin, setAdmin] = useState(null);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [admin, setAdmin] = useState(false);
   const [user, setUser] = useState(null);
   const [userSession, setUserSession] = useState([]);
 
@@ -65,9 +64,23 @@ function useProvideAuth() {
 
   const getLocalStorageSession = () => {
     const session = getLocalStorage("sb-waouznfjhihauptkfimb-auth-token");
-    console.log(session);
+    // console.log(session);
     return session;
   };
+
+  const dbUser = async () => {
+    setUser(await getUserByEmail("Users", userSession?.email));
+  };
+
+  const checkIsLoggedIn = () => {
+    if (getLocalStorageSession()) {
+      console.log("session checked");
+      return true;
+    } else {
+      return false;
+    }
+  };
+  const [isLoggedIn, setIsLoggedIn] = useState(checkIsLoggedIn());
 
   useEffect(() => {
     // supabase.auth.getSession().then(async ({ data: { session } }) => {
@@ -78,34 +91,46 @@ function useProvideAuth() {
     //     setAdmin(dbUser ?? null);
     //   }
     // });
+    dbUser();
 
-    setUserSession(getLocalStorageSession());
+    console.log("logged in", isLoggedIn);
+    if (!userSession) {
+      setUserSession(getLocalStorageSession());
+    }
 
     const { data: authListener } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
-        console.log(event, session);
-        console.log(session.user);
-        // setUserSession(session);
-        const dbUser = await getUserByEmail("Users", session.user.email);
-        if (event === "SIGNED_IN" && dbUser[0].admin === true) {
-          setAdmin(dbUser ?? null);
-        }
+      (event, session) => {
+        // console.log(event, session);
+        console.log(session?.user);
+        setUserSession(session ?? null);
+
         if (event === "SIGNED_OUT") {
-          setAdmin(null);
+          setAdmin(false);
           setIsLoggedIn(false);
         }
         if (event === "SIGNED_IN") {
-          setUser(session.user ?? null);
+          setUser(session?.user ?? null);
+          setIsLoggedIn(true);
         }
         if (event === "SIGNED_OUT") {
           setUser(null);
         }
       }
     );
+    if (isLoggedIn && user?.admin === true) {
+      console.log("admin is:", admin);
+      setAdmin(true);
+    }
     return () => {
       authListener.subscription.unsubscribe();
+      // console.log("return authCtxt", isLoggedIn);
+      if (isLoggedIn && user?.admin === true) {
+        setAdmin(true);
+      }
+
+      // console.log("return authCtxt admin", admin);
     };
-  }, []);
+  }, [isLoggedIn, admin, userSession]);
 
   return { admin, user, userSession, login, logout, signUp };
 }

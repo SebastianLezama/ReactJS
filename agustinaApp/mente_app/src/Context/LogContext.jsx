@@ -21,15 +21,14 @@ export const getLocalStorage = (name) => {
 
 function useProvideLog() {
   const [logData, setLogData] = useState(getLocalStorage("userLog"));
-  const [logEmail, setLogEmail] = useState([]);
+  const [isFormFilled, setIsFormFilled] = useState(false);
   const auth = useAuth();
 
   const getLog = async (email) => {
-    console.log("email: ", email);
-    // localStorage.setItem("userLog", JSON.stringify([]));
+    // console.log("email: ", email);
     if (email !== undefined) {
       await getUserByEmail("Log", email).then((res) => {
-        console.log("supabaseLog", res);
+        // console.log("supabaseLog", res);
         localStorage.setItem("userLog", JSON.stringify(res));
         setLogData(res);
       });

@@ -11,34 +11,42 @@ import Log from "./pages/Log";
 import { useAuth } from "./Context/AuthContext";
 import Home from "./pages/Home";
 import Invite from "./pages/Invite";
+import AdminRoute from "./components/AdminRoute";
 
 function App() {
   const navigate = useNavigate();
 
-  const auth = useAuth();
+  const { userSession, admin, isLoggedIn } = useAuth();
 
   useEffect(() => {
-    if (!auth.userSession) {
+    if (isLoggedIn) {
+      navigate("/");
+    }
+    if (isLoggedIn) {
+      console.log("no session");
       navigate("/login");
     }
+    if (isLoggedIn && admin) {
+      navigate("/admin");
+    }
 
-    return () => {
-      const { data: listener } = supabase.auth.onAuthStateChange(
-        (_event, session) => {
-          if (!session) {
-            navigate("/login");
-          }
-          if (auth?.admin === true) {
-            navigate("/admin");
-          }
-          if (!session) {
-            navigate("/login");
-          }
-        }
-      );
-      listener.subscription.unsubscribe();
-    };
-  }, [auth.userSession]);
+    // const { data: listener } = supabase.auth.onAuthStateChange(
+    //   (_event, session) => {
+    //     if (!session) {
+    //       navigate("/login");
+    //     }
+    //     if (admin === true) {
+    //       navigate("/admin");
+    //     }
+    //     if (!session) {
+    //       navigate("/login");
+    //     }
+    //   }
+    // );
+    // return () => {
+    //   listener.subscription.unsubscribe();
+    // };
+  }, [admin, isLoggedIn]);
 
   return (
     <>
@@ -48,12 +56,14 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/log" element={<Log />} />
         </Route>
-        <Route path="/admin" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="/admin/calendar" element={<Calendar />} />
-          <Route path="/admin/users" element={<Users />} />
-          <Route path="/admin/invite" element={<Invite />} />
-          <Route path="/admin/mock" element={<MockLog />} />
+        <Route element={<AdminRoute />}>
+          <Route path="/admin" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="/admin/calendar" element={<Calendar />} />
+            <Route path="/admin/users" element={<Users />} />
+            <Route path="/admin/invite" element={<Invite />} />
+            <Route path="/admin/mock" element={<MockLog />} />
+          </Route>
         </Route>
       </Routes>
     </>

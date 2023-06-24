@@ -36,7 +36,6 @@ function Calendar() {
             path: `https://www.googleapis.com/calendar/v3/calendars/${calendarID}/events/`,
             params: {
               timeMin: new Date("03-01-2023").toISOString(),
-              // timeMin: dateMonth.toString().toISOString(),
               showDeleted: false,
               singleEvents: true,
               maxResults: 300,
@@ -112,7 +111,7 @@ function Calendar() {
           eventClick={eventClick}
           events={events}
           height="700px"
-          width="100%"
+          // width="100%"
           weekends={false}
           slotMinTime="10:00:00"
           slotMaxTime="21:00:00"

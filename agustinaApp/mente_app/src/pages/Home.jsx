@@ -1,15 +1,17 @@
-import { Box, Heading, Text } from "@chakra-ui/react";
 import React from "react";
+import Hero from "../components/Landing/Hero";
+import Features from "../components/Landing/Features";
+import Cards from "../components/Landing/Cards";
+import Footer from "../components/Landing/Footer";
 
 const Home = () => {
   return (
-    <Box>
-      <Heading p="10px">花咲</Heading>
-      <Heading as="h2" marginBottom="30px">
-        Agustina Pascali
-      </Heading>
-      <Text p="60px">Psicóloga</Text>
-    </Box>
+    <>
+      <Hero />
+      <Features />
+      <Cards />
+      <Footer />
+    </>
   );
 };
 

@@ -75,6 +75,7 @@ const DailyLog = () => {
     }
   };
   const [selectedRadio, setSelectedRadio] = useState("0");
+  const [isFormFilled, setIsFormFilled] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -122,11 +123,13 @@ const DailyLog = () => {
       )
     ) {
       setStartDate(e);
+      setIsFormFilled(true);
 
       setFormData(filteredDate);
     } else {
       setFormData(form);
       setStartDate(e);
+      setIsFormFilled(false);
     }
   };
 
@@ -160,6 +163,7 @@ const DailyLog = () => {
       setFormData={setFormData}
       startDate={startDate}
       logData={data?.logData}
+      isFormFilled={isFormFilled}
     />
   );
 };
