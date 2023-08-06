@@ -63,7 +63,7 @@ const Card = ({ heading, description, icon, href }) => {
 
 export default function gridListWith() {
   return (
-    <Box p={4}>
+    <Box p={4} bg={useColorModeValue("gray.100", "gray.600")}>
       <Stack spacing={4} as={Container} maxW={"3xl"} textAlign={"center"}>
         <Heading fontSize={{ base: "2xl", sm: "4xl" }} fontWeight={"bold"}>
           Short heading

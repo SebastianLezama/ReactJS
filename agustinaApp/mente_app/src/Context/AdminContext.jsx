@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useAuth } from "./AuthContext";
-import { getUserByEmail } from "../components/SupabaseClient";
+// import { getUserByEmail } from "../components/SupabaseClient";
 import { getLocalStorage } from "./LogContext";
 
 const adminContext = createContext();
@@ -17,14 +17,14 @@ export const useAdminData = () => {
 };
 
 function useProvideAdmin() {
-  const [calendarData, setCalendarData] = useState(
-    getLocalStorage("calendarData")
+  const [calendarEvents, setCalendarEvents] = useState(
+    getLocalStorage("calendarEvents")
   );
 
   const auth = useAuth();
 
-  const CALENDAR_ID = import.meta.env.VITE_CALENDAR_ID;
-  const API_KEY = import.meta.env.VITE_G_API_KEY;
+  const CALENDAR_ID = import.meta.env.VITE_CALENDAR_ID_SAL;
+  const API_KEY = import.meta.env.VITE_G_API_KEY_SAL;
 
   const getEventsFromCalendar = async (calendarID, apiKey) => {
     async function initiate() {
@@ -57,8 +57,8 @@ function useProvideAdmin() {
               color: e.colorId,
               rrule: e.recurrence ? e.recurrence[0] : null,
             }));
-            setCalendarData(events);
-            localStorage.setItem("calendarData", JSON.stringify(events));
+            setCalendarEvents(events);
+            localStorage.setItem("calendarEvents", JSON.stringify(events));
             return events;
           },
           function(err) {
@@ -70,9 +70,13 @@ function useProvideAdmin() {
   };
 
   useEffect(() => {
-    const events = getEventsFromCalendar(CALENDAR_ID, API_KEY);
-    setCalendarData(events);
+    if (calendarEvents[0] === undefined) {
+      console.log("useEff if not calendarEvents");
+      const events = getEventsFromCalendar(CALENDAR_ID, API_KEY);
+      setCalendarEvents(events);
+    }
+    // localStorage.setItem("calendarEvents", JSON.stringify(events));
   }, []);
 
-  return { calendarData };
+  return { calendarEvents };
 }

@@ -1,68 +1,38 @@
 import "./App.css";
 import Calendar from "./pages/calendar";
-import { Routes, Route, useNavigate, redirect } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import LogIn from "./pages/LogIn";
 import Users from "./pages/Users";
-import { useEffect } from "react";
-import { supabase } from "./components/SupabaseClient";
 import Layout from "./components/Layout/Layout";
 import MockLog from "./pages/MockLog";
 import Log from "./pages/Log";
-import { useAuth } from "./Context/AuthContext";
 import Home from "./pages/Home";
 import Invite from "./pages/Invite";
 import AdminRoute from "./components/AdminRoute";
+import Profile from "./pages/Profile";
+import LoggedInRoute from "./components/LoggedInRoute";
 
 function App() {
-  const navigate = useNavigate();
-
-  const { userSession, admin, isLoggedIn } = useAuth();
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      navigate("/");
-    }
-    if (isLoggedIn) {
-      console.log("no session");
-      navigate("/login");
-    }
-    if (isLoggedIn && admin) {
-      navigate("/admin");
-    }
-
-    // const { data: listener } = supabase.auth.onAuthStateChange(
-    //   (_event, session) => {
-    //     if (!session) {
-    //       navigate("/login");
-    //     }
-    //     if (admin === true) {
-    //       navigate("/admin");
-    //     }
-    //     if (!session) {
-    //       navigate("/login");
-    //     }
-    //   }
-    // );
-    // return () => {
-    //   listener.subscription.unsubscribe();
-    // };
-  }, [admin, isLoggedIn]);
-
   return (
     <>
       <Routes>
-        <Route path="/login" element={<LogIn />} />
         <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="/log" element={<Log />} />
-        </Route>
-        <Route element={<AdminRoute />}>
-          <Route path="/admin" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="/admin/calendar" element={<Calendar />} />
-            <Route path="/admin/users" element={<Users />} />
-            <Route path="/admin/invite" element={<Invite />} />
-            <Route path="/admin/mock" element={<MockLog />} />
+          {/*  public in routes */}
+          <Route path="login" element={<LogIn />} />
+          <Route path="/" element={<Home />} />
+          {/*  logged in routes */}
+          <Route element={<LoggedInRoute />}>
+            <Route path="log" element={<Log />} />
+            <Route path="profile" element={<Profile />} />
+          </Route>
+
+          {/*  admin in routes */}
+          <Route element={<AdminRoute />}>
+            {/* <Route path="/" element={<Home />} /> */}
+            <Route path="admin" element={<Calendar />} />
+            <Route path="users" element={<Users />} />
+            <Route path="invite" element={<Invite />} />
+            <Route path="mock" element={<MockLog />} />
           </Route>
         </Route>
       </Routes>

@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { getUserByEmail, supabase } from "../SupabaseClient";
+import { supabase } from "../SupabaseClient";
 import "./DailyLog.css";
 import { useAuth } from "../../Context/AuthContext";
 import DailyLogForm from "./DailyLogForm";
 import { useLogData } from "../../Context/LogContext";
-// import { moment } from "moment";
 
 const DailyLog = () => {
   const [startDate, setStartDate] = useState(new Date());
@@ -24,12 +23,8 @@ const DailyLog = () => {
     comentarios: "",
   };
   const [formData, setFormData] = useState(form);
-  const auth = useAuth();
+  const { sessionUser } = useAuth();
   const data = useLogData();
-
-  // function to display log in dailyLogForm
-
-  const displayLog = () => {};
 
   // use effect fetch of log
 
@@ -82,7 +77,7 @@ const DailyLog = () => {
     console.log(formData);
     const newFormData = {
       ...formData,
-      email: auth.userSession?.user?.email,
+      email: sessionUser?.email,
       date: startDate,
       // date: startDate.toDateString(),
     };
@@ -90,10 +85,10 @@ const DailyLog = () => {
     if (answer) {
       console.log(newFormData);
       await insertNewDailyLog(newFormData);
-      data.getLog(auth?.userSession?.user?.email);
+      data.getLog(sessionUser?.email);
       // setFormData(form);
-      const session = auth.userSession?.user?.email;
-      console.log("sesssssion", session);
+      // const session = auth.userSession?.user?.email;
+      // console.log("sesssssion", session);
     }
   };
 

@@ -58,8 +58,9 @@ const SocialButton = ({ children, label, href }) => {
 export default function SmallCentered() {
   return (
     <Box
-      bg={useColorModeValue("purple.400", "gray.900")}
-      color={useColorModeValue("gray.700", "gray.200")}
+      bg={useColorModeValue("gray.100", "gray.900")}
+      // color={useColorModeValue("gray.300", "gray.800")}
+      pt={"25px"}
     >
       <Container
         as={Stack}

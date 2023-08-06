@@ -12,7 +12,7 @@ export const supabase = createClient(SUPABASE_URL, SUPABASE_API_KEY);
 
 export function userSignUp(email, password) {}
 
-export async function getUserByEmail(tableName, email) {
+export async function getTableByEmail(tableName, email) {
   try {
     const { data, error } = await supabase
       .from(tableName)

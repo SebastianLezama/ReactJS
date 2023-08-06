@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { supabase, getUserByEmail } from "../SupabaseClient";
+import { supabase, getTableByEmail } from "../SupabaseClient";
 import {
   Box,
   Button,
@@ -154,7 +154,7 @@ const UserForm = () => {
         (values.name != "") &
         (values.email != "")
       ) {
-        const user = await getUserByEmail("Users", values.email);
+        const user = await getTableByEmail("Users", values.email);
         console.log(user);
         if (user[0] === undefined) {
           console.log("inserting");

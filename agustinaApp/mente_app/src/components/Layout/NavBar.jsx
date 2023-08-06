@@ -20,14 +20,25 @@ import {
   useColorModeValue,
   Stack,
   Heading,
+  Text,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 
-const Links = ["HANASAKI 花咲", "Registro de Emociones", "Projects", "Team"];
+const Links = ["HANASAKI 花咲", "Registro Diario", "Meditaciones", "Team"];
+const MenuLinks = ["Registro Diario", "Meditaciones", "Ejercicios"];
 
 const hRefTernary = (key) => {
-  if (key === "Registro de Emociones") {
+  if (key === "Registro Diario") {
     return "log";
+  }
+  if (key === "Meditaciones") {
+    return "audio";
+  }
+  if (key === "Ejercicios") {
+    return "exercise";
+  }
+  if (key === "Mi perfil") {
+    return "profile";
   } else {
     return "/";
   }
@@ -38,6 +49,7 @@ const NavLinkss = ({ children }) => (
     px={2}
     py={1}
     rounded={"md"}
+    // textColor="white"
     _hover={{
       textDecoration: "none",
       textColor: "white",
@@ -52,11 +64,11 @@ const NavLinkss = ({ children }) => (
 const NavBAr = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
-  const { admin } = useAuth();
+  const { admin, isLoggedIn, user } = useAuth();
 
   return (
     <>
-      <Box bg={useColorModeValue("purple.400", "purple.600")} px={4}>
+      <Box bg={useColorModeValue("gray.100", "gray.600")} px={4} minW={"470px"}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <IconButton
             size={"md"}
@@ -66,9 +78,9 @@ const NavBAr = () => {
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} alignItems={"center"}>
-            <NavLink to={admin === false ? "/" : "/admin"}>
+            <NavLinkss to={admin === false ? "/" : "/admin"}>
               Agustina Pascali
-            </NavLink>
+            </NavLinkss>
             <HStack
               as={"nav"}
               spacing={4}
@@ -83,31 +95,64 @@ const NavBAr = () => {
             <Menu>
               <MenuButton
                 as={Button}
-                rounded={"full"}
+                // rounded={"full"}
                 variant={"link"}
                 cursor={"pointer"}
-                minW={0}
+                // minW={0}
+                _hover={{
+                  textDecoration: "none",
+                  textColor: "white",
+                  // bg: useColorModeValue("teal.500", "gray.700"),
+                }}
               >
-                <Avatar
+                {user && user[0]?.name}
+                {/* <Avatar
                   size={"sm"}
                   src={
                     "https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9"
                   }
-                />
+                /> */}
               </MenuButton>
-              <MenuList>
-                <MenuItem>Link 1</MenuItem>
-                <MenuItem>Link 2</MenuItem>
+              <MenuList zIndex={"100"} textColor={"black"}>
+                {MenuLinks.map((link) => (
+                  <MenuItem key={link}>
+                    <NavLink
+                      to={hRefTernary(link)}
+                      _hover={{
+                        textDecoration: "none",
+                        textColor: "white",
+                        // bg: useColorModeValue("teal.500", "gray.700"),
+                      }}
+                    >
+                      {link}
+                    </NavLink>
+                  </MenuItem>
+                ))}
                 <MenuDivider />
-                <MenuItem>Link 3</MenuItem>
+                <MenuItem>
+                  <NavLink to="profile">Mi perfil</NavLink>
+                </MenuItem>
               </MenuList>
-              <Button
-                colorScheme="teal"
-                onClick={() => supabase.auth.signOut()}
-                ml={"20px"}
-              >
-                Log Out
-              </Button>
+              {isLoggedIn ? (
+                <Button
+                  colorScheme="blue"
+                  onClick={() => {
+                    supabase.auth.signOut();
+                    localStorage.clear();
+                  }}
+                  ml={"20px"}
+                >
+                  Log Out
+                </Button>
+              ) : (
+                <Button
+                  colorScheme="blue"
+                  onClick={() => navigate("/login")}
+                  ml={"20px"}
+                >
+                  Sign In
+                </Button>
+              )}
             </Menu>
           </Flex>
         </Flex>

@@ -9,9 +9,7 @@ import "./Modal.css";
 import CustomView from "./CustomPlugin";
 import Table from "./Table/Table";
 
-const Modal = ({ showModal, logInfo, modalRef, closeModal, currentEvent }) => {
-  const days = logInfo.length;
-
+const Modal = ({ showModal, users, modalRef, closeModal }) => {
   // const logEvents = logInfo.map((e) => ({
   //   email: e.email,
   //   title: e.comentario,
@@ -27,25 +25,14 @@ const Modal = ({ showModal, logInfo, modalRef, closeModal, currentEvent }) => {
       {showModal && (
         <div className="cardDetail" ref={modalRef} onClick={closeModal}>
           <div className="modal">
-            {currentEvent[0].name ? (
+            {/* {currentEvent[0].name ? (
               <div className="divModal">
                 {currentEvent[0].name}
                 <Table data={logInfo} />
-                {/* <div className="calendar">
-                  {logInfo.map((e) => (
-                    <div key={e.date}>
-                      {e.date} - Alegría: {e.alegria} - Enojo: {e.enojo} -
-                      Tristeza: {e.tristeza} - Verguenza: {e.verguenza} - Culpa:{" "}
-                      {e.culpa} - Frustración: {e.frustracion} - Ansiedad:{" "}
-                      {e.ansiedad} - Sorpresa: {e.sorpresa} - Comentario:{" "}
-                      {e.comentario}
-                    </div>
-                  ))}
-                </div> */}
               </div>
             ) : (
               alert("Falta invitar el usuario!")
-            )}
+            )} */}
           </div>
         </div>
       )}

@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useAuth } from "./AuthContext";
-import { getUserByEmail } from "../components/SupabaseClient";
+import { getTableByEmail } from "../components/SupabaseClient";
 
 const logContext = createContext();
 
@@ -21,16 +21,17 @@ export const getLocalStorage = (name) => {
 
 function useProvideLog() {
   const [logData, setLogData] = useState(getLocalStorage("userLog"));
-  const [isFormFilled, setIsFormFilled] = useState(false);
   const auth = useAuth();
 
   const getLog = async (email) => {
     // console.log("email: ", email);
     if (email !== undefined) {
-      await getUserByEmail("Log", email).then((res) => {
+      await getTableByEmail("Log", email).then((res) => {
         // console.log("supabaseLog", res);
-        localStorage.setItem("userLog", JSON.stringify(res));
-        setLogData(res);
+        if (res !== undefined) {
+          localStorage.setItem("userLog", JSON.stringify(res));
+          setLogData(res);
+        }
       });
     }
   };
@@ -40,7 +41,7 @@ function useProvideLog() {
   };
 
   useEffect(() => {
-    getLog(auth?.userSession?.user?.email);
+    getLog(auth?.sessionUser?.email);
     // sessionEmail() && getLog("2", sessionEmail());
     // getLog("sebastian.lezama@gmail.com");
     // return () => {

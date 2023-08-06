@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { getUserByEmail, supabase } from "../components/SupabaseClient";
+import { getTableByEmail, supabase } from "../components/SupabaseClient";
 import { getLocalStorage } from "./LogContext";
 
 const authContext = createContext();
@@ -13,24 +13,9 @@ export const useAuth = () => {
   return useContext(authContext);
 };
 
-// export async function login(email) {
-//   try {
-//     const { data, error } = await supabase.auth.signInWithOtp({
-//       email: email,
-//       options: {
-//         emailRedirectTo: "http://127.0.0.1:5173/",
-//       },
-//     });
-//     if (error) throw error;
-//   } catch (error) {
-//     alert(error.message);
-//   }
-// }
-
 function useProvideAuth() {
-  const [admin, setAdmin] = useState(false);
-  const [user, setUser] = useState(null);
-  const [userSession, setUserSession] = useState([]);
+  const [admin, setAdmin] = useState(true);
+  const [user, setUser] = useState([]);
 
   const signUp = async (email, password) => {
     try {
@@ -64,17 +49,29 @@ function useProvideAuth() {
 
   const getLocalStorageSession = () => {
     const session = getLocalStorage("sb-waouznfjhihauptkfimb-auth-token");
-    // console.log(session);
-    return session;
+
+    if (session.user) {
+      return session.user;
+    } else {
+      return [];
+    }
   };
 
-  const dbUser = async () => {
-    setUser(await getUserByEmail("Users", userSession?.email));
+  const [sessionUser, setSessionUser] = useState(getLocalStorageSession());
+
+  const dbUser = async (email) => {
+    const supaUser = await getTableByEmail("Users", email);
+    // console.log(supaUser);
+    setUser(supaUser);
+    if (supaUser[0]?.admin === true) {
+      setAdmin(true);
+    } else {
+      setAdmin(false);
+    }
   };
 
   const checkIsLoggedIn = () => {
-    if (getLocalStorageSession()) {
-      console.log("session checked");
+    if (sessionUser?.id !== undefined) {
       return true;
     } else {
       return false;
@@ -83,54 +80,45 @@ function useProvideAuth() {
   const [isLoggedIn, setIsLoggedIn] = useState(checkIsLoggedIn());
 
   useEffect(() => {
-    // supabase.auth.getSession().then(async ({ data: { session } }) => {
-    //   console.log(session);
-    //   setUserSession(session);
-    //   const dbUser = await getUserByEmail("Users", session.user.email);
-    //   if (session && dbUser[0].admin === true) {
-    //     setAdmin(dbUser ?? null);
-    //   }
-    // });
-    dbUser();
-
-    console.log("logged in", isLoggedIn);
-    if (!userSession) {
-      setUserSession(getLocalStorageSession());
-    }
+    dbUser(sessionUser?.email);
 
     const { data: authListener } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        // console.log(event, session);
-        console.log(session?.user);
-        setUserSession(session ?? null);
-
+      async (event, session) => {
         if (event === "SIGNED_OUT") {
           setAdmin(false);
           setIsLoggedIn(false);
+          setSessionUser([]);
         }
-        if (event === "SIGNED_IN") {
-          setUser(session?.user ?? null);
-          setIsLoggedIn(true);
+        if (!isLoggedIn) {
+          if (event === "SIGNED_IN") {
+            await dbUser(session?.user?.email);
+            setSessionUser(session?.user);
+            // console.log("adentro del signed in");
+            if (!isLoggedIn) {
+              if (user[0]?.admin === true) {
+                console.log("auth admin is:", admin);
+                setAdmin(true);
+              }
+              setIsLoggedIn(true);
+            }
+          }
         }
         if (event === "SIGNED_OUT") {
-          setUser(null);
+          setUser([]);
+          setAdmin(false);
+          setIsLoggedIn(false);
         }
       }
     );
-    if (isLoggedIn && user?.admin === true) {
-      console.log("admin is:", admin);
+    if (admin === false && user[0]?.admin === true) {
+      console.log("use eff admin is:", admin);
       setAdmin(true);
     }
+
     return () => {
       authListener.subscription.unsubscribe();
-      // console.log("return authCtxt", isLoggedIn);
-      if (isLoggedIn && user?.admin === true) {
-        setAdmin(true);
-      }
-
-      // console.log("return authCtxt admin", admin);
     };
-  }, [isLoggedIn, admin, userSession]);
+  }, [isLoggedIn, admin]);
 
-  return { admin, user, userSession, login, logout, signUp };
+  return { admin, user, sessionUser, isLoggedIn, login, logout, signUp };
 }
